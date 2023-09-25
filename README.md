@@ -11,10 +11,9 @@ please don't hesitate to ask such questions on Piazza too of course.
 hello 
 
 ## Description of Project Domain
+Our project will focus primarily on inventory management with a focus on food inventory. We will utilize a food database API to allow users to add items to a grocery list. These items will be able to be toggled to indicate whether the user has them or needs to restock them. Each item will be assigned an organizational category (e.g., freezer, spice rack) by the user to keep track of where they are stored. The user will also ideally be able to join a household with other users to make a master grocery list, showing which items users have in common.
 
-
-## Description of Application Type
-
+### Description of Application 
 
 ## API
 
@@ -22,11 +21,9 @@ hello
 
 ### Usage
 
-{screenshot here}
+{screenshot of call on a site here}
 
-```java
-System.out.println("it's gonna take so long to figure out how to make API calls")
-```
+{screenshot of java result here}
 
 ## Technical Problems
 - 
