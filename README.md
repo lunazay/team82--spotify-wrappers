@@ -1,29 +1,31 @@
 # week3project
 A readme.md file which must include:
-a description of the problem domain your team is tentatively wanting to focus on in the project. (e.g., trivia, finance, real estate, etc…)
-a brief, high-level description of what kind of application your team is thinking of developing.
-This is mostly just so we can give you some initial feedback on whether your team might want to reconsider your project direction.
-a link to the documentation for an API your team can use related to the domain.
-a screenshot of using a tool to try out the API (like https://www.postman.com/Links to an external site. or https://hoppscotch.io/Links to an external site.Links to an external site.)
-example output of running your Java code (see below).
-a list of any technical problems blocking progress (if any)
-please don't hesitate to ask such questions on Piazza too of course.
-hello 
+-[X] a description of the problem domain your team is tentatively wanting to focus on in the project. (e.g., trivia, finance, real estate, etc…)
+-[X] a brief, high-level description of what kind of application your team is thinking of developing.
+-[X] a link to the documentation for an API your team can use related to the domain.
+-[ ] a screenshot of using a tool to try out the API (https://hoppscotch.io/)
+-[ ] an example output of running your Java code (see below).
+-[ ] a list of any technical problems blocking progress (if any)
 
 ## Description of Project Domain
-Our project will focus primarily on inventory management with a focus on food inventory. We will utilize a food database API to allow users to add items to a grocery list. These items will be able to be toggled to indicate whether the user has them or needs to restock them. Each item will be assigned an organizational category (e.g., freezer, spice rack) by the user to keep track of where they are stored. The user will also ideally be able to join a household with other users to make a master grocery list, showing which items users have in common.
+Our project's domain is a personalized stats reporter specific to a user's listening activity on Spotify.
 
-### Description of Application 
+### Description of Application
+Our project will utilize Spotify's developer API to generate a stats page for a user which compiles and describes their listening activity by displaying frequently listened to artists, songs, and albums and organizing data with categories such as language and genre. Other web apps for Spotify stats exist, but they generally provide an in depth look into one aspect of a user's listening activity. Our application will focus on providing a generalized overview of listening activity in several organizational categories.
 
 ## API
 
-{name: link here}
+Spotify Web API: https://developer.spotify.com/documentation/web-api
 
 ### Usage
 
 {screenshot of call on a site here}
 
 {screenshot of java result here}
+
+```java
+// Code snippet
+```
 
 ## Technical Problems
 - 
