@@ -28,4 +28,6 @@ Spotify Web API: https://developer.spotify.com/documentation/web-api
 ```
 
 ## Technical Problems
-- 
+Following the instructions on <a href="https://developer.spotify.com/documentation/web-api/tutorials/getting-started">the Spotify API getting started page</a> is difficult, as they utilize cURL. Inputting the same parameters, body, and headers in Hoppscotch results in the following response body:
+<img width="718" alt="image" src="https://github.com/lunazay/week3design/assets/122567698/b1cf2f33-d875-408c-baca-ac5f8b8f98a7">
+
