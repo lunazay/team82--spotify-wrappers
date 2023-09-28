@@ -3,7 +3,7 @@ A readme.md file which must include:
 - [X] a description of the problem domain your team is tentatively wanting to focus on in the project. (e.g., trivia, finance, real estate, etc…)
 - [X] a brief, high-level description of what kind of application your team is thinking of developing.
 - [X] a link to the documentation for an API your team can use related to the domain.
-- [ ] a screenshot of using a tool to try out the API (https://hoppscotch.io/)
+- [ ] a screenshot of using <a href="https://hoppscotch.io/" target=_blank>a tool to try out the API</a>
 - [ ] an example output of running your Java code (see below).
 - [ ] a list of any technical problems blocking progress (if any)
 
