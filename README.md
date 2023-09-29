@@ -4,7 +4,7 @@ A readme.md file which must include:
 - [X] a brief, high-level description of what kind of application your team is thinking of developing.
 - [X] a link to the documentation for an API your team can use related to the domain.
 - [X] a screenshot of using <a href="https://hoppscotch.io/" target="_blank">a tool to try out the API</a>
-- [ ] an example output of running your Java code (see below).
+- [X] an example output of running your Java code (see below).
 - [X] a list of any technical problems blocking progress (if any)
 
 ## Description of Project Domain
@@ -24,6 +24,7 @@ Postman call to the API:
 Errors faced when running Java code:
 <img width="473" alt="Screenshot 2023-09-29 at 3 34 04 PM" src="https://github.com/lunazay/week3design/assets/144556477/3dfa3d57-7a4e-439e-bbba-78a99138dd72">
 
+Java code snippet:
 ```java
 /**OkHttpClient client = new OkHttpClient().newBuilder()
   .build();
