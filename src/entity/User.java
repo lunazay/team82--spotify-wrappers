@@ -2,25 +2,9 @@ package entity;
 
 public class User extends DataObject {
 
-    private final String userID;
+    // Parameters id and name from DataObject.
 
-    private final String displayName;
-
-
-    public User(String userID, String displayName) {
-
-        this.userID = userID;
-        this.displayName = displayName;
-    }
-
-    @Override
-    public String getDisplayName(){
-        return displayName;
-    }
-
-
-    @Override
-    public String getUserID() {
-        return userID;
+    public User(String id) {
+        super(id);
     }
 }
