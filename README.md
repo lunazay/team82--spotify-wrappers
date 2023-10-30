@@ -1,4 +1,4 @@
-# week3project
+# week3project TESTING EDITS
 A readme.md file which must include:
 - [X] a description of the problem domain your team is tentatively wanting to focus on in the project. (e.g., trivia, finance, real estate, etc…)
 - [X] a brief, high-level description of what kind of application your team is thinking of developing.
