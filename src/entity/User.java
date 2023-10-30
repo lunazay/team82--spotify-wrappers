@@ -1,6 +1,6 @@
 package entity;
 
-public class User {
+public class User extends DataObject {
 
     private final String userID;
 
@@ -13,10 +13,13 @@ public class User {
         this.displayName = displayName;
     }
 
+    @Override
     public String getDisplayName(){
-        return this.displayName;
+        return displayName;
     }
 
+
+    @Override
     public String getUserID() {
         return userID;
     }
