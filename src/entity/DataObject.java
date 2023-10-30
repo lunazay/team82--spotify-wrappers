@@ -6,7 +6,8 @@ public abstract class DataObject {
 
     public DataObject(String id) {
         this.id = id;
-        this.name = "";      // TODO: API Call to set the name
+        this.name = "";      // TODO: API Call to set the name (song/artist have "name"
+                             // TODO: and user has "display_name")
     }
 
     public String getId() {
