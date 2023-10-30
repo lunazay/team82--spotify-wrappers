@@ -11,14 +11,15 @@ public class Song extends DataObject{
         this.album = album;
     }
 
+    @Override
     public Artist getArtist() {
         return artist;
     }
-
+    @Override
     public String getAlbum() {
         return album;
     }
-
+    @Override
     public int getLength() {
         return length;
     }
