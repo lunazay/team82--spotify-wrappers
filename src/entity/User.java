@@ -2,14 +2,11 @@ package entity;
 
 public class User extends DataObject {
 
-    private final String userID;
-
     private final String displayName;
 
 
-    public User(String userID, String displayName) {
-
-        this.userID = userID;
+    public User(String displayName) {
+        super(id);
         this.displayName = displayName;
     }
 
