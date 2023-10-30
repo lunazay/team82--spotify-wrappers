@@ -19,6 +19,6 @@ public class User extends DataObject {
 
     @Override
     public String getUserID() {
-        return userID;
+        return id;
     }
 }
