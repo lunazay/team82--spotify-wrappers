@@ -1,4 +1,4 @@
 package use_case.TopSongs;
 
-public class TopSongsDataAccessInterface {
+public interface TopSongsDataAccessInterface {
 }
