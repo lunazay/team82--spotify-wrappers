@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9b7db034-f835-4495-bae6-b63f471d5341" name="Changes" comment="added maven library for spotify api" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="yoonie" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2XUO5uxAljtZWCKnCKkBnhQj7zh" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/yooni/IdeaProjects/team82--spotify-wrappers&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="api_testing" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.api_test1">
+    <configuration name="AuthorizationCodeUriExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="api_testing.AuthorizationCodeUriExample" />
+      <module name="spotify-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="api_testing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="api_test1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="api_testing.api_test1" />
+      <module name="spotify-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="api_testing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="api_test2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="api_testing.api_test2" />
+      <module name="spotify-api" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="api_testing.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="spotify-api" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="spotify-api" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.AuthorizationCodeUriExample" />
+        <item itemvalue="Application.api_test1" />
+        <item itemvalue="Application.api_test2" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9b7db034-f835-4495-bae6-b63f471d5341" name="Changes" comment="" />
+      <created>1698680013243</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698680013243</updated>
+      <workItem from="1698680017303" duration="6166000" />
+      <workItem from="1699315258548" duration="3287000" />
+      <workItem from="1699469699260" duration="20171000" />
+    </task>
+    <task id="LOCAL-00001" summary="testing edits">
+      <option name="closed" value="true" />
+      <created>1698680732801</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1698680732801</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added Song.java class">
+      <option name="closed" value="true" />
+      <created>1698681450542</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698681450542</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added User.java class">
+      <option name="closed" value="true" />
+      <created>1698682162182</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1698682162182</updated>
+    </task>
+    <task id="LOCAL-00004" summary="modified user.java class to implement the DataObject interface (hopefully?)">
+      <option name="closed" value="true" />
+      <created>1698682451173</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1698682451173</updated>
+    </task>
+    <task id="LOCAL-00005" summary="small changes to User.java">
+      <option name="closed" value="true" />
+      <created>1698683283025</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1698683283025</updated>
+    </task>
+    <task id="LOCAL-00006" summary="small changes to User.java">
+      <option name="closed" value="true" />
+      <created>1698683453108</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1698683453108</updated>
+    </task>
+    <task id="LOCAL-00007" summary="renamed some stuff">
+      <option name="closed" value="true" />
+      <created>1698684009806</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1698684009806</updated>
+    </task>
+    <task id="LOCAL-00008" summary="renamed some stuff">
+      <option name="closed" value="true" />
+      <created>1698684347143</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1698684347143</updated>
+    </task>
+    <task id="LOCAL-00009" summary="very rudimentary authorization stuff (the whole thing doesn't work but some parts do)">
+      <option name="closed" value="true" />
+      <created>1699559969643</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1699559969643</updated>
+    </task>
+    <task id="LOCAL-00010" summary="added maven library for spotify api">
+      <option name="closed" value="true" />
+      <created>1699652133426</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1699652133426</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="testing edits" />
+    <MESSAGE value="added Song.java class" />
+    <MESSAGE value="added User.java class" />
+    <MESSAGE value="modified user.java class to implement the DataObject interface (hopefully?)" />
+    <MESSAGE value="small changes to User.java" />
+    <MESSAGE value="renamed some stuff" />
+    <MESSAGE value="very rudimentary authorization stuff (the whole thing doesn't work but some parts do)" />
+    <MESSAGE value="added maven library for spotify api" />
+    <option name="LAST_COMMIT_MESSAGE" value="added maven library for spotify api" />
+  </component>
+</project>
