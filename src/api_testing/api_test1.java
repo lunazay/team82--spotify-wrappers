@@ -42,8 +42,6 @@ public class api_test1 {
                            "redirect_uri=" + "https%3A%2F%2Foauth.pstmn.io%2Fv1%2Fbrowser-callback"
                            ;
 
-        String post0_data = "grant_type=client_credentials";
-
         byte[] postData = post_data.getBytes(StandardCharsets.UTF_8);
         // for (Object i : postData) {System.out.println(i);}
 
@@ -106,7 +104,6 @@ public class api_test1 {
 
             HttpURLConnection conn = (HttpURLConnection) auth_url.openConnection();
             conn.setRequestMethod("GET");
-            conn.setAllowUserInteraction(true);
             conn.connect();
 
             conn.setInstanceFollowRedirects(true);  //you still need to handle redirect manully.
@@ -177,6 +174,6 @@ public class api_test1 {
     }
 
     public static void main(String[] args) throws IOException {
-        get_token();
+        get_code();
     }
 }
