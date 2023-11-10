@@ -13,6 +13,12 @@ public class TopSongsInteractor implements TopSongsInputBoundary {
 
     @Override
     public void execute(TopSongsInputData topSongsInputData) {
-
+        if (topSongsInputData == null) {
+            topSongsPresenter.prepareFailView("nothing");
+        }
+        else {
+            TopSongsOutputData topSongsOutputData = new TopSongsOutputData();
+            topSongsPresenter.prepareSuccessView(topSongsOutputData);
+        }
     }
 }
