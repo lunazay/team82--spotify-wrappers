@@ -1,38 +1,27 @@
-package api_testing;
-
-import entity.Artist;
-import entity.DataObject;
-import entity.Song;
-import entity.User;
-import okhttp3.*;
+package authorization;
 
 import java.awt.*;
 import java.io.*;
 import java.net.HttpURLConnection;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.Random;
+import static org.apache.hc.core5.util.TextUtils.length;
 
 
 public class api_test1 {
 
     private static final String client_id = "bad90b33466e4f208c7655eede3ac628";
     private static final String client_secret = "15abfd5161e84bfe893606e4eb74f5f6";
-
     private static String redirect_uri = "https://oauth.pstmn.io/v1/browser-callback";
 
     public static Object get_token() throws IOException {
-        String auth_code = "AQClMwynzxFjVytTTWiFR5jwLjv7ypFWv1ownYFASrtO6DMSAWRrAb2clcn2WomtfxC2i__egU4SiELeT0VhZXyE7fy1sT8ftIVZKSNn1o449oq73_HKWPx0wH1EWpXx6BTNwenWLN7VhKdHH4YOjLyPoisppwtAjv4UScNCcJjni6F-yQUQspUE_A7yKyLdLpxRFIAhA_Ws_cDsACbbc8q0rddQM_pm4f3lqo2cNh2gqQ";
+        String auth_code = "AQChMnP4I8a3PB0NbzOi1Eh1Uq--Bu0vjxBgUYf7YtfGPLl_jNw2jV0CLCdcBI7I7gaUfWg-8mz8rims9ibpcFX7AWxCZFVCjVY21t5SqqaCDiO9sdMOF-qUEYkOAi7nZBs_Aba80_watTAtVZH1X0lAKj4bhAdmDaNcJEkld5k8HdHSgrAuzDSTBiQb1Roa34OQPvYIxw5d_sZTqUXmwbuzFyZsCCdzNGYfmUtFs3jFJg";
         String auth_string = "https://accounts.spotify.com/api/token";
         URL auth_url = new URL(auth_string);
 
@@ -43,7 +32,6 @@ public class api_test1 {
                            ;
 
         byte[] postData = post_data.getBytes(StandardCharsets.UTF_8);
-        // for (Object i : postData) {System.out.println(i);}
 
         int length = postData.length;
 
@@ -55,8 +43,6 @@ public class api_test1 {
 
         String encoded_auth = "Basic " + Base64.getEncoder().encodeToString(to_encode.getBytes());
 
-        //String encoded_auth = "Basic " + Base64.getEncoder().encodeToString(client_id.getBytes()) + ":" +
-        //        Base64.getEncoder().encodeToString(client_secret.getBytes());
         conn.setRequestProperty("Authorization", encoded_auth);
         conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 
@@ -91,7 +77,6 @@ public class api_test1 {
 
     public static Object get_code() throws MalformedURLException {
         try {
-            //URL auth_url = new URL("https://api.spotify.com/authorize");
             String auth_string =
                     "https://accounts.spotify.com/authorize?"
                             + "client_id="+client_id+"&"
@@ -146,21 +131,21 @@ public class api_test1 {
     }
 
     // for pkce if we need it
-    private String generateRandomString(int length) {
+    private static String getCode_Verifier(int length) {
 
         StringBuilder codeVerifier = new StringBuilder();
         String possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         Random random = new Random();
 
         while (codeVerifier.length() < length) {
-            int index = random.nextInt();
+            int index = random.nextInt(length(possible));
             codeVerifier.append(possible.charAt(index));
         }
 
         return codeVerifier.toString();
     }
 
-    private byte[] hash (String input) throws NoSuchAlgorithmException {
+    private static byte[] hash(String input) throws NoSuchAlgorithmException {
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         byte[] hashed = digest.digest(
                 input.getBytes(StandardCharsets.UTF_8));
@@ -168,12 +153,15 @@ public class api_test1 {
         return hashed;
     }
 
-    private String getCodeVerifier() throws NoSuchAlgorithmException {
-        String c = generateRandomString(64);
+    private static String getCode_Challenge(String c) throws NoSuchAlgorithmException {
         return Base64.getEncoder().encodeToString(hash(c));
     }
 
-    public static void main(String[] args) throws IOException {
-        get_code();
+    public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
+        String b = getCode_Verifier(64);
+        String c = getCode_Challenge(b);
+
+        System.out.println(b + "\n" + c);
+
     }
 }
