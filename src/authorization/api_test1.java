@@ -1,28 +1,16 @@
-package api_testing;
-
-import entity.Artist;
-import entity.DataObject;
-import entity.Song;
-import entity.User;
-import okhttp3.*;
+package authorization;
 
 import java.awt.*;
 import java.io.*;
 import java.net.HttpURLConnection;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 import java.util.Base64;
 import java.util.Random;
-
 import static org.apache.hc.core5.util.TextUtils.length;
 
 
@@ -30,7 +18,6 @@ public class api_test1 {
 
     private static final String client_id = "bad90b33466e4f208c7655eede3ac628";
     private static final String client_secret = "15abfd5161e84bfe893606e4eb74f5f6";
-
     private static String redirect_uri = "https://oauth.pstmn.io/v1/browser-callback";
 
     public static Object get_token() throws IOException {
@@ -45,7 +32,6 @@ public class api_test1 {
                            ;
 
         byte[] postData = post_data.getBytes(StandardCharsets.UTF_8);
-        // for (Object i : postData) {System.out.println(i);}
 
         int length = postData.length;
 
@@ -57,8 +43,6 @@ public class api_test1 {
 
         String encoded_auth = "Basic " + Base64.getEncoder().encodeToString(to_encode.getBytes());
 
-        //String encoded_auth = "Basic " + Base64.getEncoder().encodeToString(client_id.getBytes()) + ":" +
-        //        Base64.getEncoder().encodeToString(client_secret.getBytes());
         conn.setRequestProperty("Authorization", encoded_auth);
         conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 
@@ -93,7 +77,6 @@ public class api_test1 {
 
     public static Object get_code() throws MalformedURLException {
         try {
-            //URL auth_url = new URL("https://api.spotify.com/authorize");
             String auth_string =
                     "https://accounts.spotify.com/authorize?"
                             + "client_id="+client_id+"&"
