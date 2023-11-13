@@ -1,10 +1,10 @@
-package use_case.TopSongs;
+package use_case.TopAlbum;
 
-public class TopSongsInputData {
+public class TopAlbumInputData {
     private String timeframe;
     private final String id;
 
-    public TopSongsInputData(String timeframe, String id){
+    public TopAlbumInputData(String timeframe, String id){
         this.timeframe = timeframe;
         this.id = id;
     }
