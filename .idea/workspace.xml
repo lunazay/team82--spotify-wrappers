@@ -5,17 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b7db034-f835-4495-bae6-b63f471d5341" name="Changes" comment="added maven library for spotify api">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/authorization/api_test1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/authorization/api_test1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/api_testing/AuthorizationCodePKCEExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/api_testing/AuthorizationCodePKCEUriExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/api_testing/AuthorizationCodeUriExample.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/api_testing/api_test1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/TopSongs/TopSongsDataAccessInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/TopSongs/TopSongsDataAccessInterface.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/TopSongs/TopSongsInputBoundary.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/TopSongs/TopSongsInputBoundary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/TopSongs/TopSongsInputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/TopSongs/TopSongsInputData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/TopSongs/TopSongsOutputBoundary.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/TopSongs/TopSongsOutputBoundary.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/use_case/TopSongs/TopSongsOutputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/TopSongs/TopSongsOutputData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/TopArtists/TopArtistsDataAccessInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/TopArtists/TopArtistsInputBoundary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/TopArtists/TopArtistsInputData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/TopArtists/TopArtistsInteractor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/TopArtists/TopArtistsOutputBoundary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/TopArtists/TopArtistsOutputData.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="yoonie" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -48,32 +46,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;yoonie&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/yooni/IdeaProjects/team82--spotify-wrappers&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "corretto-17",
+    "last_opened_file_path": "C:/Users/yooni/IdeaProjects/jangale1/week5ca",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="api_testing" />
@@ -247,7 +246,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699652133426</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011">
+      <option name="closed" value="true" />
+      <created>1699896631994</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1699896631994</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,15 +281,5 @@
     <MESSAGE value="very rudimentary authorization stuff (the whole thing doesn't work but some parts do)" />
     <MESSAGE value="added maven library for spotify api" />
     <option name="LAST_COMMIT_MESSAGE" value="added maven library for spotify api" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.IllegalStateException" package="java.lang" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
