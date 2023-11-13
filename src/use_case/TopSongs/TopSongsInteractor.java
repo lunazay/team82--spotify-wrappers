@@ -1,5 +1,7 @@
 package use_case.TopSongs;
 
+import entity.Song;
+
 public class TopSongsInteractor implements TopSongsInputBoundary {
 
     final TopSongsDataAccessInterface userDataAccessObject;
@@ -13,12 +15,17 @@ public class TopSongsInteractor implements TopSongsInputBoundary {
 
     @Override
     public void execute(TopSongsInputData topSongsInputData) {
-        if (topSongsInputData == null) {
-            topSongsPresenter.prepareFailView("nothing");
-        }
-        else {
+        String id = topSongsInputData.getId();
+        String timeframe = topSongsInputData.getTimeframe();
+
+        try {
+            Song[] topSongs = userDataAccessObject.getTopSongs(id, timeframe);
+
+
             TopSongsOutputData topSongsOutputData = new TopSongsOutputData();
             topSongsPresenter.prepareSuccessView(topSongsOutputData);
+        } catch (Exception e) {
+            topSongsPresenter.prepareFailView("Listen to some music bro!");
         }
     }
 }
