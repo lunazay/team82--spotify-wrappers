@@ -9,17 +9,16 @@ import java.util.concurrent.CancellationException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 
-public class AuthorizationCodeUriExample {
+public class AuthorizationCodePKCEUriExample {
     private static final String clientId = "bad90b33466e4f208c7655eede3ac628";
-    private static final String clientSecret = "15abfd5161e84bfe893606e4eb74f5f6";
     private static final URI redirectUri = SpotifyHttpManager.makeUri("https://oauth.pstmn.io/v1/browser-callback");
+    private static final String codeChallenge = "gZvyIe3701Fycs68jzbl6BP0hghOUaaOTfgZIfP/7hE=";
 
     private static final SpotifyApi spotifyApi = new SpotifyApi.Builder()
             .setClientId(clientId)
-            .setClientSecret(clientSecret)
             .setRedirectUri(redirectUri)
             .build();
-    private static final AuthorizationCodeUriRequest authorizationCodeUriRequest = spotifyApi.authorizationCodeUri()
+    private static final AuthorizationCodeUriRequest authorizationCodeUriRequest = spotifyApi.authorizationCodePKCEUri(codeChallenge)
 //          .state("x4xkmn9pu3j6ukrs8n")
 //          .scope("user-read-birthdate,user-read-email")
 //          .show_dialog(true)
@@ -48,7 +47,7 @@ public class AuthorizationCodeUriExample {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main (String[]args){
         authorizationCodeUri_Sync();
         authorizationCodeUri_Async();
     }
