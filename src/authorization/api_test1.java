@@ -11,7 +11,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Random;
-import static org.apache.hc.core5.util.TextUtils.length;
+// import static org.apache.hc.core5.util.TextUtils.length;
 
 
 public class api_test1 {
@@ -138,7 +138,7 @@ public class api_test1 {
         Random random = new Random();
 
         while (codeVerifier.length() < length) {
-            int index = random.nextInt(length(possible));
+            int index = random.nextInt(possible.length());
             codeVerifier.append(possible.charAt(index));
         }
 
@@ -158,10 +158,7 @@ public class api_test1 {
     }
 
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
-        String b = getCode_Verifier(64);
-        String c = getCode_Challenge(b);
-
-        System.out.println(b + "\n" + c);
+        get_code();
 
     }
 }
