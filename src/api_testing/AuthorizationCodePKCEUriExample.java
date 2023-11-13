@@ -12,7 +12,7 @@ import java.util.concurrent.CompletionException;
 public class AuthorizationCodePKCEUriExample {
     private static final String clientId = "bad90b33466e4f208c7655eede3ac628";
     private static final URI redirectUri = SpotifyHttpManager.makeUri("https://oauth.pstmn.io/v1/browser-callback");
-    private static final String codeChallenge = "15abfd5161e84bfe893606e4eb74f5f6";
+    private static final String codeChallenge = "gZvyIe3701Fycs68jzbl6BP0hghOUaaOTfgZIfP/7hE=";
 
     private static final SpotifyApi spotifyApi = new SpotifyApi.Builder()
             .setClientId(clientId)

@@ -16,8 +16,8 @@ import java.util.concurrent.CompletionException;
 public class AuthorizationCodePKCEExample {
     private static final String clientId = "bad90b33466e4f208c7655eede3ac628";
     private static final URI redirectUri = SpotifyHttpManager.makeUri("https://oauth.pstmn.io/v1/browser-callback");
-    private static final String code = "c-oGaPdYJF3tu3oUZRUiBHWQvm4oHnBrsxfHackYzzomKJiy5te1k04LJdr6XxjACe9TonpJR8NPOQ3o5btASx_oMw4trmXLYdkda77wY0NJ9Scl69lKvGiOfdnRi5Q0IbBu185Y0TZgyUJz3Auqqv-Wk7zjRke4DzqYEc3ucyUBOq08j5223te-G2K72aL9PxgVJaEHBbLvhdJscCy-zcyU29EZoNlG_E5";
-    private static final String codeVerifier = "NlJx4kD4opk4HY7zBM6WfUHxX7HoF8A2TUhOIPGA74w";
+    private static final String code = "AQBNnwJ6LXz41wk-5qTBb8ms-9f5BcvnyvyjDJtrz0vW42VQSTdCYXKF97u4SEB9uw_xtAWxEG_OUMTKCFrQ86VyxmckCM0NoGFO7R2waHH3PWzTDW5kOacAPaj4ocvoNgwMxILX-64mSKSQPd6xrDA2EMxt7g9mFcVW9jKqSTeCgdwLTj-a7tt18nNB1usQBdfR2AlbWaCNMW0AAfjioW0UPzmnjXb1HUpSu5TQkLkSu_FbVtA8MjBgKl32FJzAkmA";
+    private static final String codeVerifier = "5gbYFLmRPfTO4CT23MR5YUvzRee1t7CE8EzxBJNK4JIKE2KoHmM9pjRyIQ8afCOS";
 
     private static final SpotifyApi spotifyApi = new SpotifyApi.Builder()
             .setClientId(clientId)
