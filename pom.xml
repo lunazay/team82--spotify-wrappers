@@ -21,6 +21,11 @@
             <artifactId>okhttp</artifactId>
             <version>4.10.0</version>
         </dependency>
+        <dependency>
+            <groupId>se.michaelthelin.spotify</groupId>
+            <artifactId>spotify-web-api-java</artifactId>
+            <version>8.0.0</version>
+        </dependency>
 
     </dependencies>
 
