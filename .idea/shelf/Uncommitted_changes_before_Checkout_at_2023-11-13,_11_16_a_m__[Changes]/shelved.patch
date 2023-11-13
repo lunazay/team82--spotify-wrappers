@@ -1,0 +1,46 @@
+Index: src/use_case/TopAlbum/TopAlbumInputBoundary.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package use_case.TopAlbum;\n\npublic interface TopAlbumInputBoundary {\n}\n
+===================================================================
+diff --git a/src/use_case/TopAlbum/TopAlbumInputBoundary.java b/src/use_case/TopAlbum/TopAlbumInputBoundary.java
+--- a/src/use_case/TopAlbum/TopAlbumInputBoundary.java	
++++ b/src/use_case/TopAlbum/TopAlbumInputBoundary.java	
+@@ -1,4 +1,5 @@
+ package use_case.TopAlbum;
+ 
+ public interface TopAlbumInputBoundary {
++    void execute(TopAlbumInputData topAlbumInputData);
+ }
+Index: src/use_case/TopAlbum/TopAlbumInputData.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package use_case.TopAlbum;\n\npublic class TopAlbumInputData {\n}\n
+===================================================================
+diff --git a/src/use_case/TopAlbum/TopAlbumInputData.java b/src/use_case/TopAlbum/TopAlbumInputData.java
+--- a/src/use_case/TopAlbum/TopAlbumInputData.java	
++++ b/src/use_case/TopAlbum/TopAlbumInputData.java	
+@@ -1,4 +1,23 @@
+ package use_case.TopAlbum;
+ 
+ public class TopAlbumInputData {
++    private String timeframe;
++    private final String id;
++
++    public TopAlbumInputData(String timeframe, String id){
++        this.timeframe = timeframe;
++        this.id = id;
++    }
++
++    public void setTimeframe(String timeframe) {
++        this.timeframe = timeframe;
++    }
++
++    public String getTimeframe() {
++        return timeframe;
++    }
++
++    public String getId(){
++        return id;
++    }
+ }
