@@ -31,7 +31,7 @@ public class TopSongsInteractor implements TopSongsInputBoundary {
                 i = i + 1;
             }
 
-            TopSongsOutputData topSongsOutputData = new TopSongsOutputData(id, topSongTitles, false);
+            TopSongsOutputData topSongsOutputData = new TopSongsOutputData(topSongTitles, false);
             topSongsPresenter.prepareSuccessView(topSongsOutputData);
         } catch (Exception e) {
             topSongsPresenter.prepareFailView("Listen to some music bro!");
