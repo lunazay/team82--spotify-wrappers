@@ -5,15 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b7db034-f835-4495-bae6-b63f471d5341" name="Changes" comment="added maven library for spotify api">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/DevelopDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/DevelopDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/SpotDevelopDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/SpotDevelopDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/authorization/AuthorizationCode.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/authorization/api_test1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/authorization/api_test1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/TopArtists/TopArtistsDataAccessInterface.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/TopArtists/TopArtistsInputBoundary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/TopArtists/TopArtistsInputData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/TopArtists/TopArtistsInteractor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/TopArtists/TopArtistsOutputBoundary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/TopArtists/TopArtistsOutputData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/authorization/AuthorizationCode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/authorization/api_test1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/authorization/api_test1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data_access/UserDataAccessObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data_access/UserDataAccessObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/top_songs/TopSongsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/top_songs/TopSongsController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/interface_adapter/top_songs/TopSongsPresenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/interface_adapter/top_songs/TopSongsPresenter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/TopSongs/TopSongsDataAccessInterface.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/TopSongs/TopSongsDataAccessInterface.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/TopSongs/TopSongsInteractor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/TopSongs/TopSongsInteractor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/use_case/TopSongs/TopSongsOutputData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/use_case/TopSongs/TopSongsOutputData.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +34,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="yoonie" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,7 +61,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "yoonie",
     "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "corretto-17",
     "last_opened_file_path": "C:/Users/yooni/IdeaProjects/jangale1/week5ca",
@@ -78,7 +82,7 @@
       <recent name="api_testing" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.api_test1">
+  <component name="RunManager" selected="Application.authorization.api_test1">
     <configuration name="AuthorizationCodeUriExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="api_testing.AuthorizationCodeUriExample" />
       <module name="spotify-api" />
@@ -146,10 +150,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.authorization.api_test1" />
         <item itemvalue="Application.AuthorizationCodeUriExample" />
         <item itemvalue="Application.api_test2" />
         <item itemvalue="Application.api_test1" />
-        <item itemvalue="Application.authorization.api_test1" />
         <item itemvalue="Application.AuthorizationCodeUriExample" />
       </list>
     </recent_temporary>
@@ -280,6 +284,17 @@
     <MESSAGE value="renamed some stuff" />
     <MESSAGE value="very rudimentary authorization stuff (the whole thing doesn't work but some parts do)" />
     <MESSAGE value="added maven library for spotify api" />
-    <option name="LAST_COMMIT_MESSAGE" value="added maven library for spotify api" />
+    <MESSAGE value="committing so i can pull changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="committing so i can pull changes" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalStateException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
