@@ -20,7 +20,7 @@ public class api_test1 {
     private static String redirect_uri = "https://oauth.pstmn.io/v1/browser-callback";
 
     public static Object get_token() throws IOException {
-        String auth_code = "AQChMnP4I8a3PB0NbzOi1Eh1Uq--Bu0vjxBgUYf7YtfGPLl_jNw2jV0CLCdcBI7I7gaUfWg-8mz8rims9ibpcFX7AWxCZFVCjVY21t5SqqaCDiO9sdMOF-qUEYkOAi7nZBs_Aba80_watTAtVZH1X0lAKj4bhAdmDaNcJEkld5k8HdHSgrAuzDSTBiQb1Roa34OQPvYIxw5d_sZTqUXmwbuzFyZsCCdzNGYfmUtFs3jFJg";
+        String auth_code = "AQAIPItwGX8MqyzrzeLe7udkondkoqKPendjk91anz5cmeCNr5_a-x-zz_wl3U91wQycCTNw-6ADH5E0xqi6mRvWD5D9_PnhAcE0GmHsQfUUGMxAg4wjqeAK6pvIGi0NZ9w2kokw7ltZaaADRfw0mfFlTN_IPdtzflC2Fyf7C2VmFzAzNFEcE35Jyteeo-87Or6pz5PdP0FHPpW9JEPOCrbLXe4pZQgjjHxu2kKlPav5aQ";
         String auth_string = "https://accounts.spotify.com/api/token";
         URL auth_url = new URL(auth_string);
 
@@ -67,6 +67,8 @@ public class api_test1 {
 
             // print result
             System.out.println(response.toString());
+            String[] arrayResponse = response.toString().split("[: ,]");
+            System.out.println(arrayResponse[1]);
 
 
         }
@@ -111,10 +113,14 @@ public class api_test1 {
                 }
                 in.close();
 
+                String[] arrayResponse = response.toString().split("[: ,]");
+                System.out.println(arrayResponse[1]);
+
                 // print result
                 System.out.println(conn);
                 System.out.println(code);
-                System.out.println(response.toString());
+                System.out.println(response);
+                System.out.println(conn.getInputStream());
             }
 
             conn.disconnect();
@@ -157,7 +163,8 @@ public class api_test1 {
     }
 
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
-        get_code();
+        get_token();
+        System.out.println("dhfoadh");
 
     }
 }
