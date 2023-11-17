@@ -16,7 +16,7 @@ public class TopSongsOutputData {
 
     }
 
-    public List<String> getsongNames() {
+    public List<String> getSongNames() {
         return songNames;
     }
 }
