@@ -1,13 +1,13 @@
-package use_case.TopArtist;
+package use_case.top_artists;
 
 import java.util.List;
 
-public class TopArtistOutputData {
+public class TopArtistsOutputData {
     private final List<String> artistNames;
 
     private boolean useCaseFailed;
 
-    public TopArtistOutputData(List<String> artistNames, boolean useCaseFailed) {
+    public TopArtistsOutputData(List<String> artistNames, boolean useCaseFailed) {
         this.artistNames = artistNames;
         this.useCaseFailed = useCaseFailed;
 
