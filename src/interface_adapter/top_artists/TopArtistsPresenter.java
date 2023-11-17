@@ -21,16 +21,24 @@ public class TopArtistsPresenter implements TopArtistsOutputBoundary {
      */
     @Override
     public void prepareSuccessView(TopArtistsOutputData artists) {
+        // Updates the current TopArtistsState with the list of the user's top artists.
+        TopArtistsState topArtistsState = topArtistsViewModel.getState();
+        topArtistsState.setTopArtists(artists.getArtistNames());
+        this.topArtistsViewModel.setState(topArtistsState);
+        topArtistsViewModel.firePropertyChanged();
 
+        // Changes the view to reflect updates.
+        viewManagerModel.setActiveView(topArtistsViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
 
     /**
      * Updates the view with an error to be displayed.
      *
-     * @param error The error to show to the user
+     * @param error The error to show to the user.
      */
     @Override
     public void prepareFailView(String error) {
-
+        // TODO: implement me!
     }
 }
