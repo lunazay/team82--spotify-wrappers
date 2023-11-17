@@ -1,5 +1,6 @@
 package api;
 
+import entity.Song;
 import entity.User;
 
 import java.io.BufferedReader;
@@ -18,6 +19,10 @@ public class SpotDevelopDB implements DevelopDB{
     String client_secret = "15abfd5161e84bfe893606e4eb74f5f6";
     String redirect_uri = "https://oauth.pstmn.io/v1/browser-callback";
     String authToken;
+
+    public SpotDevelopDB(String authtoken) {
+        this.authToken = authtoken;
+    }
 
     @Override
     public User getTopArtist() {
@@ -88,6 +93,11 @@ public class SpotDevelopDB implements DevelopDB{
     }
 
     @Override
+    public String get_valence(Song[] songs) {
+        return null;
+    }
+
+    @Override
     public void setAuthToken(String authToken) {
         this.authToken = authToken;
     }
@@ -96,5 +106,6 @@ public class SpotDevelopDB implements DevelopDB{
     public User getTopSongs(int numSongs) {
         return null;
     }
+
 
 }

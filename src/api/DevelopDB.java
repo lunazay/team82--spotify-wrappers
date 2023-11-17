@@ -1,5 +1,6 @@
 package api;
 
+import entity.Song;
 import entity.User;
 import entity.Artist;
 import org.json.JSONException;
@@ -9,14 +10,15 @@ import java.net.MalformedURLException;
 
 public interface DevelopDB {
 
-    void setAuthToken(String authToken);
-    User getTopSongs(int numSongs);
+    public void setAuthToken(String authToken);
+    public User getTopSongs(int numSongs);
 
-    User getTopArtist();
+    public User getTopArtist();
 
-    String getAuthorizationLink() throws MalformedURLException;
+    public String getAuthorizationLink() throws MalformedURLException;
 
-    String getAuthorizationToken(String authCode) throws IOException;
+    public String getAuthorizationToken(String authCode) throws IOException;
 
 
+    String get_valence(Song[] songs);
 }

@@ -1,21 +1,36 @@
 package data_access;
 
+import api.DevelopDB;
+import api.SpotDevelopDB;
 import entity.Song;
 import entity.Genre;
+import use_case.GetValence.GetValenceDataAccessInterface;
 import use_case.TopGenre.TopGenreDataAccessInterface;
 import use_case.TopSongs.TopSongsDataAccessInterface;
 
-public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGenreDataAccessInterface {
+public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGenreDataAccessInterface,
+        GetValenceDataAccessInterface {
+
+    private String authtoken;
+    DevelopDB api = new SpotDevelopDB(authtoken);
 
     @Override
     public Song[] getTopSongs(String id, String timeframe) {
         // TODO: Implement me!
-        return new Song[0];
+        //return new Song[0];
+        return null;
     }
 
     @Override
     public Genre[] getTopGenres(String id, String timeframe){
         // TODO: implement me!
         return new Genre[0];
+    }
+
+    public String getValence(String id, String timeframe) {
+
+        Song[] songs = getTopSongs(id, timeframe);
+
+        return api.get_valence(songs);
     }
 }
