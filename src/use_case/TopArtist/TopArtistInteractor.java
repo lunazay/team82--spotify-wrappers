@@ -1,8 +1,6 @@
 package use_case.TopArtist;
 
 import entity.Artist;
-import entity.Song;
-import use_case.TopSongs.TopSongsOutputData;
 
 import java.util.ArrayList;
 import java.util.List;
