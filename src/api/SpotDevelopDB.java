@@ -11,6 +11,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import okhttp3.*;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class SpotDevelopDB implements DevelopDB{
 
@@ -31,7 +34,7 @@ public class SpotDevelopDB implements DevelopDB{
                               + "client_id="+client_id+"&"
                               + "response_type=code&"
                               + "redirect_uri="+redirect_uri+"&"
-                              + "scope=user-read-private%20user-read-email&";
+                              + "scope=user-read-private%20user-read-email%user-top-read&";
     }
 
     @Override
@@ -96,8 +99,31 @@ public class SpotDevelopDB implements DevelopDB{
     }
 
     @Override
-    public User getTopSongs() {
-        return null;
+    public User getTopSongs() throws JSONException{
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("application/json");
+        JSONObject requestBody = new JSONObject();
+        requestBody.get("tracks");
+        RequestBody body = RequestBody.create(mediaType, requestBody.toString());
+        Request request = new Request.Builder()
+                .url("https://api.spotify.com/v1/me/top/tracks")
+                .method("GET", body)
+                .addHeader("Authorization", authToken)
+                .addHeader("Content-Type", "application/json")
+                .build();
+        try{
+            Response response = client.newCall(request).execute();
+            System.out.println(response);
+            JSONObject responseBody = new JSONObject(response.body().string());
+            if (responseBody.getInt("status_code") == 200) {
+                return null;
+            } else {
+                throw new RuntimeException(responseBody.getString("message"));
+            }
+        }
+        catch (IOException | JSONException e) {
+            throw new RuntimeException(e);
+        }
+        }
     }
-
-}
