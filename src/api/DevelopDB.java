@@ -10,7 +10,7 @@ import java.net.MalformedURLException;
 public interface DevelopDB {
 
     void setAuthToken(String authToken);
-    User getTopSongs();
+    User getTopSongs(int numSongs);
 
     User getTopArtist();
 
