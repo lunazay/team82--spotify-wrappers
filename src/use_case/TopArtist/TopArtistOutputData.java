@@ -3,7 +3,7 @@ package use_case.TopArtist;
 import java.util.List;
 
 public class TopArtistOutputData {
-    private List<String> artistNames;
+    private final List<String> artistNames;
 
     private boolean useCaseFailed;
 
