@@ -16,6 +16,12 @@ public class TopSongsInteractor implements TopSongsInputBoundary {
         this.topSongsPresenter = topSongsOutputBoundary;
     }
 
+    /**
+     * Creates a list of the titles of a user's top songs and passes it in to the TopSongsPresenter, if
+     * there are top songs returned by the API call.
+     * Otherwise, the presenter prepares the fail view.
+     * @param topSongsInputData contains the user id and timeframe to specify the API call
+     */
     @Override
     public void execute(TopSongsInputData topSongsInputData) {
         String id = topSongsInputData.getId();
