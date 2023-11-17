@@ -13,6 +13,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 public class SpotDevelopDB implements DevelopDB{
+
+    String client_id = "bad90b33466e4f208c7655eede3ac628";
+    String client_secret = "15abfd5161e84bfe893606e4eb74f5f6";
+    String redirect_uri = "https://oauth.pstmn.io/v1/browser-callback";
+    String authToken;
+
     @Override
     public User getTopArtist() {
         return null;
@@ -37,8 +43,8 @@ public class SpotDevelopDB implements DevelopDB{
 
         String post_data = "grant_type=authorization_code&" +
                            "code=" + authCode + "&" +
-                           "redirect_uri=" + "https%3A%2F%2Foauth.pstmn.io%2Fv1%2Fbrowser-callback"
-                ;
+                           "redirect_uri=" + "https%3A%2F%2Foauth.pstmn.io%2Fv1%2Fbrowser-callback";
+
 
         byte[] postData = post_data.getBytes(StandardCharsets.UTF_8);
 
@@ -63,7 +69,6 @@ public class SpotDevelopDB implements DevelopDB{
         }
 
         int responseCode = conn.getResponseCode();
-        System.out.println("POST Response Code :: " + responseCode);
 
         if (responseCode == HttpURLConnection.HTTP_OK) {
             BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -77,11 +82,17 @@ public class SpotDevelopDB implements DevelopDB{
 
             String[] arrayResponse = response.toString().split("[: ,]");
 
+            // trimming the " characters that are at the beginning and end of the string
             return arrayResponse[1].substring(1, arrayResponse[1].length() - 1);
 
 
         }
         return null;
+    }
+
+    @Override
+    public void setAuthToken(String authToken) {
+        this.authToken = authToken;
     }
 
     @Override
