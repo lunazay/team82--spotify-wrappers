@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spotify-api" />
+        <module name="team82--spotify-wrappers" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
