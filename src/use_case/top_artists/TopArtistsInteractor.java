@@ -7,10 +7,10 @@ import java.util.List;
 
 public class TopArtistsInteractor implements TopArtistsInputBoundary {
     final TopArtistsDataAccessInterface userDataAccessObject;
-    final TopArtistsOuputBoundary topArtistPresenter;
+    final TopArtistsOutputBoundary topArtistPresenter;
 
     public TopArtistsInteractor(TopArtistsDataAccessInterface topArtistsDataAccessInterface,
-                                TopArtistsOuputBoundary topArtistOutputBoundary) {
+                                TopArtistsOutputBoundary topArtistOutputBoundary) {
         this.userDataAccessObject = topArtistsDataAccessInterface;
         this.topArtistPresenter = topArtistOutputBoundary;
     }
