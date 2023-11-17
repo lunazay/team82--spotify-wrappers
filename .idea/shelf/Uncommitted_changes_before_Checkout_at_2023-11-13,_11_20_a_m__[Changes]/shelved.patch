@@ -1,0 +1,34 @@
+Index: src/use_case/TopSongs/TopSongsInputData.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package use_case.TopSongs;\n\npublic class TopSongsInputData {\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/use_case/TopSongs/TopSongsInputData.java b/src/use_case/TopSongs/TopSongsInputData.java
+--- a/src/use_case/TopSongs/TopSongsInputData.java	(revision 0274a8593336fb44669d557d110fa6de491b145b)
++++ b/src/use_case/TopSongs/TopSongsInputData.java	(date 1699892369238)
+@@ -1,4 +1,23 @@
+ package use_case.TopSongs;
+ 
+ public class TopSongsInputData {
++    private String timeframe;
++    private final String id;
++
++    public TopSongsInputData(String timeframe, String id){
++        this.timeframe = timeframe;
++        this.id = id;
++    }
++
++    public void setTimeframe(String timeframe) {
++        this.timeframe = timeframe;
++    }
++
++    public String getTimeframe() {
++        return timeframe;
++    }
++
++    public String getId(){
++        return id;
++    }
+ }
