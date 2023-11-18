@@ -16,12 +16,17 @@ public class TopGenrePresenter implements TopGenreOutputBoundary {
 
     @Override
     public void prepareSuccessView(TopGenreOutputData user) {
-        // TODO:finish this!
-
+        TopGenreState topGenreState = topGenreViewModel.getState();
+        topGenreState.setId(topGenreState.getId());
+        topGenreViewModel.firePropertyChanged();
+        viewManagerModel.setActiveViewName((topGenreViewModel.getViewName()));
+        viewManagerModel.firePropertyChanged();
     }
 
     @Override
     public void prepareFailView(String error) {
-        // TODO:finish this!
+        TopGenreState topGenreState = topGenreViewModel.getState();
+        // TODO: actually implement the fail view
+        topGenreViewModel.firePropertyChanged();
     }
 }
