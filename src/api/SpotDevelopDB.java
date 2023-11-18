@@ -102,6 +102,7 @@ public class SpotDevelopDB implements DevelopDB{
         JSONObject requestBody = new JSONObject();
         requestBody.get("tracks");
         RequestBody body = RequestBody.create(mediaType, requestBody.toString());
+        // i dont know what the above line does or why it is deprecated
         Request request = new Request.Builder()
                 .url(url)
                 .method("GET", body)
@@ -154,16 +155,17 @@ public class SpotDevelopDB implements DevelopDB{
     }
 
     @Override
-    public User createPlaylist() throws JSONException {
+    public User getRelatedArtists(String topArtistID) throws JSONException {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
-        String url = "https://api.spotify.com/v1/users/" + client_id + "/playlists";
+        String url = "https://api.spotify.com/v1/artists/" + topArtistID + "/related-artists";
         MediaType mediaType = MediaType.parse("application/json");
         JSONObject requestBody = new JSONObject();
+        requestBody.get("related artists");
         RequestBody body = RequestBody.create(mediaType, requestBody.toString());
         Request request = new Request.Builder()
                 .url(url)
-                .method("POST", body)
+                .method("GET", body)
                 .addHeader("Authorization", authToken)
                 .addHeader("Content-Type", "application/json")
                 .build();

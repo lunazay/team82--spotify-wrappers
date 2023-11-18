@@ -1,10 +1,10 @@
-package use_case.CreatePlaylist;
+package use_case.RelatedArtist;
 
-public class CreatePlaylistInputData {
+public class RelatedArtistInputData {
     private String timeframe;
     private final String id;
 
-    public CreatePlaylistInputData(String timeframe, String id){
+    public RelatedArtistInputData(String timeframe, String id){
         this.timeframe = timeframe;
         this.id = id;
     }
