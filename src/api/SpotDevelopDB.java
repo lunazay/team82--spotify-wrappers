@@ -11,6 +11,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import okhttp3.*;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class SpotDevelopDB implements DevelopDB{
 
@@ -20,18 +23,13 @@ public class SpotDevelopDB implements DevelopDB{
     String authToken;
 
     @Override
-    public User getTopArtist() {
-        return null;
-    }
-
-    @Override
     public String getAuthorizationLink() throws MalformedURLException {
 
         return "https://accounts.spotify.com/authorize?"
-                              + "client_id="+client_id+"&"
-                              + "response_type=code&"
-                              + "redirect_uri="+redirect_uri+"&"
-                              + "scope=user-read-private%20user-read-email&";
+                + "client_id="+client_id+"&"
+                + "response_type=code&"
+                + "redirect_uri="+redirect_uri+"&"
+                + "scope=user-read-private%20user-read-email%user-top-read%playlist-modify-public%playlist-modify-private&";
     }
 
     @Override
@@ -42,8 +40,8 @@ public class SpotDevelopDB implements DevelopDB{
 
 
         String post_data = "grant_type=authorization_code&" +
-                           "code=" + authCode + "&" +
-                           "redirect_uri=" + "https%3A%2F%2Foauth.pstmn.io%2Fv1%2Fbrowser-callback";
+                "code=" + authCode + "&" +
+                "redirect_uri=" + "https%3A%2F%2Foauth.pstmn.io%2Fv1%2Fbrowser-callback";
 
 
         byte[] postData = post_data.getBytes(StandardCharsets.UTF_8);
@@ -96,8 +94,93 @@ public class SpotDevelopDB implements DevelopDB{
     }
 
     @Override
-    public User getTopSongs() {
-        return null;
+    public User getTopSongs(String time_frame, int numSongs) throws JSONException{
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        String url = "https://api.spotify.com/v1/me/top/tracks?" + "time_range=" + time_frame + "&limit=" + numSongs;
+        MediaType mediaType = MediaType.parse("application/json");
+        JSONObject requestBody = new JSONObject();
+        requestBody.get("tracks");
+        RequestBody body = RequestBody.create(mediaType, requestBody.toString());
+        // i dont know what the above line does or why it is deprecated
+        Request request = new Request.Builder()
+                .url(url)
+                .method("GET", body)
+                .addHeader("Authorization", authToken)
+                .addHeader("Content-Type", "application/json")
+                .build();
+        try{
+            Response response = client.newCall(request).execute();
+            System.out.println(response);
+            JSONObject responseBody = new JSONObject(response.body().string());
+            if (responseBody.getInt("status_code") == 200) {
+                return null;
+            } else {
+                throw new RuntimeException(responseBody.getString("message"));
+            }
+        }
+        catch (IOException | JSONException e) {
+            throw new RuntimeException(e);
+        }
     }
 
+    @Override
+    public User getTopArtists(String time_frame) throws JSONException{
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        String url = "https://api.spotify.com/v1/me/top/artists?" + "time_range=" + time_frame;
+        MediaType mediaType = MediaType.parse("application/json");
+        JSONObject requestBody = new JSONObject();
+        requestBody.get("artists");
+        RequestBody body = RequestBody.create(mediaType, requestBody.toString());
+        Request request = new Request.Builder()
+                .url(url)
+                .method("GET", body)
+                .addHeader("Authorization", authToken)
+                .addHeader("Content-Type", "application/json")
+                .build();
+        try{
+            Response response = client.newCall(request).execute();
+            System.out.println(response);
+            JSONObject responseBody = new JSONObject(response.body().string());
+            if (responseBody.getInt("status_code") == 200) {
+                return null;
+            } else {
+                throw new RuntimeException(responseBody.getString("message"));
+            }
+        }
+        catch (IOException | JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public User getRelatedArtists(String topArtistID) throws JSONException {
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        String url = "https://api.spotify.com/v1/artists/" + topArtistID + "/related-artists";
+        MediaType mediaType = MediaType.parse("application/json");
+        JSONObject requestBody = new JSONObject();
+        requestBody.get("related artists");
+        RequestBody body = RequestBody.create(mediaType, requestBody.toString());
+        Request request = new Request.Builder()
+                .url(url)
+                .method("GET", body)
+                .addHeader("Authorization", authToken)
+                .addHeader("Content-Type", "application/json")
+                .build();
+        try{
+            Response response = client.newCall(request).execute();
+            System.out.println(response);
+            JSONObject responseBody = new JSONObject(response.body().string());
+            if (responseBody.getInt("status_code") == 200) {
+                return null;
+            } else {
+                throw new RuntimeException(responseBody.getString("message"));
+            }
+        }
+        catch (IOException | JSONException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
