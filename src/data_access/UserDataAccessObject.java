@@ -11,8 +11,7 @@ import use_case.TopSongs.TopSongsDataAccessInterface;
 public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGenreDataAccessInterface,
         GetValenceDataAccessInterface {
 
-    private String authtoken;
-    DevelopDB api = new SpotDevelopDB(authtoken);
+    private final DevelopDB api = new SpotDevelopDB();
 
     @Override
     public Song[] getTopSongs(String id, String timeframe) {
