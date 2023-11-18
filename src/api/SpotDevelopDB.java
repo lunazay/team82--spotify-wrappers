@@ -40,11 +40,9 @@ public class SpotDevelopDB implements DevelopDB{
         String auth_string = "https://accounts.spotify.com/api/token";
         URL auth_url = new URL(auth_string);
 
-
         String post_data = "grant_type=authorization_code&" +
                            "code=" + authCode + "&" +
                            "redirect_uri=" + "https%3A%2F%2Foauth.pstmn.io%2Fv1%2Fbrowser-callback";
-
 
         byte[] postData = post_data.getBytes(StandardCharsets.UTF_8);
 
@@ -85,7 +83,6 @@ public class SpotDevelopDB implements DevelopDB{
             // trimming the " characters that are at the beginning and end of the string
             return arrayResponse[1].substring(1, arrayResponse[1].length() - 1);
 
-
         }
         return null;
     }
@@ -96,7 +93,7 @@ public class SpotDevelopDB implements DevelopDB{
     }
 
     @Override
-    public User getTopSongs() {
+    public User getTopSongs(int numSongs) {
         return null;
     }
 
