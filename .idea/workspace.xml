@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9d04b9a8-9f58-453c-a8e5-6bd9a3dca7b9" name="Changes" comment="delete top artists package">
-      <change afterPath="$PROJECT_DIR$/src/use_case/CreatePlaylist/CreatePlaylistDataAccessInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/CreatePlaylist/CreatePlaylistInputBoundary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/CreatePlaylist/CreatePlaylistInputData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/CreatePlaylist/CreatePlaylistInteractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/CreatePlaylist/CreatePlaylistOutputBoundary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/use_case/CreatePlaylist/CreatePlaylistOutputData.java" afterDir="false" />
+    <list default="true" id="9d04b9a8-9f58-453c-a8e5-6bd9a3dca7b9" name="Changes" comment="Created genre entity, finished the gnere output data, boundary, and interactor, added genre interactor to the things that USer data Access pbject implements and created the Overrided function">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +17,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -44,6 +38,9 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2Y87UOxHBjwelVSwPxOcqYvlsIC" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -53,10 +50,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "ashley",
+    "git-widget-placeholder": "luna",
     "last_opened_file_path": "C:/Users/vedak/Desktop/UofT/team82--spotify-wrappers",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -69,6 +67,7 @@
       <option name="presentableId" value="Default" />
       <updated>1699895368914</updated>
       <workItem from="1699896870573" duration="17000" />
+      <workItem from="1699904027446" duration="2058000" />
     </task>
     <task id="LOCAL-00001" summary="Created OutputData and Boundary for Top Songs use case">
       <option name="closed" value="true" />
@@ -86,13 +85,13 @@
       <option name="project" value="LOCAL" />
       <updated>1699896711101</updated>
     </task>
-    <task id="LOCAL-00003" summary="delete top artists package">
+    <task id="LOCAL-00003" summary="Created genre entity, finished the gnere output data, boundary, and interactor, added genre interactor to the things that USer data Access pbject implements and created the Overrided function">
       <option name="closed" value="true" />
-      <created>1699897386171</created>
+      <created>1699906661709</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1699897386171</updated>
+      <updated>1699906661710</updated>
     </task>
     <option name="localTasksCounter" value="4" />
     <servers />
@@ -103,7 +102,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created OutputData and Boundary for Top Songs use case" />
     <MESSAGE value="commit" />
-    <MESSAGE value="delete top artists package" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete top artists package" />
+    <MESSAGE value="Created genre entity, finished the gnere output data, boundary, and interactor, added genre interactor to the things that USer data Access pbject implements and created the Overrided function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created genre entity, finished the gnere output data, boundary, and interactor, added genre interactor to the things that USer data Access pbject implements and created the Overrided function" />
   </component>
 </project>
