@@ -10,9 +10,11 @@ import java.net.MalformedURLException;
 public interface DevelopDB {
 
     void setAuthToken(String authToken);
-    User getTopSongs() throws IOException;
+    User getTopSongs(String time_frame, int numSongs) throws IOException;
 
-    User getTopArtist();
+    User getTopArtists(String time_frame) throws IOException;
+
+    User createPlaylist()throws IOException;
 
     String getAuthorizationLink() throws MalformedURLException;
 
