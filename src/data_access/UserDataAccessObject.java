@@ -26,6 +26,7 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     public Genre[] getTopGenres(String id, String timeframe){
         // TODO: implement me!
         return new Genre[0];
+        // top 5 genres
     }
 
     public String getValence(String id, String timeframe) {
