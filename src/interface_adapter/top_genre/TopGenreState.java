@@ -21,7 +21,7 @@ public class TopGenreState {
     public void setTimeframe(String timeframe) {
         this.timeframe = timeframe;
     }
-
+    // a little worried about the testing code coverage here because i dont really see any usages here of the error
     public void setIdError(String idError) {
         this.idError = idError;
     }
