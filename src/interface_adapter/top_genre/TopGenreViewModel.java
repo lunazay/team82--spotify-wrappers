@@ -7,11 +7,11 @@ import java.beans.PropertyChangeSupport;
 
 public class TopGenreViewModel extends ViewModel {
 
-    private static final String TITLE_LABLE = "Top Genre View";
+    private static final String TITLE_LABLE = "Top Genres View";
     private TopGenreState state = new TopGenreState();
 
     public TopGenreViewModel(){
-        super("Top Genre");
+        super("Top Genres");
     }
 
     public void setState(TopGenreState state){
