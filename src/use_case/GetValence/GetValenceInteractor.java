@@ -14,7 +14,11 @@ public class GetValenceInteractor implements GetValenceInputBoundary{
         this.getValencePresenter = getValencePresenter;
     }
 
-    public void execute() {
+    public void execute(GetValenceInputData getValenceInputData) {
+
+        String id = getValenceInputData.getId();
+
+        String timeframe = getValenceInputData.getTimeframe();
 
         String valence = getValenceDataAccessObject.getValence(id, timeframe);
         GetValenceOutputData getValenceOutputData = new GetValenceOutputData(valence);

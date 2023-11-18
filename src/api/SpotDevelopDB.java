@@ -1,6 +1,5 @@
 package api;
 
-import entity.Song;
 import entity.User;
 
 import java.io.BufferedReader;
@@ -11,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Base64;
 
 public class SpotDevelopDB implements DevelopDB{
@@ -90,7 +90,7 @@ public class SpotDevelopDB implements DevelopDB{
     }
 
     @Override
-    public String get_valence(Song[] songs) {
+    public String get_valence(ArrayList<String> songIds) {
         return null;
     }
 

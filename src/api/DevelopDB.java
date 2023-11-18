@@ -1,12 +1,10 @@
 package api;
 
-import entity.Song;
 import entity.User;
-import entity.Artist;
-import org.json.JSONException;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 
 public interface DevelopDB {
 
@@ -20,5 +18,5 @@ public interface DevelopDB {
     public String getAuthorizationToken(String authCode) throws IOException;
 
 
-    String get_valence(Song[] songs);
+    String get_valence(ArrayList<String> songIds);
 }

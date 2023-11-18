@@ -1,6 +1,7 @@
 package interface_adapter.get_valence;
 
 import use_case.GetValence.GetValenceInputBoundary;
+import use_case.GetValence.GetValenceInputData;
 
 public class GetValenceController {
 
@@ -10,7 +11,9 @@ public class GetValenceController {
         this.getValenceInteractor = getValenceInputBoundary;
     }
 
-    void execute() { this.getValenceInteractor.execute(); }
+    void execute(String id, String timeframe) {
+        GetValenceInputData getValenceInputData = new GetValenceInputData(id, timeframe);
+        this.getValenceInteractor.execute(getValenceInputData); }
 
 
 }

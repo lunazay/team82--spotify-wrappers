@@ -8,6 +8,8 @@ import use_case.GetValence.GetValenceDataAccessInterface;
 import use_case.TopGenre.TopGenreDataAccessInterface;
 import use_case.TopSongs.TopSongsDataAccessInterface;
 
+import java.util.ArrayList;
+
 public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGenreDataAccessInterface,
         GetValenceDataAccessInterface {
 
@@ -30,6 +32,10 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
 
         Song[] songs = getTopSongs(id, timeframe);
 
-        return api.get_valence(songs);
+        ArrayList<String> songIds = new ArrayList<>();
+
+        for (Song song : songs) { songIds.add(song.getId()); }
+
+        return api.get_valence(songIds);
     }
 }

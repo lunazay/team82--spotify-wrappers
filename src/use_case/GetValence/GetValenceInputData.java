@@ -1,7 +1,17 @@
 package use_case.GetValence;
 
 public class GetValenceInputData {
-}
 
-// I think this can be deleted, as there is no data being inputted into the program for this use
-// case.
+    final private String id;
+
+    final private String timeframe;
+
+    public GetValenceInputData(String id, String timeframe) {
+        this.id = id;
+        this.timeframe = timeframe;
+    }
+
+    public String getId() { return id; }
+
+    public String getTimeframe() { return timeframe; }
+}
