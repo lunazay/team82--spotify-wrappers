@@ -10,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Base64;
 import okhttp3.*;
 import org.json.JSONException;
@@ -20,7 +21,8 @@ public class SpotDevelopDB implements DevelopDB{
     String client_id = "bad90b33466e4f208c7655eede3ac628";
     String client_secret = "15abfd5161e84bfe893606e4eb74f5f6";
     String redirect_uri = "https://oauth.pstmn.io/v1/browser-callback";
-    String authToken;
+    String authToken; // TODO: figure out where we should store the authorization token!
+
 
     @Override
     public String getAuthorizationLink() throws MalformedURLException {
@@ -85,6 +87,40 @@ public class SpotDevelopDB implements DevelopDB{
 
 
         }
+        return null;
+    }
+
+    @Override
+    public String get_valence(String songId) throws IOException {
+
+        // TODO: change this to get the valence for one song, and have the data access object
+        // TODO: just call this a bunch of times. (Instead of doing it all in one big call.)
+
+        String request = "https://api.spotify.com/v1/audio-features/" + songId;
+
+        URL request_url = new URL(request);
+
+        HttpURLConnection conn = (HttpURLConnection) request_url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.connect();
+
+        if (conn.getResponseMessage().equals("OK")) {
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+                response.append("\n");
+            }
+            in.close();
+
+            String[] arrayResponse = response.toString().split("[: ,]");
+
+            return arrayResponse[arrayResponse.length - 1];
+        }
+
         return null;
     }
 

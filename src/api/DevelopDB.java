@@ -6,6 +6,7 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 
 public interface DevelopDB {
 
@@ -16,9 +17,10 @@ public interface DevelopDB {
 
     User getRelatedArtists(String topArtistID)throws IOException;
 
-    String getAuthorizationLink() throws MalformedURLException;
+    public String getAuthorizationLink() throws MalformedURLException;
 
-    String getAuthorizationToken(String authCode) throws IOException;
+    public String getAuthorizationToken(String authCode) throws IOException;
 
 
+    String get_valence(String songId) throws IOException;
 }
