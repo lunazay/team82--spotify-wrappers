@@ -8,6 +8,7 @@ import use_case.GetValence.GetValenceDataAccessInterface;
 import use_case.TopGenre.TopGenreDataAccessInterface;
 import use_case.TopSongs.TopSongsDataAccessInterface;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGenreDataAccessInterface,
@@ -29,14 +30,28 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         // top 5 genres
     }
 
-    public String getValence(String id, String timeframe) {
+    public String getValence(String id, String timeframe) throws IOException {
 
         Song[] songs = getTopSongs(id, timeframe);
 
-        ArrayList<String> songIds = new ArrayList<>();
+        double valence_sum = 0;
+        int num_elements = 0;
 
-        for (Song song : songs) { songIds.add(song.getId()); }
+        // calculating the mean valence:
+        for (Song song : songs) {
 
-        return api.get_valence(songIds);
+            double valence = Double.parseDouble(api.get_valence(song.getId()));
+            valence_sum += valence;
+
+            num_elements++;
+
+        }
+
+        // mean is sum / total
+        if (num_elements > 0) { return String.valueOf(valence_sum / num_elements); }
+
+        // if user has listened to no songs, then we obviously can't return a value for valence
+        return null;
+
     }
 }

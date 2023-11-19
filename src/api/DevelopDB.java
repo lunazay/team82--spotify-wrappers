@@ -22,5 +22,5 @@ public interface DevelopDB {
     public String getAuthorizationToken(String authCode) throws IOException;
 
 
-    String get_valence(ArrayList<String> songIds);
+    String get_valence(String songId) throws IOException;
 }

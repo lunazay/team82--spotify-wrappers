@@ -25,11 +25,6 @@ public class SpotDevelopDB implements DevelopDB{
 
 
     @Override
-    public User getTopArtist() {
-        return null;
-    }
-
-    @Override
     public String getAuthorizationLink() throws MalformedURLException {
 
         return "https://accounts.spotify.com/authorize?"
@@ -96,7 +91,38 @@ public class SpotDevelopDB implements DevelopDB{
     }
 
     @Override
-    public String get_valence(ArrayList<String> songIds) {
+    public String get_valence(String songId) throws IOException {
+
+        // TODO: change this to get the valence for one song, and have the data access object
+        // TODO: just call this a bunch of times. (Instead of doing it all in one big call.)
+
+        String request = "https://api.spotify.com/v1/audio-features/" + songId;
+
+        URL request_url = new URL(request);
+
+        HttpURLConnection conn = (HttpURLConnection) request_url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.connect();
+
+        if (conn.getResponseMessage().equals("OK")) {
+
+            String code = conn.getHeaderField(3);
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+                response.append("\n");
+            }
+            in.close();
+
+            String[] arrayResponse = response.toString().split("[: ,]");
+
+            return arrayResponse[arrayResponse.length - 1];
+        }
+
         return null;
     }
 
