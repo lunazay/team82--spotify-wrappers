@@ -14,6 +14,7 @@ public class GetValenceInteractor implements GetValenceInputBoundary{
         this.getValencePresenter = getValencePresenter;
     }
 
+    @Override
     public void execute(GetValenceInputData getValenceInputData) {
 
         String id = getValenceInputData.getId();

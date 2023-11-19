@@ -106,8 +106,6 @@ public class SpotDevelopDB implements DevelopDB{
 
         if (conn.getResponseMessage().equals("OK")) {
 
-            String code = conn.getHeaderField(3);
-
             BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String inputLine;
             StringBuffer response = new StringBuffer();
