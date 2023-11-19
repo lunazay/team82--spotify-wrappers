@@ -15,12 +15,14 @@ public class RelatedArtistsPresenter implements RelatedArtistsOutputBoundary {
     }
 
     @Override
-    public void prepareSuccessView(RelatedArtistsOutputData relatedArtistsOutputData) {
-        // TODO: implement me!
+    public void prepareSuccessView(RelatedArtistsOutputData response) {
+        RelatedArtistsState relatedArtistsState = relatedArtistsViewModel.getState();
+        relatedArtistsState.setRelatedArtists(response.getRelatedArtists());
     }
 
     @Override
     public void prepareFailView(String error) {
-        // TODO: implement me!
+        RelatedArtistsState relatedArtistsState = relatedArtistsViewModel.getState();
+        relatedArtistsState.setError(error);
     }
 }

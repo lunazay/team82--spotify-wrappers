@@ -1,6 +1,7 @@
 package api;
 
 import entity.User;
+import entity.Artist;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -191,7 +192,7 @@ public class SpotDevelopDB implements DevelopDB{
     }
 
     @Override
-    public User getRelatedArtists(String topArtistID) throws JSONException {
+    public Artist[] getRelatedArtists(String topArtistID) throws JSONException {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         String url = "https://api.spotify.com/v1/artists/" + topArtistID + "/related-artists";
