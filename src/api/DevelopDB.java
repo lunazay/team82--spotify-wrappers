@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public interface DevelopDB {
 
-    void setAuthToken(String authToken);
     User getTopSongs(String time_frame, int numSongs) throws IOException;
 
     User getTopArtists(String time_frame) throws IOException;
