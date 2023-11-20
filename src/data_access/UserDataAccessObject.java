@@ -34,10 +34,13 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         ArrayList<Genre> topGenres = new ArrayList<Genre>();
         int count = 0;
         for (Artist artist: topArtist){
+            // i want to return an array list of Genre objects becuase that is how we
+            // decided our design implementaiton will be
             List<Genre> genres = artist.getGenres();
             Genre topGenre = genres.get(0);
             topGenres.add(topGenre);
             count++;
+            // since i only want the top 5 genres, im only counting till 5
             if (count >= 5) {
                 break;
             }
