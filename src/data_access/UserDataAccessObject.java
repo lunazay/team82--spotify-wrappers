@@ -14,6 +14,7 @@ import use_case.TopSongs.TopSongsDataAccessInterface;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGenreDataAccessInterface,
         GetValenceDataAccessInterface, RelatedArtistsDataAccessInterface, TopArtistsDataAccessInterface, TopAlbumDataAccessInterface {
@@ -28,10 +29,20 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     }
 
     @Override
-    public Genre[] getTopGenres(String id, String timeframe){
-        // TODO: implement me!
-        return new Genre[0];
-        // top 5 genres
+    public ArrayList<Genre> getTopGenres(String id, String timeframe){
+        Artist[] topArtist = getTopArtists(id, timeframe);
+        ArrayList<Genre> topGenres = new ArrayList<Genre>();
+        int count = 0;
+        for (Artist artist: topArtist){
+            List<Genre> genres = artist.getGenres();
+            Genre topGenre = genres.get(0);
+            topGenres.add(topGenre);
+            count++;
+            if (count >= 5) {
+                break;
+            }
+        }
+        return topGenres;
     }
 
     @Override

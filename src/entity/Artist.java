@@ -3,11 +3,11 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class Artist extends DataObject{
-    private final List<String> genres;
+    private final List<Genre> genres;
     private final List<Song> topTracks;
     private final List<Artist> relatedArtists;
 
-    public Artist(String id, List<String> genres, List<Song> topTracks, List<Artist> relatedArtists){
+    public Artist(String id, List<Genre> genres, List<Song> topTracks, List<Artist> relatedArtists){
         super(id);
         this.genres = genres;
         this.topTracks = topTracks;
@@ -15,7 +15,7 @@ public class Artist extends DataObject{
     }
 
 
-    public List<String> getGenres(){
+    public List<Genre> getGenres(){
         return genres;
     }
 
