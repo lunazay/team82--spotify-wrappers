@@ -1,7 +1,9 @@
 package use_case.TopGenre;
 import entity.Genre;
 
+import java.util.ArrayList;
+
 public interface TopGenreDataAccessInterface {
-    Genre[] getTopGenres(String id, String timeframe);
+    ArrayList<Genre> getTopGenres(String id, String timeframe);
 }
 

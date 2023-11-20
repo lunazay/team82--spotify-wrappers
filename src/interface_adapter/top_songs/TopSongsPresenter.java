@@ -16,11 +16,17 @@ public class TopSongsPresenter implements TopSongsOutputBoundary {
 
     @Override
     public void prepareSuccessView(TopSongsOutputData topSongsOutputData) {
-        // TODO: implement me!
+        TopSongsState topSongsState = topSongsViewModel.getState();
+        topSongsState.setId(topSongsState.getId()); // is this line necessary?
+        topSongsViewModel.firePropertyChanged();
+        viewManagerModel.setActiveViewName((topSongsViewModel.getViewName()));
+        viewManagerModel.firePropertyChanged();
     }
 
     @Override
     public void prepareFailView(String error) {
-        // TODO: implement me!
+        TopSongsState topSongsState = topSongsViewModel.getState();
+        // TODO: actually implement the fail view
+        topSongsViewModel.firePropertyChanged();
     }
 }
