@@ -7,7 +7,7 @@ import entity.Song;
 import entity.Genre;
 import use_case.GetValence.GetValenceDataAccessInterface;
 import use_case.RelatedArtists.RelatedArtistsDataAccessInterface;
-import use_case.TopAlbum.TopAlbumDataAccessinterface;
+import use_case.TopAlbum.TopAlbumDataAccessInterface;
 import use_case.TopArtist.TopArtistDataAccessInterface;
 import use_case.TopGenre.TopGenreDataAccessInterface;
 import use_case.TopSongs.TopSongsDataAccessInterface;
@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGenreDataAccessInterface,
-        GetValenceDataAccessInterface, RelatedArtistsDataAccessInterface, TopArtistDataAccessInterface, TopAlbumDataAccessinterface {
+        GetValenceDataAccessInterface, RelatedArtistsDataAccessInterface, TopArtistDataAccessInterface, TopAlbumDataAccessInterface {
 
     private final DevelopDB api = new SpotDevelopDB();
 
@@ -32,6 +32,12 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         // TODO: implement me!
         return new Genre[0];
         // top 5 genres
+    }
+
+    @Override
+    public Song[] getTopAlbums(String id, String timeframe){
+        //TODO: implement me!
+        return null;
     }
 
     @Override

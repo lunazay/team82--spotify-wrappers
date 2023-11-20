@@ -1,7 +1,7 @@
 package use_case.TopAlbum;
 import entity.Song;
 
-public interface TopAlbumDataAccessinterface {
+public interface TopAlbumDataAccessInterface {
     Song[] getTopAlbums(String id, String timeframe);
 
 }
