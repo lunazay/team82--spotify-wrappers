@@ -48,11 +48,11 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
 
         }
 
-        // mean is sum / total
+        // mean is sum / total, where total is greater than 0
         if (num_elements > 0) { return String.valueOf(valence_sum / num_elements); }
 
         // if user has listened to no songs, then we obviously can't return a value for valence
-        return null;
+        return "null";
 
     }
 }

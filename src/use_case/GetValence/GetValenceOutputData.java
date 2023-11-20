@@ -9,7 +9,7 @@ public class GetValenceOutputData {
     GetValenceOutputData(String valence) {
 
         this.valence = valence;
-        atLeastOneSong = !valence.equals("-1");
+        atLeastOneSong = !valence.equals("null");
     }
 
     public String get_valence() { return this.valence; }
