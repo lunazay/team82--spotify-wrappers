@@ -39,6 +39,8 @@ public class TopArtistsPresenter implements TopArtistsOutputBoundary {
      */
     @Override
     public void prepareFailView(String error) {
-        // TODO: implement me!
+        TopArtistsState topArtistsState = topArtistsViewModel.getState();
+        topArtistsState.displayArtistsError(error);
+        topArtistsViewModel.firePropertyChanged();
     }
 }
