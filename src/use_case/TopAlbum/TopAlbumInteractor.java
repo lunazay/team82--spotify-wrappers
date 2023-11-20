@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TopAlbumInteractor {
-    final TopAlbumDataAccessinterface userDataAccessObject;
+    final TopAlbumDataAccessInterface userDataAccessObject;
     final TopAlbumOutputBoundary topAlbumPresenter;
 
-    public TopAlbumInteractor(TopAlbumDataAccessinterface userDataAccessObject,
+    public TopAlbumInteractor(TopAlbumDataAccessInterface userDataAccessObject,
                               TopAlbumOutputBoundary topAlbumOutputBoundary) {
         this.userDataAccessObject = userDataAccessObject;
         this.topAlbumPresenter = topAlbumOutputBoundary;
@@ -24,8 +24,8 @@ public class TopAlbumInteractor {
             List<String> topAlbumTitles = new ArrayList<String>(50);
 
             int i = 0;
-            for (Song album : topAlbums) {
-                topAlbumTitles.set(i, album.getAlbum());
+            for (Song song : topAlbums) {
+                topAlbumTitles.set(i, song.getAlbum());
                 i = i + 1;
             }
 
