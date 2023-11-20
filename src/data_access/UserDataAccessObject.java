@@ -8,7 +8,7 @@ import entity.Genre;
 import use_case.GetValence.GetValenceDataAccessInterface;
 import use_case.RelatedArtists.RelatedArtistsDataAccessInterface;
 import use_case.TopAlbum.TopAlbumDataAccessInterface;
-import use_case.TopArtist.TopArtistDataAccessInterface;
+import use_case.top_artists.TopArtistsDataAccessInterface;
 import use_case.TopGenre.TopGenreDataAccessInterface;
 import use_case.TopSongs.TopSongsDataAccessInterface;
 
@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGenreDataAccessInterface,
-        GetValenceDataAccessInterface, RelatedArtistsDataAccessInterface, TopArtistDataAccessInterface, TopAlbumDataAccessInterface {
+        GetValenceDataAccessInterface, RelatedArtistsDataAccessInterface, TopArtistsDataAccessInterface, TopAlbumDataAccessInterface {
 
     private final DevelopDB api = new SpotDevelopDB();
 
@@ -37,6 +37,29 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     @Override
     public Song[] getTopAlbums(String id, String timeframe){
         //TODO: implement me!
+        return null;
+    }
+
+    /**
+     * Makes an API call to get a user's top artists over a desired timeframe.
+     * @param id        the user's Spotify id
+     * @param timeframe the API call time_range (short_term: 4 weeks, medium_term: 6 months, long_term: all time)
+     * @return          an ArrayList of the user's top artists, as Artist objects
+     */
+    @Override
+    public Artist[] getTopArtists(String id, String timeframe) {
+        String raw_artists = api.getTopArtists(timeframe);
+        String[] names = raw_artists.split(", ");           // TODO: what does getTopArtists return?
+        Artist[] artists = new Artist[names.length];
+
+        for (int i = 0; i < names.length; i++) {
+            artists[i] = new Artist(names[i]);                    // TODO: change artist constructor?
+        }
+
+        if (artists.length > 0) {
+            return artists;
+        }
+
         return null;
     }
 
