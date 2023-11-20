@@ -12,7 +12,7 @@ import use_case.top_artists.TopArtistsDataAccessInterface;
 import use_case.TopGenre.TopGenreDataAccessInterface;
 import use_case.TopSongs.TopSongsDataAccessInterface;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGenreDataAccessInterface,
@@ -95,4 +95,18 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         return api.getRelatedArtists(topArtist.getId());
         // return new Artist[0];
     }
+
+    public void setToken( String authCode ) throws IOException {
+
+        String token = api.getAuthorizationToken(authCode);
+
+        File txtFile = new File("./supersecret.txt");
+
+        // writing the token to the file:
+        BufferedWriter writer = new BufferedWriter(new FileWriter(txtFile));
+        writer.write(token);
+        writer.close();
+    }
+
+    public void
 }
