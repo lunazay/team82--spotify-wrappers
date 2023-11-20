@@ -10,6 +10,9 @@ public class LoginViewModel extends ViewModel {
 
     public final String TITLE_LABLE = "log in View";
 
+    public static final String LOGIN_BUTTON_LABEL = "Log in";
+    public static final String CANCEL_BUTTON_LABEL = "Cancel";
+
     private LoginState state = new LoginState();
     public LoginViewModel(){
         super("log in");
