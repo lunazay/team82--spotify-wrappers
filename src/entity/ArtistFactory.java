@@ -9,7 +9,7 @@ public class ArtistFactory {
      * Creates a list of Artist objects from an API response
      * @param response API call for a user's top artists
      */
-    Artist[] create(String response) {
+    public static Artist[] create(String response) {
         String[] artistData = response.split();         // TODO: figure out what separates each artist
         Artist[] artists = new Artist[50];
 
