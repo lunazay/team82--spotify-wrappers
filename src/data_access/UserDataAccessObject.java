@@ -47,14 +47,8 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
      * @return          an ArrayList of the user's top artists, as Artist objects
      */
     @Override
-    public Artist[] getTopArtists(String id, String timeframe) {
-        String raw_artists = api.getTopArtists(timeframe);
-        String[] names = raw_artists.split(", ");           // TODO: what does getTopArtists return?
-        Artist[] artists = new Artist[names.length];
-
-        for (int i = 0; i < names.length; i++) {
-            artists[i] = new Artist(names[i]);                    // TODO: change artist constructor?
-        }
+    public Artist[] getTopArtists(String id, String timeframe) throws IOException {
+        Artist[] artists = api.getTopArtists(timeframe);
 
         if (artists.length > 0) {
             return artists;
