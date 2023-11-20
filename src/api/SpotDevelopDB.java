@@ -180,7 +180,7 @@ public class SpotDevelopDB implements DevelopDB{
         try{
             Response response = client.newCall(request).execute();
             System.out.println(response);
-            Artist[] artists = ArtistFactory.create(response.toString());
+            Artist[] artists = ArtistFactory.create(response);      // TODO: change response to List<Hashmap<String, E>>
             JSONObject responseBody = new JSONObject(response.body().string());
             if (responseBody.getInt("status_code") == 200) {
                 return artists;
