@@ -6,6 +6,8 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class TopGenreViewModel extends ViewModel {
+
+    // any buttons/ titles we want dsiplayed should be written here
     private TopGenreState state = new TopGenreState();
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
@@ -23,7 +25,6 @@ public class TopGenreViewModel extends ViewModel {
     public void addPropertyChangeListener(PropertyChangeListener listener){
         support.addPropertyChangeListener(listener);
     }
-
     public TopGenreState getState() {
         return state;
     }
