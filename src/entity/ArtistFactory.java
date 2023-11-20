@@ -2,6 +2,7 @@ package entity;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 public class ArtistFactory {
@@ -9,18 +10,17 @@ public class ArtistFactory {
      * Creates a list of Artist objects from an API response
      * @param response API call for a user's top artists
      */
-    public static Artist[] create(String response) {
-        String[] artistData = response.split();         // TODO: figure out what separates each artist
+    public static Artist[] create(List<HashMap<String, Object>> response) {
         Artist[] artists = new Artist[50];
 
-        for (int i = 0; i < artistData.length; i++) {
-            artistData[i]                               // TODO: manipulate data to get these fields
-            String id = "";
-            String name = "";
+        for (int i = 0; i < response.size(); i++) {
+            String id = response.get(i).get("id").toString();
+            String name = response.get(i).get("name").toString();
+            List<String> genre_list = (List<String>) response.get(i).get("genres");
             Genre[] genres = new Genre[5];
 
             for (int x = 0; x < 5; x++) {
-                genres[x] = artistData[i][];            // TODO: figure out where genre is
+                genres[x] = new Genre(genre_list.get(x));
             }
 
             artists[i] = new Artist(id, name, genres);
