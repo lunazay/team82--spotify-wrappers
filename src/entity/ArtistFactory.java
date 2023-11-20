@@ -1,14 +1,13 @@
 package entity;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
 public class ArtistFactory {
     /**
      * Creates a list of Artist objects from an API response
-     * @param response API call for a user's top artists
+     * @param response API call for a user's top artists as a HashMap mapping the String name of each data type
+     *                 to the int, String, or list of String values
      */
     public static Artist[] create(List<HashMap<String, Object>> response) {
         Artist[] artists = new Artist[50];
