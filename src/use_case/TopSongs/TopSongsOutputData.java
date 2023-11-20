@@ -3,7 +3,7 @@ import java.util.List;
 
 public class TopSongsOutputData {
 
-    private List<String> songNames;
+    private final List<String> songNames;
 
     private Integer songNumber;
 
