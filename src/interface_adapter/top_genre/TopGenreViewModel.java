@@ -22,6 +22,7 @@ public class TopGenreViewModel extends ViewModel {
         support.firePropertyChange("state", null, this.state);
     }
 
+    // do i need an override here?
     public void addPropertyChangeListener(PropertyChangeListener listener){
         support.addPropertyChangeListener(listener);
     }
