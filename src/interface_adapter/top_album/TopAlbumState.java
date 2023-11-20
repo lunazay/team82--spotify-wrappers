@@ -1,7 +1,5 @@
 package interface_adapter.top_album;
 
-import interface_adapter.related_artists.RelatedArtistsState;
-
 import java.util.Collections;
 import java.util.List;
 
