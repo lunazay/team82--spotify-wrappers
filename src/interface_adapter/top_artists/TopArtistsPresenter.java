@@ -23,7 +23,7 @@ public class TopArtistsPresenter implements TopArtistsOutputBoundary {
     public void prepareSuccessView(TopArtistsOutputData artists) {
         // Updates the current TopArtistsState with the list of the user's top artists.
         TopArtistsState topArtistsState = topArtistsViewModel.getState();
-        topArtistsState.setTopArtists(artists.getArtistNames());
+        topArtistsState.setArtistNames(artists.getArtistNames());
         this.topArtistsViewModel.setState(topArtistsState);
         topArtistsViewModel.firePropertyChanged();
 
@@ -40,7 +40,7 @@ public class TopArtistsPresenter implements TopArtistsOutputBoundary {
     @Override
     public void prepareFailView(String error) {
         TopArtistsState topArtistsState = topArtistsViewModel.getState();
-        topArtistsState.displayArtistsError(error);
+        topArtistsState.setArtistNamesError(error);
         topArtistsViewModel.firePropertyChanged();
     }
 }
