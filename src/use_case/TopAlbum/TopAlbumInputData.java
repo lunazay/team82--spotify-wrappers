@@ -9,15 +9,16 @@ public class TopAlbumInputData {
         this.id = id;
     }
 
-    public void setTimeframe(String timeframe) {
+    public void setTimeframe(String timeframe){
         this.timeframe = timeframe;
     }
 
-    public String getTimeframe() {
+    public String getTimeframe(){
         return timeframe;
     }
 
     public String getId(){
         return id;
     }
+
 }

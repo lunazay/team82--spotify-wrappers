@@ -4,7 +4,7 @@ import entity.Song;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TopAlbumInteractor {
+public class TopAlbumInteractor implements TopAlbumInputBoundary{
     final TopAlbumDataAccessInterface userDataAccessObject;
     final TopAlbumOutputBoundary topAlbumPresenter;
 
