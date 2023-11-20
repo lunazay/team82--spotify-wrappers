@@ -15,11 +15,23 @@ public class TopAlbumState {
 
     public TopAlbumState() {}
 
-    // TODO: complete the rest of the state
+    public void setTopAlbumNames(List<String> topAlbumNames) {
+        this.topAlbumNames = topAlbumNames;
+    }
 
     public void setError(String error){
         this.error = error;
     }
+    public String getError() {
+        return this.error;
+    }
+
+    @Override
+    public String toString(){
+        return "TopAlbumState{" + "topAlbumNames='" + topAlbumNames + '}';
+    }
+
+
 
 
 
