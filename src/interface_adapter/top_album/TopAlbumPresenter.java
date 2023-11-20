@@ -1,6 +1,7 @@
 package interface_adapter.top_album;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.top_artists.TopArtistsState;
 import use_case.TopAlbum.TopAlbumOutputBoundary;
 import use_case.TopAlbum.TopAlbumOutputData;
 
@@ -16,12 +17,13 @@ public class TopAlbumPresenter implements TopAlbumOutputBoundary {
 
     @Override
     public void prepareSuccessView(TopAlbumOutputData user) {
-        // TODO: need to finish this
+        // TODO: need to implement this
     }
 
     @Override
     public void prepareFailView(String error){
-        // TODO: need to finish this
-
+        TopAlbumState topAlbumState = topAlbumViewModel.getState();
+        topAlbumState.setError(error);
+        topAlbumViewModel.firePropertyChanged();
     }
 }
