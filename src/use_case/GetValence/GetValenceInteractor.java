@@ -2,6 +2,8 @@ package use_case.GetValence;
 
 import entity.Song;
 
+import java.io.IOException;
+
 public class GetValenceInteractor implements GetValenceInputBoundary{
 
     final GetValenceDataAccessInterface getValenceDataAccessObject;
@@ -15,7 +17,7 @@ public class GetValenceInteractor implements GetValenceInputBoundary{
     }
 
     @Override
-    public void execute(GetValenceInputData getValenceInputData) {
+    public void execute(GetValenceInputData getValenceInputData) throws IOException {
 
         String id = getValenceInputData.getId();
 
