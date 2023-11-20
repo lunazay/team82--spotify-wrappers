@@ -2,6 +2,7 @@ package api;
 
 import entity.User;
 import entity.Artist;
+import entity.ArtistFactory;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -162,7 +163,7 @@ public class SpotDevelopDB implements DevelopDB{
     }
 
     @Override
-    public User getTopArtists(String time_frame) throws JSONException{
+    public Artist[] getTopArtists(String time_frame) throws JSONException{
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         String url = "https://api.spotify.com/v1/me/top/artists?" + "time_range=" + time_frame;
@@ -179,9 +180,10 @@ public class SpotDevelopDB implements DevelopDB{
         try{
             Response response = client.newCall(request).execute();
             System.out.println(response);
+            Artist[] artists = ArtistFactory.create(response.toString());
             JSONObject responseBody = new JSONObject(response.body().string());
             if (responseBody.getInt("status_code") == 200) {
-                return null;
+                return artists;
             } else {
                 throw new RuntimeException(responseBody.getString("message"));
             }
