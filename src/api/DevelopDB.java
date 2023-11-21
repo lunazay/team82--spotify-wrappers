@@ -14,8 +14,6 @@ public interface DevelopDB {
 
     Artist[] getTopArtists(String time_frame) throws IOException;
 
-    Artist[] getRelatedArtists(String topArtistID)throws IOException;
-
     public String getAuthorizationLink() throws MalformedURLException;
 
     public String getAuthorizationToken(String authCode) throws IOException;

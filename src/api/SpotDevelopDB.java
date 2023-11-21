@@ -196,33 +196,4 @@ public class SpotDevelopDB implements DevelopDB{
         }
     }
 
-    @Override
-    public Artist[] getRelatedArtists(String topArtistID) throws JSONException, IOException {
-        OkHttpClient client = new OkHttpClient().newBuilder()
-                .build();
-        String url = "https://api.spotify.com/v1/artists/" + topArtistID + "/related-artists";
-        MediaType mediaType = MediaType.parse("application/json");
-        JSONObject requestBody = new JSONObject();
-        requestBody.get("related artists");
-        RequestBody body = RequestBody.create(mediaType, requestBody.toString());
-        Request request = new Request.Builder()
-                .url(url)
-                .method("GET", body)
-                .addHeader("Authorization", token())
-                .addHeader("Content-Type", "application/json")
-                .build();
-        try{
-            Response response = client.newCall(request).execute();
-            System.out.println(response);
-            JSONObject responseBody = new JSONObject(response.body().string());
-            if (responseBody.getInt("status_code") == 200) {
-                return null;
-            } else {
-                throw new RuntimeException(responseBody.getString("message"));
-            }
-        }
-        catch (IOException | JSONException e) {
-            throw new RuntimeException(e);
-        }
     }
-}
