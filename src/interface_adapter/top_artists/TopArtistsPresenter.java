@@ -28,7 +28,7 @@ public class TopArtistsPresenter implements TopArtistsOutputBoundary {
         topArtistsViewModel.firePropertyChanged();
 
         // Changes the view to reflect updates.
-        viewManagerModel.setActiveView(topArtistsViewModel.getViewName());
+        viewManagerModel.setActiveViewName(topArtistsViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 

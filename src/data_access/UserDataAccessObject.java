@@ -121,6 +121,4 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         writer.write(token);
         writer.close();
     }
-
-    public void
 }
