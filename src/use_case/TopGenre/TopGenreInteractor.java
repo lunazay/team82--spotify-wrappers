@@ -19,7 +19,7 @@ public class TopGenreInteractor implements TopGenreInputBoundary {
         String timeframe = topGenreInputData.getTimeframe();
 
         try {
-            Genre[] topGenres = userDataAccessObject.getTopGenres(id, timeframe);
+            ArrayList<Genre> topGenres = userDataAccessObject.getTopGenres(id, timeframe);
             List<String> topGenreTitles = new ArrayList<String>(50);
 
             int i = 0;
