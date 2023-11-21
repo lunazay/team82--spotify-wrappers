@@ -12,7 +12,7 @@ public class TopGenreViewModel extends ViewModel {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public TopGenreViewModel(){
-        super("Top Genres");
+        super("top genres");
     }
     public void setState(TopGenreState state){
         this.state = state;
