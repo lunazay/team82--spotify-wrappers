@@ -59,5 +59,9 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     public void propertyChange(PropertyChangeEvent evt) {
         // TODO: do we need to add anything here? if so, what?
     }
+
+    public String viewName() {
+        return viewName;
+    }
 }
 
