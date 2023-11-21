@@ -1,23 +1,8 @@
 package view;
 
-import interface_adapter.ViewModel;
-import interface_adapter.get_valence.GetValenceState;
-import interface_adapter.get_valence.GetValenceViewModel;
+import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.logged_in.LoggedInState;
 
-import interface_adapter.related_artists.RelatedArtistsState;
-import interface_adapter.related_artists.RelatedArtistsViewModel;
-
-import interface_adapter.top_artists.TopArtistsState;
-import interface_adapter.top_artists.TopArtistsViewModel;
-
-import interface_adapter.top_album.TopAlbumState;
-import interface_adapter.top_album.TopAlbumViewModel;
-
-import interface_adapter.top_songs.TopSongsState;
-import interface_adapter.top_songs.TopSongsViewModel;
-
-import interface_adapter.top_genre.TopGenreState;
-import interface_adapter.top_genre.TopGenreViewModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,7 +13,7 @@ import java.beans.PropertyChangeListener;
 
 public class LoggedInView extends JPanel implements ActionListener, PropertyChangeListener {
         public final String viewName = "logged in";
-        private final ViewModel viewModel;
+        private final LoggedInViewModel viewModel;
         final JButton shortTerm;
         final JButton mediumTerm;
         final JButton longTerm;
