@@ -5,13 +5,13 @@ import entity.Artist;
 import java.util.List;
 
 public class RelatedArtistsOutputData {
-    private Artist[] relatedArtists;
+    private List<String> relatedArtists;
     private boolean useCaseFailed;
     public RelatedArtistsOutputData(List<String> relatedArtists, boolean useCaseFailed){
         this.relatedArtists = relatedArtists;
         this.useCaseFailed = useCaseFailed;
     }
-    public Artist[] getRelatedArtists(){
+    public List<String> getRelatedArtists(){
         return relatedArtists;
     }
 }
