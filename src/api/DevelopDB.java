@@ -12,7 +12,7 @@ public interface DevelopDB {
 
     User getTopSongs(String time_frame, int numSongs) throws IOException;
 
-    User getTopArtists(String time_frame) throws IOException;
+    Artist[] getTopArtists(String time_frame) throws IOException;
 
     Artist[] getRelatedArtists(String topArtistID)throws IOException;
 
