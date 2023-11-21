@@ -2,14 +2,11 @@ package api;
 
 import entity.User;
 import entity.Artist;
-import entity.ArtistFactory;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -23,8 +20,16 @@ public class SpotDevelopDB implements DevelopDB{
     String client_id = "bad90b33466e4f208c7655eede3ac628";
     String client_secret = "15abfd5161e84bfe893606e4eb74f5f6";
     String redirect_uri = "https://oauth.pstmn.io/v1/browser-callback";
-    String authToken; // TODO: figure out where we should store the authorization token!
 
+    // instead of calling using authToken use token() method!
+
+    private String token() throws IOException {
+        File txtFile = new File("./supersecret.txt");
+
+        // writing the token to the file:
+        BufferedReader reader = new BufferedReader(new FileReader(txtFile));
+        return reader.readLine();
+    }
 
     @Override
     public String getAuthorizationLink() throws MalformedURLException {
@@ -95,11 +100,8 @@ public class SpotDevelopDB implements DevelopDB{
     @Override
     public String get_valence(String songId) throws IOException {
 
-        // TODO: change this to get the valence for one song, and have the data access object
-        // TODO: just call this a bunch of times. (Instead of doing it all in one big call.)
-
         String request = "https://api.spotify.com/v1/audio-features/" + songId;
-
+        try {
         URL request_url = new URL(request);
 
         HttpURLConnection conn = (HttpURLConnection) request_url.openConnection();
@@ -122,17 +124,17 @@ public class SpotDevelopDB implements DevelopDB{
 
             return arrayResponse[arrayResponse.length - 1];
         }
+        } catch (MalformedURLException e) {
+            throw new MalformedURLException();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         return null;
     }
 
     @Override
-    public void setAuthToken(String authToken) {
-        this.authToken = authToken;
-    }
-
-    @Override
-    public User getTopSongs(String time_frame, int numSongs) throws JSONException{
+    public User getTopSongs(String time_frame, int numSongs) throws JSONException, IOException {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         String url = "https://api.spotify.com/v1/me/top/tracks?" + "time_range=" + time_frame + "&limit=" + numSongs;
@@ -144,7 +146,7 @@ public class SpotDevelopDB implements DevelopDB{
         Request request = new Request.Builder()
                 .url(url)
                 .method("GET", body)
-                .addHeader("Authorization", authToken)
+                .addHeader("Authorization", token())
                 .addHeader("Content-Type", "application/json")
                 .build();
         try{
@@ -163,7 +165,7 @@ public class SpotDevelopDB implements DevelopDB{
     }
 
     @Override
-    public Artist[] getTopArtists(String time_frame) throws JSONException{
+    public User getTopArtists(String time_frame) throws JSONException, IOException {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         String url = "https://api.spotify.com/v1/me/top/artists?" + "time_range=" + time_frame;
@@ -174,16 +176,15 @@ public class SpotDevelopDB implements DevelopDB{
         Request request = new Request.Builder()
                 .url(url)
                 .method("GET", body)
-                .addHeader("Authorization", authToken)
+                .addHeader("Authorization", token())
                 .addHeader("Content-Type", "application/json")
                 .build();
         try{
             Response response = client.newCall(request).execute();
             System.out.println(response);
             JSONObject responseBody = new JSONObject(response.body().string());
-            Artist[] artists = ArtistFactory.create(responseBody);
             if (responseBody.getInt("status_code") == 200) {
-                return artists;
+                return null;
             } else {
                 throw new RuntimeException(responseBody.getString("message"));
             }
@@ -194,7 +195,7 @@ public class SpotDevelopDB implements DevelopDB{
     }
 
     @Override
-    public Artist[] getRelatedArtists(String topArtistID) throws JSONException {
+    public Artist[] getRelatedArtists(String topArtistID) throws JSONException, IOException {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         String url = "https://api.spotify.com/v1/artists/" + topArtistID + "/related-artists";
@@ -205,7 +206,7 @@ public class SpotDevelopDB implements DevelopDB{
         Request request = new Request.Builder()
                 .url(url)
                 .method("GET", body)
-                .addHeader("Authorization", authToken)
+                .addHeader("Authorization", token())
                 .addHeader("Content-Type", "application/json")
                 .build();
         try{

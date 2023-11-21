@@ -12,8 +12,9 @@ import use_case.top_artists.TopArtistsDataAccessInterface;
 import use_case.TopGenre.TopGenreDataAccessInterface;
 import use_case.TopSongs.TopSongsDataAccessInterface;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGenreDataAccessInterface,
         GetValenceDataAccessInterface, RelatedArtistsDataAccessInterface, TopArtistsDataAccessInterface, TopAlbumDataAccessInterface {
@@ -28,10 +29,23 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     }
 
     @Override
-    public Genre[] getTopGenres(String id, String timeframe){
-        // TODO: implement me!
-        return new Genre[0];
-        // top 5 genres
+    public ArrayList<Genre> getTopGenres(String id, String timeframe){
+        Artist[] topArtist = getTopArtists(id, timeframe);
+        ArrayList<Genre> topGenres = new ArrayList<Genre>();
+        int count = 0;
+        for (Artist artist: topArtist){
+            // i want to return an array list of Genre objects becuase that is how we
+            // decided our design implementaiton will be
+            List<Genre> genres = artist.getGenres();
+            Genre topGenre = genres.get(0);
+            topGenres.add(topGenre);
+            count++;
+            // since i only want the top 5 genres, im only counting till 5
+            if (count >= 5) {
+                break;
+            }
+        }
+        return topGenres;
     }
 
     @Override
@@ -88,5 +102,17 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         Artist topArtist = getTopArtists(id, timeframe)[0];
         return api.getRelatedArtists(topArtist.getId());
         // return new Artist[0];
+    }
+
+    public void setToken( String authCode ) throws IOException {
+
+        String token = api.getAuthorizationToken(authCode);
+
+        File txtFile = new File("./supersecret.txt");
+
+        // writing the token to the file:
+        BufferedWriter writer = new BufferedWriter(new FileWriter(txtFile));
+        writer.write(token);
+        writer.close();
     }
 }

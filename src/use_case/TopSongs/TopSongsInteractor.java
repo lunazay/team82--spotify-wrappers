@@ -31,13 +31,13 @@ public class TopSongsInteractor implements TopSongsInputBoundary {
             Song[] topSongs = userDataAccessObject.getTopSongs(id, timeframe);
             List<String> topSongTitles = new ArrayList<String>(50);
 
-            int i = 0;
+            Integer songNumber = 1;
+
             for (Song song : topSongs) {
-                topSongTitles.set(i, song.getName());
-                i = i + 1;
+                topSongTitles.add(songNumber + ". " + song.getName()); // Concatenate song number with song name
+                songNumber++; // Increment the song number for the next iteration
             }
 
-            Integer songNumber = null; //TODO: I will write the logic soon to actually update the song number
             TopSongsOutputData topSongsOutputData = new TopSongsOutputData(topSongTitles, false, songNumber);
             topSongsPresenter.prepareSuccessView(topSongsOutputData);
         } catch (Exception e) {
