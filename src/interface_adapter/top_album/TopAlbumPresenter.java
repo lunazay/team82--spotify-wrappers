@@ -15,9 +15,9 @@ public class TopAlbumPresenter implements TopAlbumOutputBoundary {
     }
 
     @Override
-    public void prepareSuccessView(TopAlbumOutputData user) {
+    public void prepareSuccessView(TopAlbumOutputData album) {
         TopAlbumState topAlbumState = topAlbumViewModel.getState();
-        topAlbumState.setTopAlbumNames(user.getAlbumNames());
+        topAlbumState.setTopAlbumNames(album.getAlbumNames());
         this.topAlbumViewModel.setState(topAlbumState);
         topAlbumViewModel.firePropertyChanged();
 
