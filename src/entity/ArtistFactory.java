@@ -1,21 +1,21 @@
 package entity;
 
-import java.util.HashMap;
+import org.json.JSONObject;
 import java.util.List;
 
 public class ArtistFactory {
     /**
      * Creates a list of Artist objects from an API response
-     * @param response API call for a user's top artists as a HashMap mapping the String name of each data type
-     *                 to the int, String, or list of String values
+     * @param response API call for a user's top artists as a JSONObject. The JSONObject has several get methods
+     *                 to return desired objects.
      */
-    public static Artist[] create(List<HashMap<String, Object>> response) {
+    public static Artist[] create(JSONObject response) {
         Artist[] artists = new Artist[50];
 
-        for (int i = 0; i < response.size(); i++) {
-            String id = response.get(i).get("id").toString();
-            String name = response.get(i).get("name").toString();
-            List<String> genre_list = (List<String>) response.get(i).get("genres");
+        for (int i = 0; i < response.length(); i++) {
+            String id = response.getString("id");
+            String name = response.getString("name");
+            List<String> genre_list = (List<String>) response.get("genres");
             Genre[] genres = new Genre[5];
 
             for (int x = 0; x < 5; x++) {
@@ -25,6 +25,6 @@ public class ArtistFactory {
             artists[i] = new Artist(id, name, genres);
         }
 
-        return null;
+        return artists;
     }
 }
