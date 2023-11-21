@@ -5,11 +5,11 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class TopSongsViewModel extends ViewModel {
-    private static final String TITLE_LABLE = "Top Songs View";
+    private static final String TITLE_LABEL = "top songs view";
     private TopSongsState state = new TopSongsState();
 
     public TopSongsViewModel(){
-        super("Top Songs");
+        super("top songs");
     }
 
     public void setState(TopSongsState state){
