@@ -1,5 +1,6 @@
 package api;
 
+import entity.ArtistFactory;
 import entity.User;
 import entity.Artist;
 
@@ -165,7 +166,7 @@ public class SpotDevelopDB implements DevelopDB{
     }
 
     @Override
-    public User getTopArtists(String time_frame) throws JSONException, IOException {
+    public Artist[] getTopArtists(String time_frame) throws JSONException, IOException {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         String url = "https://api.spotify.com/v1/me/top/artists?" + "time_range=" + time_frame;
@@ -183,8 +184,9 @@ public class SpotDevelopDB implements DevelopDB{
             Response response = client.newCall(request).execute();
             System.out.println(response);
             JSONObject responseBody = new JSONObject(response.body().string());
+            Artist[] artists = ArtistFactory.create(responseBody);
             if (responseBody.getInt("status_code") == 200) {
-                return null;
+                return artists;
             } else {
                 throw new RuntimeException(responseBody.getString("message"));
             }
