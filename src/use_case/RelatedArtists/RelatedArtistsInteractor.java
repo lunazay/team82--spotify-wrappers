@@ -1,7 +1,5 @@
 package use_case.RelatedArtists;
 
-import entity.Artist;
-import java.util.ArrayList;
 import java.util.List;
 
 import java.io.IOException;

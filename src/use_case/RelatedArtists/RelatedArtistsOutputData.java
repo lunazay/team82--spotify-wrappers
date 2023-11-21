@@ -1,12 +1,10 @@
 package use_case.RelatedArtists;
 
-import entity.Artist;
-
 import java.util.List;
 
 public class RelatedArtistsOutputData {
-    private List<String> relatedArtists;
-    private boolean useCaseFailed;
+    private final List<String> relatedArtists;
+    private final boolean useCaseFailed;
     public RelatedArtistsOutputData(List<String> relatedArtists, boolean useCaseFailed){
         this.relatedArtists = relatedArtists;
         this.useCaseFailed = useCaseFailed;
