@@ -29,15 +29,15 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     }
 
     @Override
-    public ArrayList<Genre> getTopGenres(String id, String timeframe){
+    public ArrayList<Genre> getTopGenres(String id, String timeframe) throws IOException {
         Artist[] topArtist = getTopArtists(id, timeframe);
         ArrayList<Genre> topGenres = new ArrayList<Genre>();
         int count = 0;
         for (Artist artist: topArtist){
             // i want to return an array list of Genre objects becuase that is how we
             // decided our design implementaiton will be
-            List<Genre> genres = artist.getGenres();
-            Genre topGenre = genres.get(0);
+            Genre[] genres = artist.getGenres();
+            Genre topGenre = genres[0];
             topGenres.add(topGenre);
             count++;
             // since i only want the top 5 genres, im only counting till 5
@@ -61,14 +61,8 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
      * @return          an ArrayList of the user's top artists, as Artist objects
      */
     @Override
-    public Artist[] getTopArtists(String id, String timeframe) {
-        String raw_artists = api.getTopArtists(timeframe);
-        String[] names = raw_artists.split(", ");           // TODO: what does getTopArtists return?
-        Artist[] artists = new Artist[names.length];
-
-        for (int i = 0; i < names.length; i++) {
-            artists[i] = new Artist(names[i]);                    // TODO: change artist constructor?
-        }
+    public Artist[] getTopArtists(String id, String timeframe) throws IOException {
+        Artist[] artists = api.getTopArtists(timeframe);
 
         if (artists.length > 0) {
             return artists;
