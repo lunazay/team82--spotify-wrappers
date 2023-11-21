@@ -17,12 +17,13 @@ public class ArtistFactory {
             String name = response.getString("name");
             List<String> genre_list = (List<String>) response.get("genres");
             Genre[] genres = new Genre[5];
+            List<String> related_artists = (List<String>) response.get("related artists");
 
             for (int x = 0; x < 5; x++) {
                 genres[x] = new Genre(genre_list.get(x));
             }
 
-            artists[i] = new Artist(id, name, genres);
+            artists[i] = new Artist(id, name, genres, related_artists);
         }
 
         return artists;

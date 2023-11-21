@@ -7,7 +7,7 @@ import java.util.List;
 public class RelatedArtistsOutputData {
     private Artist[] relatedArtists;
     private boolean useCaseFailed;
-    public RelatedArtistsOutputData(Artist[] relatedArtists, boolean useCaseFailed){
+    public RelatedArtistsOutputData(List<String> relatedArtists, boolean useCaseFailed){
         this.relatedArtists = relatedArtists;
         this.useCaseFailed = useCaseFailed;
     }

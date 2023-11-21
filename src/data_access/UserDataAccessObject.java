@@ -98,10 +98,9 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     }
 
     @Override
-    public Artist[] getRelatedArtists(String id, String timeframe) throws IOException {
+    public List<String> getRelatedArtists(String id, String timeframe) throws IOException {
         Artist topArtist = getTopArtists(id, timeframe)[0];
-        return api.getRelatedArtists(topArtist.getId());
-        // return new Artist[0];
+        return topArtist.getRelatedArtists();
     }
 
     public void setToken( String authCode ) throws IOException {

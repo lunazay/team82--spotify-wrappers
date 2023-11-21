@@ -19,7 +19,7 @@ public class RelatedArtistsInteractor implements RelatedArtistsInputBoundary{
         String id = relatedArtistsInputData.getId();
         String timeframe = relatedArtistsInputData.getTimeframe();
         try {
-            Artist [] relatedArtists = userDataAccessObject.getRelatedArtists(id, timeframe);
+            List<String> relatedArtists = userDataAccessObject.getRelatedArtists(id, timeframe);
             RelatedArtistsOutputData relatedArtistsOutputData = new RelatedArtistsOutputData(relatedArtists, false);
             relatedArtistsPresenter.prepareSuccessView(relatedArtistsOutputData);
         } catch (IOException e) {
