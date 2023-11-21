@@ -13,14 +13,19 @@ import java.beans.PropertyChangeListener;
 
 public class LoggedInView extends JPanel implements ActionListener, PropertyChangeListener {
         public final String viewName = "logged in";
-        private final LoggedInViewModel viewModel;
+        private final LoggedInViewModel loggedInViewModel;
         final JButton shortTerm;
         final JButton mediumTerm;
         final JButton longTerm;
 
-        public LoggedInView(ViewModel loggedInViewModel){
-            this.viewModel = loggedInViewModel;
-            this.viewModel.addPropertyChangeListener(this);
+    /**
+     * A window with a title and 3 JButtons.
+     * @param loggedInViewModel
+     */
+
+    public LoggedInView(LoggedInViewModel loggedInViewModel){
+            this.loggedInViewModel = loggedInViewModel;
+            this.loggedInViewModel.addPropertyChangeListener(this);
 
             JLabel title = new JLabel("Logged In Screen");
             title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -38,16 +43,21 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
             shortTerm.addActionListener(this);
             mediumTerm.addActionListener(this);
             longTerm.addActionListener(this);
+
+            this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+            this.add(title);
+            this.add(buttons);
         }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-
+    public void actionPerformed(ActionEvent evt) {
+        System.out.println("Click " + evt.getActionCommand());
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-
+        // TODO: do we need to add anything here? if so, what?
     }
 }
 
