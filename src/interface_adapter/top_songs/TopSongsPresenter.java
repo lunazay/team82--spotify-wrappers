@@ -1,8 +1,8 @@
 package interface_adapter.top_songs;
 
 import interface_adapter.ViewManagerModel;
-import use_case.TopSongs.TopSongsOutputBoundary;
-import use_case.TopSongs.TopSongsOutputData;
+import use_case.top_songs.TopSongsOutputBoundary;
+import use_case.top_songs.TopSongsOutputData;
 
 public class TopSongsPresenter implements TopSongsOutputBoundary {
     private final TopSongsViewModel topSongsViewModel;

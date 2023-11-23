@@ -1,8 +1,8 @@
 package interface_adapter.top_genre;
 
 import interface_adapter.ViewManagerModel;
-import use_case.TopGenre.TopGenreOutputBoundary;
-import use_case.TopGenre.TopGenreOutputData;
+import use_case.top_genre.TopGenreOutputBoundary;
+import use_case.top_genre.TopGenreOutputData;
 
 public class TopGenrePresenter implements TopGenreOutputBoundary {
 

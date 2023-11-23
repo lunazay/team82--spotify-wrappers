@@ -1,8 +1,8 @@
 package interface_adapter.related_artists;
 
 import interface_adapter.ViewManagerModel;
-import use_case.RelatedArtists.RelatedArtistsOutputBoundary;
-import use_case.RelatedArtists.RelatedArtistsOutputData;
+import use_case.related_artists.RelatedArtistsOutputBoundary;
+import use_case.related_artists.RelatedArtistsOutputData;
 
 public class RelatedArtistsPresenter implements RelatedArtistsOutputBoundary {
     private final RelatedArtistsViewModel relatedArtistsViewModel;

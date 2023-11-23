@@ -1,7 +1,7 @@
 package interface_adapter.top_album;
 
-import use_case.TopAlbum.TopAlbumInputBoundary;
-import use_case.TopAlbum.TopAlbumInputData;
+import use_case.top_album.TopAlbumInputBoundary;
+import use_case.top_album.TopAlbumInputData;
 
 public class TopAlbumController {
     final TopAlbumInputBoundary topAlbumUseCaseInteractor;

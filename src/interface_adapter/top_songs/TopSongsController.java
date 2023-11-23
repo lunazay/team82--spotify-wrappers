@@ -1,7 +1,7 @@
 package interface_adapter.top_songs;
 
-import use_case.TopSongs.TopSongsInputBoundary;
-import use_case.TopSongs.TopSongsInputData;
+import use_case.top_songs.TopSongsInputBoundary;
+import use_case.top_songs.TopSongsInputData;
 
 public class TopSongsController {
     final TopSongsInputBoundary topSongsUseCaseInteractor;

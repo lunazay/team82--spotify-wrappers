@@ -2,10 +2,10 @@ package interface_adapter.related_artists;
 
 import interface_adapter.ViewModel;
 
-import entity.Artist;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.List;
 
 public class RelatedArtistsViewModel extends ViewModel {
     private RelatedArtistsState state = new RelatedArtistsState();
@@ -29,7 +29,7 @@ public class RelatedArtistsViewModel extends ViewModel {
         return state;
     }
 
-    public Artist[] getRelatedArtists(){
+    public List<String> getRelatedArtists(){
         return state.getRelatedArtists();
     }
 }
