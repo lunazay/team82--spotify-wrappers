@@ -1,7 +1,7 @@
 package interface_adapter.related_artists;
 
-import use_case.RelatedArtists.RelatedArtistsInputBoundary;
-import use_case.RelatedArtists.RelatedArtistsInputData;
+import use_case.related_artists.RelatedArtistsInputBoundary;
+import use_case.related_artists.RelatedArtistsInputData;
 
 import java.io.IOException;
 

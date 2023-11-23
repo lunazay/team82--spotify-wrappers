@@ -5,12 +5,12 @@ import api.SpotDevelopDB;
 import entity.Artist;
 import entity.Song;
 import entity.Genre;
-import use_case.GetValence.GetValenceDataAccessInterface;
-import use_case.RelatedArtists.RelatedArtistsDataAccessInterface;
-import use_case.TopAlbum.TopAlbumDataAccessInterface;
+import use_case.get_valence.GetValenceDataAccessInterface;
+import use_case.related_artists.RelatedArtistsDataAccessInterface;
+import use_case.top_album.TopAlbumDataAccessInterface;
 import use_case.top_artists.TopArtistsDataAccessInterface;
-import use_case.TopGenre.TopGenreDataAccessInterface;
-import use_case.TopSongs.TopSongsDataAccessInterface;
+import use_case.top_genre.TopGenreDataAccessInterface;
+import use_case.top_songs.TopSongsDataAccessInterface;
 
 import java.io.*;
 import java.util.ArrayList;

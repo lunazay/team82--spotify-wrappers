@@ -1,7 +1,7 @@
 package interface_adapter.top_genre;
 
-import use_case.TopGenre.TopGenreInputBoundary;
-import use_case.TopGenre.TopGenreInputData;
+import use_case.top_genre.TopGenreInputBoundary;
+import use_case.top_genre.TopGenreInputData;
 
 public class TopGenreController {
     final TopGenreInputBoundary userTopGenreUseCaseInteractor;

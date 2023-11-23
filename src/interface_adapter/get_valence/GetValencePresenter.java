@@ -1,8 +1,8 @@
 package interface_adapter.get_valence;
 
 import interface_adapter.ViewManagerModel;
-import use_case.GetValence.GetValenceOutputBoundary;
-import use_case.GetValence.GetValenceOutputData;
+import use_case.get_valence.GetValenceOutputBoundary;
+import use_case.get_valence.GetValenceOutputData;
 
 public class GetValencePresenter implements GetValenceOutputBoundary {
 
