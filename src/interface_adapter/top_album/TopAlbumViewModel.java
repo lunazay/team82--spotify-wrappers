@@ -6,12 +6,12 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class TopAlbumViewModel extends ViewModel {
-    private static final String TITLE_LABEL = "Top Album View";
+    private static final String TITLE_LABEL = "top album view";
 
     private TopAlbumState state = new TopAlbumState();
 
     public TopAlbumViewModel() {
-        super("Top Album");
+        super("top album");
     }
 
     public void setState(TopAlbumState state) {
