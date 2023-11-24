@@ -15,15 +15,15 @@ public class ArtistFactory {
         for (int i = 0; i < response.length(); i++) {
             String id = response.getString("id");
             String name = response.getString("name");
-            List<String> genre_list = (List<String>) response.get("genres");
+            List<String> genreList = (List<String>) response.get("genres");
             Genre[] genres = new Genre[5];
-            List<String> related_artists = (List<String>) response.get("related artists");
+            List<String> relatedArtists = (List<String>) response.get("related artists");
 
             for (int x = 0; x < 5; x++) {
-                genres[x] = new Genre(genre_list.get(x));
+                genres[x] = new Genre(genreList.get(x));
             }
 
-            artists[i] = new Artist(id, name, genres, related_artists);
+            artists[i] = new Artist(id, name, genres, relatedArtists);
         }
 
         return artists;
