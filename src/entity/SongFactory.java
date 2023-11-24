@@ -14,8 +14,12 @@ public class SongFactory {
         for (int i = 0; i < response.length(); i++) {
             String id = response.getString("id");
             String name = response.getString("name");
-            // TODO: I will complete this soon.
-            //  I need to get the length, artist and album so the red on line 15 goes away
+
+            int length = response.getInt("length");
+
+            List<String> artist = (List<String>) response.get("artist");
+            String album = response.getString("album");
+
 
             songs[i] = new Song(id, name, length, artist, album);
         }

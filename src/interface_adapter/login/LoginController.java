@@ -10,7 +10,7 @@ public class LoginController {
     }
 
     public void execute(String token){
-        LoginInputData loginInputData = new LoginInputData();
+        LoginInputData loginInputData = new LoginInputData(token);
         loginUseCaseInteractor.execute(loginInputData);
     }
 }
