@@ -38,7 +38,6 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                     loginController.execute();
                 // TODO: we need to figure out what the input data needs to be before finishing this. ;
                 }
-
             }
         }
         );
