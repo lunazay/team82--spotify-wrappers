@@ -5,8 +5,8 @@ public class Song extends DataObject{
     private final Artist artist;
     private final String album;
 
-    public Song(String id, int length, Artist artist, String album){
-        super(id);
+    public Song(String id, String name, int length, Artist artist, String album){
+        super(id, name);
         this.length = length;
         this.artist = artist;
         this.album = album;

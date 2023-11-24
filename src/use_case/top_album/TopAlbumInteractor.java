@@ -14,6 +14,12 @@ public class TopAlbumInteractor implements TopAlbumInputBoundary{
         this.topAlbumPresenter = topAlbumOutputBoundary;
     }
 
+    /**
+     * Creates a list of the names of a user's top albums and passes it in to the TopAlbumPresenter, if
+     * there are top albums returned by the API call.
+     * Otherwise, the presenter prepares the fail view.
+     * @param topAlbumInputData contains the user id and timeframe to specify the API call
+     */
     @Override
     public void execute(TopAlbumInputData topAlbumInputData) {
         String id = topAlbumInputData.getId();
