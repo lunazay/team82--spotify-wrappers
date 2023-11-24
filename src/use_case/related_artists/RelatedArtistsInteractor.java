@@ -12,6 +12,12 @@ public class RelatedArtistsInteractor implements RelatedArtistsInputBoundary{
         this.userDataAccessObject = userDataAccessObject;
         this.relatedArtistsPresenter = relatedArtistsOutputBoundary;
     }
+    /**
+     * Creates a list of the names of a top artist's related artists and passes it in to the RelatedArtistsPresenter, if
+     * there are top artist's related artists returned by the API call.
+     * Otherwise, the presenter prepares the fail view.
+     * @param relatedArtistsInputData contains the top artist's id and timeframe to specify the API call
+     */
     @Override
     public void execute(RelatedArtistsInputData relatedArtistsInputData) throws IOException {
         String id = relatedArtistsInputData.getId();

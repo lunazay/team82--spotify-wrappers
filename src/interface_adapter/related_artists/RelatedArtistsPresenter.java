@@ -13,13 +13,22 @@ public class RelatedArtistsPresenter implements RelatedArtistsOutputBoundary {
         this.viewManagerModel = viewManagerModel;
         this.relatedArtistsViewModel = relatedArtistsViewModel;
     }
-
+    /**
+     * Updates the view with the list of RelatedArtists received.
+     *
+     * @param artists Stores the list of the names of the top artist's related artists.
+     */
     @Override
-    public void prepareSuccessView(RelatedArtistsOutputData response) {
+    public void prepareSuccessView(RelatedArtistsOutputData artists) {
         RelatedArtistsState relatedArtistsState = relatedArtistsViewModel.getState();
-        relatedArtistsState.setRelatedArtists(response.getRelatedArtists());
+        relatedArtistsState.setRelatedArtists(artists.getRelatedArtists());
     }
 
+    /**
+     * Updates the view with an error to be displayed.
+     *
+     * @param error The error to show to the user.
+     */
     @Override
     public void prepareFailView(String error) {
         RelatedArtistsState relatedArtistsState = relatedArtistsViewModel.getState();
