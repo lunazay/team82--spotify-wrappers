@@ -3,6 +3,11 @@ import org.json.JSONObject;
 import java.util.List;
 
 public class SongFactory {
+    /**
+     * Creates a list of Song objects from an API response
+     * @param response API call for a user's top songs as a JSONObject. The JSONObject has several get methods
+     *                 to return desired objects.
+     */
     public static Song[] create(JSONObject response) {
         Song[] songs = new Song[50];
 
