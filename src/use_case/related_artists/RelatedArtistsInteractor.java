@@ -26,8 +26,9 @@ public class RelatedArtistsInteractor implements RelatedArtistsInputBoundary{
             List<String> relatedArtists = userDataAccessObject.getRelatedArtists(id, timeframe);
             RelatedArtistsOutputData relatedArtistsOutputData = new RelatedArtistsOutputData(relatedArtists, false);
             relatedArtistsPresenter.prepareSuccessView(relatedArtistsOutputData);
-        } catch (IOException e) {
-            relatedArtistsPresenter.prepareFailView("Listen to some music!");
+
+        } catch (Exception e) {
+            relatedArtistsPresenter.prepareFailView("Listen to some music bro!");
         }
     }
 }
