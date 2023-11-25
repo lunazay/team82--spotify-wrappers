@@ -26,7 +26,7 @@ public class TopSongsPresenter implements TopSongsOutputBoundary {
     @Override
     public void prepareFailView(String error) {
         TopSongsState topSongsState = topSongsViewModel.getState();
-        // TODO: actually implement the fail view
+        topSongsState.setError("Listen to some music bro!");
         topSongsViewModel.firePropertyChanged();
     }
 }
