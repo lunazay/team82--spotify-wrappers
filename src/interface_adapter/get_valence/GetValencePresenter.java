@@ -31,6 +31,12 @@ public class GetValencePresenter implements GetValenceOutputBoundary {
 
         this.getValenceViewModel.setState(getValenceState);
         this.getValenceViewModel.firePropertyChanged();
+    }
 
+    @Override
+    public void prepareFailView(String error) {
+        GetValenceState getValenceState = getValenceViewModel.getState();
+        getValenceState.setError("Listen to some music bro!");
+        getValenceViewModel.firePropertyChanged();
     }
 }

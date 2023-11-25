@@ -1,12 +1,12 @@
 package use_case.login;
 
 public class LoginInputData {
-    private final String token;
+    private final String codeInput;
 
-    public LoginInputData(String token){
-        this.token = token;
+    public LoginInputData(String codeInput){
+        this.codeInput = codeInput;
     }
     public String getToken(){
-        return token;
+        return codeInput;
     }
 }

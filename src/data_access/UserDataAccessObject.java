@@ -76,7 +76,7 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     }
 
     @Override
-    public String getValence(String id, String timeframe) throws IOException {
+    public String getValence(String id, String timeframe) throws Exception {
 
         Song[] songs = getTopSongs(id, timeframe);
 
