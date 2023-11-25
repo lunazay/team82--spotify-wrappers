@@ -1,5 +1,6 @@
 package api;
 
+import entity.Song;
 import entity.User;
 import entity.Artist;
 import org.json.JSONException;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 
 public interface DevelopDB {
 
-    User getTopSongs(String time_frame, int numSongs) throws IOException;
+    Song[] getTopSongs(String time_frame, int numSongs) throws IOException;
 
     Artist[] getTopArtists(String time_frame) throws IOException;
 

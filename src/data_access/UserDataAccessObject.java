@@ -22,25 +22,29 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     private final DevelopDB api = new SpotDevelopDB();
 
     @Override
-    public Song[] getTopSongs(String id, String timeframe) {
-        // TODO: Implement me!
-        //return new Song[0];
-        return null;
+    public Song[] getTopSongs(String id, String timeframe) throws Exception {
+        Song[] songs = api.getTopSongs(timeframe, 50);
+
+        if (songs.length > 0) {
+            return songs;
+        }
+
+        throw new Exception();
     }
 
     @Override
-    public ArrayList<Genre> getTopGenres(String id, String timeframe) throws IOException {
+    public ArrayList<Genre> getTopGenres(String id, String timeframe) throws Exception {
         Artist[] topArtist = getTopArtists(id, timeframe);
         ArrayList<Genre> topGenres = new ArrayList<Genre>();
         int count = 0;
         for (Artist artist: topArtist){
-            // i want to return an array list of Genre objects becuase that is how we
-            // decided our design implementaiton will be
+            // I want to return an array list of Genre objects because that is how we
+            // decided our design implementation will be
             Genre[] genres = artist.getGenres();
             Genre topGenre = genres[0];
             topGenres.add(topGenre);
             count++;
-            // since i only want the top 5 genres, im only counting till 5
+            // since I only want the top 5 genres, I'm only counting till 5
             if (count >= 5) {
                 break;
             }
@@ -49,9 +53,9 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     }
 
     @Override
-    public Song[] getTopAlbums(String id, String timeframe){
+    public Song[] getTopAlbums(String id, String timeframe) throws Exception {
         //TODO: implement me!
-        return null;
+        throw new Exception();
     }
 
     /**
@@ -61,14 +65,14 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
      * @return          an ArrayList of the user's top artists, as Artist objects
      */
     @Override
-    public Artist[] getTopArtists(String id, String timeframe) throws IOException {
+    public Artist[] getTopArtists(String id, String timeframe) throws Exception {
         Artist[] artists = api.getTopArtists(timeframe);
 
         if (artists.length > 0) {
             return artists;
         }
 
-        return null;
+        throw new Exception();
     }
 
     @Override
@@ -98,7 +102,7 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     }
 
     @Override
-    public List<String> getRelatedArtists(String id, String timeframe) throws IOException {
+    public List<String> getRelatedArtists(String id, String timeframe) throws Exception {
         Artist topArtist = getTopArtists(id, timeframe)[0];
         return topArtist.getRelatedArtists();
     }
