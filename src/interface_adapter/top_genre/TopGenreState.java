@@ -5,12 +5,14 @@ public class TopGenreState {
     private String idError = null;
     private String timeframe = "";
     private String timeframeError = null;
+    private String error = null;
 
     public TopGenreState(TopGenreState copy){
         id = copy.id;
         idError = copy.idError;
         timeframe = copy.timeframe;
         timeframeError = copy.timeframeError;
+        error = copy.error;
     }
     public TopGenreState(){
     }
@@ -41,6 +43,11 @@ public class TopGenreState {
     public String getTimeframeError() {
         return timeframeError;
     }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
     @Override
     public String toString(){
         return "TopGenreState{" + "id='" + id +
