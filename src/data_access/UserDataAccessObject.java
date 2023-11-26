@@ -21,6 +21,12 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
 
     private final DevelopDB api = new SpotDevelopDB();
 
+    /**
+     * Makes an API call to get a user's top songs over a desired timeframe.
+     * @param id        the user's Spotify id
+     * @param timeframe the API call time_range (short_term: 4 weeks, medium_term: 6 months, long_term: all time)
+     * @return          an ArrayList of the user's top songs, as Song objects
+     */
     @Override
     public Song[] getTopSongs(String id, String timeframe) throws Exception {
         Song[] songs = api.getTopSongs(timeframe, 50);
@@ -32,6 +38,12 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         throw new Exception();
     }
 
+    /**
+     * Makes an API call to get a user's top five genres over a desired timeframe.
+     * @param id        the user's Spotify id
+     * @param timeframe the API call time_range (short_term: 4 weeks, medium_term: 6 months, long_term: all time)
+     * @return          an ArrayList of the user's top five genres, as Genre objects
+     */
     @Override
     public ArrayList<Genre> getTopGenres(String id, String timeframe) throws Exception {
         Artist[] topArtist = getTopArtists(id, timeframe);
@@ -52,11 +64,12 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         return topGenres;
     }
 
+
     @Override
     public Song[] getTopAlbums(String id, String timeframe) throws Exception {
-        //TODO: implement me!
         throw new Exception();
     }
+
 
     /**
      * Makes an API call to get a user's top artists over a desired timeframe.
@@ -101,6 +114,12 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
 
     }
 
+    /**
+     * Makes an API call to get a user's top artists over a desired timeframe.
+     * @param id        the user's Spotify id
+     * @param timeframe the API call time_range (short_term: 4 weeks, medium_term: 6 months, long_term: all time)
+     * @return          a List of Strings of the user's related artists
+     */
     @Override
     public List<String> getRelatedArtists(String id, String timeframe) throws Exception {
         Artist topArtist = getTopArtists(id, timeframe)[0];
