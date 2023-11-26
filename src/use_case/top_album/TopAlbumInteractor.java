@@ -31,7 +31,7 @@ public class TopAlbumInteractor implements TopAlbumInputBoundary{
 
             int i = 0;
             for (String song : topAlbums) {
-                topAlbumTitles.set(i, song.getAlbum());
+                topAlbumTitles.set(i, song.getAlbum()); // TODO: fix error
                 i = i + 1;
             }
 
