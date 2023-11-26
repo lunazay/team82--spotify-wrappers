@@ -4,6 +4,7 @@ import api.DevelopDB;
 import api.SpotDevelopDB;
 import entity.Artist;
 import entity.Song;
+import entity.Album;
 import entity.Genre;
 import use_case.get_valence.GetValenceDataAccessInterface;
 import use_case.related_artists.RelatedArtistsDataAccessInterface;
@@ -71,17 +72,16 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
      * @return          a List of Strings of the user's top albums
      */
     @Override
-    public List<String> getTopAlbums(String id, String timeframe) throws Exception {
+    public ArrayList<Album> getTopAlbums(String id, String timeframe) throws Exception {
         Song[] topSongs = api.getTopSongs(timeframe, 50);
-        List<String> topAlbums = new ArrayList<>();
+        ArrayList<Album> topAlbums = new ArrayList<>();
 
         for (Song song : topSongs) {
             // my thought process here is to iterate through the Songs and for each song,
             // get its album and return in a list.
-
-            String album = song.getAlbum();
-
-            topAlbums.add(album);
+            Album[] albums = song.getAlbums();
+            Album topAlbum = albums[0];
+            topAlbums.add(topAlbum);
         }
 
         return topAlbums;
