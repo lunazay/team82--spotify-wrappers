@@ -6,7 +6,7 @@ public class LoginInputData {
     public LoginInputData(String codeInput){
         this.codeInput = codeInput;
     }
-    public String getToken(){
+    public String getCodeInput(){
         return codeInput;
     }
 }
