@@ -5,7 +5,7 @@ public class GetValenceState {
     private String valence = "";
 
     public GetValenceState() {}
-    private String error;
+    private String error = null;
 
     public String getValence() { return this.valence; }
 
