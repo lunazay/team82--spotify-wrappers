@@ -52,13 +52,9 @@ public class Main {
         TopGenreViewModel topGenreViewModel = new TopGenreViewModel();
 
         UserDataAccessObject userDataAccessObject;
-        try{
-            //userDataAccessObject = new // TODO: input the factory
-        } catch (IOException e){
-            throw new RuntimeException(e);
-        }
 
-        // i think we need to do this for every view? LoggedInView loggedInView =
+        // i think we need to do this for every view?
+        // LoginView loginView =
 
         LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
         views.add(loggedInView, loggedInView.viewName());

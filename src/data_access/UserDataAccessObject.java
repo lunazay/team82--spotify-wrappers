@@ -4,6 +4,7 @@ import api.DevelopDB;
 import api.SpotDevelopDB;
 import entity.Artist;
 import entity.Song;
+import entity.Album;
 import entity.Genre;
 import use_case.get_valence.GetValenceDataAccessInterface;
 import use_case.related_artists.RelatedArtistsDataAccessInterface;
@@ -21,26 +22,42 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
 
     private final DevelopDB api = new SpotDevelopDB();
 
+    /**
+     * Makes an API call to get a user's top songs over a desired timeframe.
+     * @param id        the user's Spotify id
+     * @param timeframe the API call time_range (short_term: 4 weeks, medium_term: 6 months, long_term: all time)
+     * @return          an ArrayList of the user's top songs, as Song objects
+     */
     @Override
-    public Song[] getTopSongs(String id, String timeframe) {
-        // TODO: Implement me!
-        //return new Song[0];
-        return null;
+    public Song[] getTopSongs(String id, String timeframe) throws Exception {
+        Song[] songs = api.getTopSongs(timeframe, 50);
+
+        if (songs.length > 0) {
+            return songs;
+        }
+
+        throw new Exception();
     }
 
+    /**
+     * Makes an API call to get a user's top five genres over a desired timeframe.
+     * @param id        the user's Spotify id
+     * @param timeframe the API call time_range (short_term: 4 weeks, medium_term: 6 months, long_term: all time)
+     * @return          an ArrayList of the user's top five genres, as Genre objects
+     */
     @Override
-    public ArrayList<Genre> getTopGenres(String id, String timeframe) throws IOException {
+    public ArrayList<Genre> getTopGenres(String id, String timeframe) throws Exception {
         Artist[] topArtist = getTopArtists(id, timeframe);
         ArrayList<Genre> topGenres = new ArrayList<Genre>();
         int count = 0;
         for (Artist artist: topArtist){
-            // i want to return an array list of Genre objects becuase that is how we
-            // decided our design implementaiton will be
+            // I want to return an array list of Genre objects because that is how we
+            // decided our design implementation will be
             Genre[] genres = artist.getGenres();
             Genre topGenre = genres[0];
             topGenres.add(topGenre);
             count++;
-            // since i only want the top 5 genres, im only counting till 5
+            // since I only want the top 5 genres, I'm only counting till 5
             if (count >= 5) {
                 break;
             }
@@ -48,11 +65,28 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         return topGenres;
     }
 
+    /**
+     * Makes an API call to get a user's top albums over a desired timeframe.
+     * @param id        the user's Spotify id
+     * @param timeframe the API call time_range (short_term: 4 weeks, medium_term: 6 months, long_term: all time)
+     * @return          an ArrayList of the user's top albums, as Album objects
+     */
     @Override
-    public Song[] getTopAlbums(String id, String timeframe){
-        //TODO: implement me!
-        return null;
+    public ArrayList<Album> getTopAlbums(String id, String timeframe) throws Exception {
+        Song[] topSongs = api.getTopSongs(timeframe, 50);
+        ArrayList<Album> topAlbums = new ArrayList<>();
+
+        for (Song song : topSongs) {
+            // my thought process here is to iterate through the Songs and for each song,
+            // get its album and return in a list.
+            Album[] albums = song.getAlbums();
+            Album topAlbum = albums[0];
+            topAlbums.add(topAlbum);
+        }
+
+        return topAlbums;
     }
+
 
     /**
      * Makes an API call to get a user's top artists over a desired timeframe.
@@ -61,18 +95,18 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
      * @return          an ArrayList of the user's top artists, as Artist objects
      */
     @Override
-    public Artist[] getTopArtists(String id, String timeframe) throws IOException {
+    public Artist[] getTopArtists(String id, String timeframe) throws Exception {
         Artist[] artists = api.getTopArtists(timeframe);
 
         if (artists.length > 0) {
             return artists;
         }
 
-        return null;
+        throw new Exception();
     }
 
     @Override
-    public String getValence(String id, String timeframe) throws IOException {
+    public String getValence(String id, String timeframe) throws Exception {
 
         Song[] songs = getTopSongs(id, timeframe);
 
@@ -98,14 +132,13 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     }
 
     /**
-     * Makes an API call to get a user's top artists over a desired timeframe, then uses the first artist and
-     * returns the related artists of them.
+     * Makes an API call to get a user's top artists over a desired timeframe.
      * @param id        the user's Spotify id
      * @param timeframe the API call time_range (short_term: 4 weeks, medium_term: 6 months, long_term: all time)
-     * @return          an ArrayList of the top artist's related artists, as a list of strings
+     * @return          a List of Strings of the user's related artists
      */
     @Override
-    public List<String> getRelatedArtists(String id, String timeframe) throws IOException {
+    public List<String> getRelatedArtists(String id, String timeframe) throws Exception {
         Artist topArtist = getTopArtists(id, timeframe)[0];
         return topArtist.getRelatedArtists();
     }

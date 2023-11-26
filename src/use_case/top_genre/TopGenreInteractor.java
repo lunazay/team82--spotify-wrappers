@@ -1,5 +1,9 @@
 package use_case.top_genre;
 import entity.Genre;
+import entity.Song;
+import use_case.top_songs.TopSongsInputData;
+import use_case.top_songs.TopSongsOutputData;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,15 +24,16 @@ public class TopGenreInteractor implements TopGenreInputBoundary {
 
         try {
             ArrayList<Genre> topGenres = userDataAccessObject.getTopGenres(id, timeframe);
-            List<String> topGenreTitles = new ArrayList<String>(50);
+            List<String> topGenreTitles = new ArrayList<String>(5);
 
-            int i = 0;
+            Integer genreNumber = 1;
+
             for (Genre genre : topGenres) {
-                topGenreTitles.set(i, genre.getName());
-                i = i + 1;
+                topGenreTitles.add(genreNumber + ". " + genre.getName());
+                genreNumber ++;
             }
 
-            TopGenreOutputData topGenreOutputData = new TopGenreOutputData(topGenreTitles, false);
+            TopGenreOutputData topGenreOutputData = new TopGenreOutputData(topGenreTitles, false, genreNumber);
             topGenrePresenter.prepareSuccessView(topGenreOutputData);
         } catch (Exception e) {
             topGenrePresenter.prepareFailView("Listen to some music bro!");

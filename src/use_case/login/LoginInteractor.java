@@ -11,6 +11,7 @@ public class LoginInteractor implements LoginInputBoundary{
     @Override
     public void execute(LoginInputData loginInputData){
         //TODO: fifure this out when input data is done
+        String token = loginInputData.getToken();
         LoginOutputData loginOutputData = new LoginOutputData();
         loginPresenter.prepareSuccessView(loginOutputData);
     }

@@ -18,7 +18,14 @@ public class SongFactory {
             int length = response.getInt("length");
 
             List<String> artist = (List<String>) response.get("artist");
-            String album = response.getString("album");
+            List<String> albumList = (List<String>) response.get("album");
+
+            Album[] album = new Album[50]; // I put 50 since each song has an album
+            //String album = response.getString("album");
+
+            for (int x = 0; x < 50; x++) {
+                album[x] = new Album(albumList.get(x));
+            }
 
 
             songs[i] = new Song(id, name, length, artist, album);

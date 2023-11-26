@@ -26,7 +26,7 @@ public class TopGenrePresenter implements TopGenreOutputBoundary {
     @Override
     public void prepareFailView(String error) {
         TopGenreState topGenreState = topGenreViewModel.getState();
-        // TODO: actually implement the fail view
+        topGenreState.setError("Listen to some music bro!");
         topGenreViewModel.firePropertyChanged();
     }
 }
