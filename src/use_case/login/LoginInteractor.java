@@ -20,6 +20,7 @@ public class LoginInteractor implements LoginInputBoundary{
         // Sending the token to the DAO so it can be stored inside the program,
         // and also getting the user id back:
         User currentUser = LoginUserDataAccessInterface.getNewUser();
+        // Not sure why it's saying it needs to be static. - yj
 
         LoginOutputData loginOutputData = new LoginOutputData(currentUser);
         loginPresenter.prepareSuccessView(loginOutputData);
