@@ -1,5 +1,12 @@
 package use_case.login;
 
 public class LoginInputData {
-    // TODO: figure out what the input data would be if any
+    private final String codeInput;
+
+    public LoginInputData(String codeInput){
+        this.codeInput = codeInput;
+    }
+    public String getToken(){
+        return codeInput;
+    }
 }
