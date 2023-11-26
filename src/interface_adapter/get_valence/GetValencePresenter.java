@@ -21,7 +21,6 @@ public class GetValencePresenter implements GetValenceOutputBoundary {
         GetValenceState getValenceState = getValenceViewModel.getState();
 
         if (getValenceOutputData.get_atLeastOneSong()) {
-
             // changing the valence attribute of the state to reflect the newly acquired
             // valence value
             getValenceState.setValence(getValenceOutputData.get_valence());
