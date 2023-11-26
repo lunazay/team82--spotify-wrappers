@@ -26,11 +26,11 @@ public class TopAlbumInteractor implements TopAlbumInputBoundary{
         String timeframe = topAlbumInputData.getTimeframe();
 
         try {
-            Song[] topAlbums = userDataAccessObject.getTopAlbums(id, timeframe);
+            List<String> topAlbums = userDataAccessObject.getTopAlbums(id, timeframe);
             List<String> topAlbumTitles = new ArrayList<String>(50);
 
             int i = 0;
-            for (Song song : topAlbums) {
+            for (String song : topAlbums) {
                 topAlbumTitles.set(i, song.getAlbum());
                 i = i + 1;
             }
