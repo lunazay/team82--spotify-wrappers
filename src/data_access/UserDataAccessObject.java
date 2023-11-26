@@ -64,24 +64,27 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         return topGenres;
     }
 
-
+    /**
+     * Makes an API call to get a user's top albums over a desired timeframe.
+     * @param id        the user's Spotify id
+     * @param timeframe the API call time_range (short_term: 4 weeks, medium_term: 6 months, long_term: all time)
+     * @return          a List of Strings of the user's top albums
+     */
     @Override
-    public Song[] getTopAlbums(String id, String timeframe) throws Exception {
+    public List<String> getTopAlbums(String id, String timeframe) throws Exception {
         Song[] topSongs = api.getTopSongs(timeframe, 50);
         List<String> topAlbums = new ArrayList<>();
 
         for (Song song : topSongs) {
             // my thought process here is to iterate through the Songs and for each song,
             // get its album and return in a list.
-            // TODO: I will discuss with the group and fix this error
+
             String album = song.getAlbum();
 
             topAlbums.add(album);
         }
 
         return topAlbums;
-
-        throw new Exception();
     }
 
 
