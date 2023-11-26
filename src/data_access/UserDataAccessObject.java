@@ -69,7 +69,7 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
      * Makes an API call to get a user's top albums over a desired timeframe.
      * @param id        the user's Spotify id
      * @param timeframe the API call time_range (short_term: 4 weeks, medium_term: 6 months, long_term: all time)
-     * @return          a List of Strings of the user's top albums
+     * @return          an ArrayList of the user's top albums, as Album objects
      */
     @Override
     public ArrayList<Album> getTopAlbums(String id, String timeframe) throws Exception {
