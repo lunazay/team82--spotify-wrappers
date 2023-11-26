@@ -68,7 +68,7 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     @Override
     public Song[] getTopAlbums(String id, String timeframe) throws Exception {
         Song[] topSongs = api.getTopSongs(timeframe, 50);
-        List<String> topAlbumsList = new ArrayList<>();
+        List<String> topAlbums = new ArrayList<>();
 
         for (Song song : topSongs) {
             // my thought process here is to iterate through the Songs and for each song,
@@ -76,10 +76,10 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
             // TODO: I will discuss with the group and fix this error
             String album = song.getAlbum();
 
-            topAlbumsList.add(album);
+            topAlbums.add(album);
         }
 
-        return topAlbumsList.toArray(new String[0]);
+        return topAlbums;
 
         throw new Exception();
     }
