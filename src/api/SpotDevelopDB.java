@@ -43,7 +43,6 @@ public class SpotDevelopDB implements DevelopDB{
                 .url(url)
                 .method("GET", body)
                 .addHeader("Authorization", token())
-                .addHeader("Content-Type", "application/json")
                 .build();
         try{
             Response response = client.newCall(request).execute();
