@@ -1,7 +1,10 @@
 package use_case.top_album;
-import entity.Song;
+import entity.Album;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public interface TopAlbumDataAccessInterface {
-    Song[] getTopAlbums(String id, String timeframe) throws Exception;
+    ArrayList<Album> getTopAlbums(String id, String timeframe) throws Exception;
 
 }
