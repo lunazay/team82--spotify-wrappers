@@ -160,7 +160,9 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     }
 
     @Override
-    public User getUser(String id) {
-        return null; // TODO: modify this so it returns a user ID
+    public User getNewUser() throws IOException {
+
+        User user = new User(api.getUserId());
+        return user;
     }
 }

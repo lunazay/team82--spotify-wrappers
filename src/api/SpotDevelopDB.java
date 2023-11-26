@@ -30,7 +30,8 @@ public class SpotDevelopDB implements DevelopDB{
         return reader.readLine();
     }
 
-    private String userId() throws IOException {
+    @Override
+    public String getUserId() throws IOException {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
         String url = "https://api.spotify.com/v1/me";
