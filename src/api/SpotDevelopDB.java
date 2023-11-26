@@ -30,6 +30,35 @@ public class SpotDevelopDB implements DevelopDB{
         return reader.readLine();
     }
 
+    private String userId() throws IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+
+        String url = "https://api.spotify.com/v1/me";
+        MediaType mediaType = MediaType.parse("application/json");
+        JSONObject requestBody = new JSONObject();
+        requestBody.get("");
+        RequestBody body = RequestBody.create(mediaType, requestBody.toString());
+        Request request = new Request.Builder()
+                .url(url)
+                .method("GET", body)
+                .addHeader("Authorization", token())
+                .addHeader("Content-Type", "application/json")
+                .build();
+        try{
+            Response response = client.newCall(request).execute();
+            JSONObject responseBody = new JSONObject(response.body().string());
+            if (responseBody.getInt("status_code") == 200) {
+                return responseBody.getString("id");
+            } else {
+                throw new RuntimeException(responseBody.getString("message"));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public String getAuthorizationLink() throws MalformedURLException {
 
@@ -119,9 +148,12 @@ public class SpotDevelopDB implements DevelopDB{
             }
             in.close();
 
+            JSONObject responseBody = new JSONObject(response);
+
             String[] arrayResponse = response.toString().split("[: ,]");
 
-            return arrayResponse[arrayResponse.length - 1];
+            // return arrayResponse[arrayResponse.length - 1];
+            return responseBody.getString("valence");
         }
         } catch (MalformedURLException e) {
             throw new MalformedURLException();
