@@ -5,6 +5,7 @@ import api.SpotDevelopDB;
 import entity.Artist;
 import entity.Song;
 import entity.Genre;
+import entity.User;
 import use_case.get_valence.GetValenceDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.related_artists.RelatedArtistsDataAccessInterface;
@@ -116,5 +117,10 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         BufferedWriter writer = new BufferedWriter(new FileWriter(txtFile));
         writer.write(token);
         writer.close();
+    }
+
+    @Override
+    public User getUser(String id) {
+        return null; // TODO: modify this so it returns a user ID
     }
 }
