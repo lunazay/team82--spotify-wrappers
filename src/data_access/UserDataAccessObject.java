@@ -42,8 +42,13 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
             // decided our design implementation will be
             Genre[] genres = artist.getGenres();
             Genre topGenre = genres[0];
-            topGenres.add(topGenre);
-            count++;
+            if (!topGenres.contains(topGenre)) {
+                topGenres.add(topGenre);
+                count++;
+                if (count >= 5) {
+                    break;
+                }
+            }
             // since I only want the top 5 genres, I'm only counting till 5
             if (count >= 5) {
                 break;
