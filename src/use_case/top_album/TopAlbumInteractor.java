@@ -1,5 +1,5 @@
 package use_case.top_album;
-import entity.Song;
+import entity.Album;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +26,12 @@ public class TopAlbumInteractor implements TopAlbumInputBoundary{
         String timeframe = topAlbumInputData.getTimeframe();
 
         try {
-            List<String> topAlbums = userDataAccessObject.getTopAlbums(id, timeframe);
+            ArrayList<Album> topAlbums = userDataAccessObject.getTopAlbums(id, timeframe);
             List<String> topAlbumTitles = new ArrayList<String>(50);
 
             int i = 0;
-            for (String song : topAlbums) {
-                topAlbumTitles.set(i, song.getAlbum()); // TODO: fix error
+            for (Album album : topAlbums) {
+                topAlbumTitles.set(i, album.getName());
                 i = i + 1;
             }
 
