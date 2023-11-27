@@ -6,7 +6,9 @@ import entity.Artist;
 import entity.Song;
 import entity.Album;
 import entity.Genre;
+import entity.User;
 import use_case.get_valence.GetValenceDataAccessInterface;
+import use_case.login.LoginUserDataAccessInterface;
 import use_case.related_artists.RelatedArtistsDataAccessInterface;
 import use_case.top_album.TopAlbumDataAccessInterface;
 import use_case.top_artists.TopArtistsDataAccessInterface;
@@ -18,7 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGenreDataAccessInterface,
-        GetValenceDataAccessInterface, RelatedArtistsDataAccessInterface, TopArtistsDataAccessInterface, TopAlbumDataAccessInterface {
+        GetValenceDataAccessInterface, RelatedArtistsDataAccessInterface, TopArtistsDataAccessInterface, TopAlbumDataAccessInterface,
+        LoginUserDataAccessInterface {
 
     private final DevelopDB api = new SpotDevelopDB();
 
@@ -144,6 +147,7 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         return topArtist.getRelatedArtists();
     }
 
+    @Override
     public void setToken( String authCode ) throws IOException {
 
         String token = api.getAuthorizationToken(authCode);
@@ -154,5 +158,12 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         BufferedWriter writer = new BufferedWriter(new FileWriter(txtFile));
         writer.write(token);
         writer.close();
+    }
+
+    @Override
+    public User getNewUser() throws IOException {
+
+        User user = new User(api.getUserId());
+        return user;
     }
 }

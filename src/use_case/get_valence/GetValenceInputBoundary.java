@@ -4,5 +4,5 @@ import java.io.IOException;
 
 public interface GetValenceInputBoundary {
 
-    void execute(GetValenceInputData getValenceInputData) throws IOException;
+    void execute(GetValenceInputData getValenceInputData) throws Exception;
 }

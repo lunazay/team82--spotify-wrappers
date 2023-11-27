@@ -1,5 +1,9 @@
 package use_case.login;
 
+import entity.User;
+
+import java.io.IOException;
+
 public class LoginInteractor implements LoginInputBoundary{
     final LoginUserDataAccessInterface userDataAccessInterface;
     final LoginOutputBoundary loginPresenter;
@@ -9,10 +13,18 @@ public class LoginInteractor implements LoginInputBoundary{
         this.loginPresenter = loginOutputBoundary;
     }
     @Override
-    public void execute(LoginInputData loginInputData){
+    public void execute(LoginInputData loginInputData) throws IOException {
         //TODO: fifure this out when input data is done
-        String token = loginInputData.getToken();
-        LoginOutputData loginOutputData = new LoginOutputData();
+        String codeInput = loginInputData.getCodeInput();
+
+        // Sending the token to the DAO so it can be stored inside the program:
+        userDataAccessInterface.setToken(codeInput);
+
+        // and also getting the user id back:
+        User currentUser = userDataAccessInterface.getNewUser();
+        // Not sure why it's saying it needs to be static. - yj
+
+        LoginOutputData loginOutputData = new LoginOutputData(currentUser);
         loginPresenter.prepareSuccessView(loginOutputData);
     }
 }

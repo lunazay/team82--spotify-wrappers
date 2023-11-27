@@ -2,7 +2,10 @@ package use_case.login;
 
 import entity.User;
 
+import java.io.IOException;
+
 public interface LoginUserDataAccessInterface {
-    void save (User user);
-    User get(String id);
+
+    void setToken(String authcode ) throws IOException;
+    User getNewUser() throws IOException;  // TODO: create a user here.
 }

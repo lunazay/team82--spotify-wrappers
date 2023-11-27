@@ -15,7 +15,7 @@ public class GetValenceInteractor implements GetValenceInputBoundary{
     }
 
     @Override
-    public void execute(GetValenceInputData getValenceInputData) throws IOException {
+    public void execute(GetValenceInputData getValenceInputData) throws Exception {
 
         String id = getValenceInputData.getId();
 
