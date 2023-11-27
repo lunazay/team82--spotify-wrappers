@@ -22,16 +22,22 @@ public class SpotDevelopDB implements DevelopDB{
 
     // instead of calling using authToken use token() method!
 
-    private String token() throws IOException {
+    public String token() throws IOException {
+        /**
+         * Accesses the token from our supersecret file.
+         */
         File txtFile = new File("./supersecret.txt");
 
-        // writing the token to the file:
+        // reading the token from the file:
         BufferedReader reader = new BufferedReader(new FileReader(txtFile));
         return reader.readLine();
     }
 
     @Override
     public String getUserId() throws IOException {
+        /**
+         * Gets the userid by making an API call to spotify with our token.
+         */
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
         String url = "https://api.spotify.com/v1/me";
@@ -62,15 +68,26 @@ public class SpotDevelopDB implements DevelopDB{
     @Override
     public String getAuthorizationLink() throws MalformedURLException {
 
+        /**
+         * Returns the link users can use to authorize our app to access their account.
+         */
+
         return "https://accounts.spotify.com/authorize?"
                 + "client_id="+client_id+"&"
                 + "response_type=code&"
                 + "redirect_uri="+redirect_uri+"&"
-                + "scope=user-read-private%20user-read-email%user-top-read%playlist-modify-public%playlist-modify-private&";
+                + "scope=user-read-private%20user-read-email%20user-top-read%20playlist-modify-public%20playlist-modify-private";
     }
 
     @Override
     public String getAuthorizationToken(String authCode) throws IOException {
+
+        /**
+         * Returns the user's authorization token by making an API call.
+         *
+         * @param authCode is the authorization code from the redirect link.
+         *                 This code should be stored in the input data.
+         */
 
         String auth_string = "https://accounts.spotify.com/api/token";
         URL auth_url = new URL(auth_string);
@@ -122,7 +139,7 @@ public class SpotDevelopDB implements DevelopDB{
 
 
         }
-        return null;
+        throw new IOException(conn.getResponseMessage());
     }
 
     @Override
@@ -134,9 +151,10 @@ public class SpotDevelopDB implements DevelopDB{
 
         HttpURLConnection conn = (HttpURLConnection) request_url.openConnection();
         conn.setRequestMethod("GET");
+        conn.setRequestProperty("Authorization", "Bearer " + token());
         conn.connect();
 
-        if (conn.getResponseMessage().equals("OK")) {
+        if (conn.getResponseCode() == (200)) {
 
             BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String inputLine;
@@ -148,20 +166,16 @@ public class SpotDevelopDB implements DevelopDB{
             }
             in.close();
 
-            JSONObject responseBody = new JSONObject(response);
+            JSONObject responseBody = new JSONObject(response.toString());
 
-            String[] arrayResponse = response.toString().split("[: ,]");
-
-            // return arrayResponse[arrayResponse.length - 1];
-            return responseBody.getString("valence");
+            return responseBody.get("valence").toString();
         }
+            return conn.getResponseMessage();
         } catch (MalformedURLException e) {
             throw new MalformedURLException();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        return null;
     }
 
     @Override

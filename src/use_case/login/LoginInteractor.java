@@ -14,15 +14,14 @@ public class LoginInteractor implements LoginInputBoundary{
     }
     @Override
     public void execute(LoginInputData loginInputData) throws IOException {
-        //TODO: fifure this out when input data is done
+
         String codeInput = loginInputData.getCodeInput();
 
         // Sending the token to the DAO so it can be stored inside the program:
         userDataAccessInterface.setToken(codeInput);
 
         // and also getting the user id back:
-        User currentUser = userDataAccessInterface.getNewUser();
-        // Not sure why it's saying it needs to be static. - yj
+        User currentUser = userDataAccessInterface.getCurrentUser();
 
         LoginOutputData loginOutputData = new LoginOutputData(currentUser);
         loginPresenter.prepareSuccessView(loginOutputData);
