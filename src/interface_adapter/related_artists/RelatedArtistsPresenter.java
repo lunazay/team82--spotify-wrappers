@@ -14,7 +14,7 @@ public class RelatedArtistsPresenter implements RelatedArtistsOutputBoundary {
         this.relatedArtistsViewModel = relatedArtistsViewModel;
     }
     /**
-     * Updates the view with the list of RelatedArtists received.
+     * Updates the view with the string list of RelatedArtists received.
      *
      * @param artists Stores the list of the names of the top artist's related artists.
      */

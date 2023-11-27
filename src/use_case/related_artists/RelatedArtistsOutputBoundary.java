@@ -10,7 +10,7 @@ public interface RelatedArtistsOutputBoundary {
     /**
      * Updates the view with an error to be displayed.
      *
-     * @param error The error to show to the user
+     * @param error The error to show to the user.
      */
     void prepareFailView(String error);
 }
