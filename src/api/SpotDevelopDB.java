@@ -165,10 +165,10 @@ public class SpotDevelopDB implements DevelopDB{
     }
 
     @Override
-    public Song[] getTopSongs(String time_frame, int numSongs) throws JSONException, IOException {
+    public Song[] getTopSongs(String timeframe, int numSongs) throws JSONException, IOException {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
-        String url = "https://api.spotify.com/v1/me/top/tracks?" + "time_range=" + time_frame + "&limit=" + numSongs;
+        String url = "https://api.spotify.com/v1/me/top/tracks?" + "time_range=" + timeframe + "&limit=" + numSongs;
         MediaType mediaType = MediaType.parse("application/json");
         JSONObject requestBody = new JSONObject();
         requestBody.get("tracks");
@@ -184,7 +184,7 @@ public class SpotDevelopDB implements DevelopDB{
             Response response = client.newCall(request).execute();
             System.out.println(response);
             JSONObject responseBody = new JSONObject(response.body().string());
-            if (responseBody.getInt("code") == 200) {
+            if (responseBody.getInt("status_code") == 200) {
                 return SongFactory.create(responseBody);
             } else {
                 throw new RuntimeException(responseBody.getString("message"));
@@ -196,17 +196,16 @@ public class SpotDevelopDB implements DevelopDB{
     }
 
     @Override
-    public Artist[] getTopArtists(String time_frame) throws JSONException, IOException {
+    public Artist[] getTopArtists(String timeframe) throws JSONException, IOException {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
-        String url = "https://api.spotify.com/v1/me/top/artists?" + "time_range=" + time_frame;
+        String url = "https://api.spotify.com/v1/me/top/artists?" + "time_range=" + timeframe;
         MediaType mediaType = MediaType.parse("application/json");
         JSONObject requestBody = new JSONObject();
-        requestBody.get("artists");
         RequestBody body = RequestBody.create(mediaType, requestBody.toString());
         Request request = new Request.Builder()
                 .url(url)
-                .method("GET", body)
+                .method("GET", null)
                 .addHeader("Authorization", token())
                 .addHeader("Content-Type", "application/json")
                 .build();
@@ -214,7 +213,7 @@ public class SpotDevelopDB implements DevelopDB{
             Response response = client.newCall(request).execute();
             System.out.println(response);
             JSONObject responseBody = new JSONObject(response.body().string());
-            if (responseBody.getInt("code") == 200) {
+            if (responseBody.getInt("status_code") == 200) {
                 return ArtistFactory.create(responseBody);
             } else {
                 throw new RuntimeException(responseBody.getString("message"));
