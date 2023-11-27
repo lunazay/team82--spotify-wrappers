@@ -36,14 +36,16 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         cancel = new JButton(loginViewModel.CANCEL_BUTTON_LABEL);
         buttons.add(cancel);
 
-        logIn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                if (evt.getSource().equals(logIn)){
-                    LoginState currentState = loginViewModel.getState();
-                    try {
-                        loginController.execute(currentState.getCode());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+        logIn.addActionListener(
+
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(logIn)){
+                            LoginState currentState = loginViewModel.getState();
+                            try {
+                                loginController.execute(currentState.getCode());
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
                     }
                     // TODO: we need to figure out what the input data needs to be before finishing this. ;
                 }
@@ -81,5 +83,9 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
     private void setFields(LoginState state){
         //TODO: figure out after the input data is figured out.
+    }
+
+    public String getViewname(){
+        return viewname;
     }
 }
