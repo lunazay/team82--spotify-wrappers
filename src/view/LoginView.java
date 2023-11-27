@@ -13,11 +13,14 @@ import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewname = "log in";
     private final LoginViewModel loginViewModel;
     private final LoginController loginController;
+    private String url = "https://developer.spotify.com";
 
     final JTextField codeInputField = new JTextField(15);
 
@@ -36,14 +39,17 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         cancel = new JButton(loginViewModel.CANCEL_BUTTON_LABEL);
         buttons.add(cancel);
 
-        logIn.addActionListener(
+        // JPanel loginPanel = loginViewModel.getViewPanel();
+        //add(loginPanel);
 
-                new ActionListener() {
+        logIn.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
+
                         if (evt.getSource().equals(logIn)){
                             LoginState currentState = loginViewModel.getState();
                             try {
                                 loginController.execute(currentState.getCode());
+                                openLink("https://developer.spotify.com"); // Replace with your URL
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                     }
@@ -69,10 +75,34 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
             @Override
             public void keyReleased(KeyEvent e) {}
         });
+
+
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        this.add(title);
+        this.add(buttons);
     }
 
-    @Override
+    private void openLink(String url) {
+        if (Desktop.isDesktopSupported()) {
+            Desktop desktop = Desktop.getDesktop();
+            try {
+                desktop.browse(new URI(url));
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+                // Handle the exception (e.g., show an error message)
+            }
+        } else {
+            // Desktop not supported, handle this case
+            // You can also provide an alternative method to open the link in this case
+            // For example, show a message to the user to copy-paste the link into their browser
+        }
+    }
+    
     public void actionPerformed(ActionEvent evt) {
+        LoginState currentState = loginViewModel.getState();
+        String stateCode = currentState.getCode();
+        JOptionPane.showMessageDialog(this, stateCode);
         System.out.println("Click" + evt.getActionCommand());
     }
     @Override

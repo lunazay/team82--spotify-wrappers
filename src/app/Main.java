@@ -35,7 +35,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args){
-        JFrame application = new JFrame("login Example");
+        JFrame application = new JFrame("Output Example");
         application.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         CardLayout cardLayout = new CardLayout();
