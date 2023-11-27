@@ -12,7 +12,7 @@ public class RelatedArtistsController {
         this.relatedArtistsUseCaseInteractor = relatedArtistsInputBoundary;
     }
 
-    public void execute(String timeframe, String id) throws IOException {
+    public void execute(String timeframe, String id) throws Exception {
         RelatedArtistsInputData relatedArtistsInputData = new RelatedArtistsInputData(timeframe, id);
 
         relatedArtistsUseCaseInteractor.execute(relatedArtistsInputData);
