@@ -21,8 +21,7 @@ public class TopGenreViewModel extends ViewModel {
     public void setState(TopGenreState state){
         this.state = state;
     }
-
-    public ArrayList<Genre> getgenres(){
+    public ArrayList<String> getgenres(){
         return state.getGenres();
     }
     // the Top genre presenter will call this to let the viewmodel to alert the view
