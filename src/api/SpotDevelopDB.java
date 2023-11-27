@@ -168,7 +168,7 @@ public class SpotDevelopDB implements DevelopDB{
 
             JSONObject responseBody = new JSONObject(response.toString());
 
-            return (String) responseBody.get("valence").toString();
+            return responseBody.get("valence").toString();
         }
             return conn.getResponseMessage();
         } catch (MalformedURLException e) {
