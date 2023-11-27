@@ -81,6 +81,7 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
      */
     @Override
     public ArrayList<Album> getTopAlbums(String id, String timeframe) throws Exception {
+
         Song[] topSongs = api.getTopSongs(timeframe, 50);
         ArrayList<Album> topAlbums = new ArrayList<>();
 
@@ -89,7 +90,13 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
             // get its album and return in a list.
             Album[] albums = song.getAlbums();
             Album topAlbum = albums[0];
-            topAlbums.add(topAlbum);
+
+            // checking edge case to avoid duplicate albums
+            if (!topAlbums.contains(topAlbum)) {
+
+                topAlbums.add(topAlbum);
+
+            }
         }
 
         return topAlbums;
