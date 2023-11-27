@@ -69,7 +69,7 @@ public class Main {
         LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
         views.add(loggedInView, loggedInView.viewName());
 
-        viewManagerModel.setActiveViewName(loginViewModel.getViewName());
+        viewManagerModel.setActiveViewName(loggedInViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
 
         application.pack();

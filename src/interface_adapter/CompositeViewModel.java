@@ -28,11 +28,11 @@ public class CompositeViewModel extends JPanel{
         TopArtistsViewModel topArtistsViewModel = new TopArtistsViewModel();
 
         add(getValenceViewModel.getViewPanel());
-        add(relatedArtistsViewModel.getViewPanel());
+        //add(relatedArtistsViewModel.getViewPanel());
         add(topGenreViewModel.getViewPanel());
         add(topSongsViewModel.getViewPanel());
-        add(topAlbumViewModel.getViewPanel());
-        add(topArtistsViewModel.getViewPanel());
+        //add(topAlbumViewModel.getViewPanel());
+        //add(topArtistsViewModel.getViewPanel());
 
     }
 

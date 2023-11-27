@@ -3,6 +3,7 @@ package interface_adapter.related_artists;
 import interface_adapter.ViewModel;
 
 
+import javax.swing.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.List;
@@ -25,6 +26,12 @@ public class RelatedArtistsViewModel extends ViewModel {
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
+
+    @Override
+    public JPanel getViewPanel() {
+        return null;
+    }
+
     public RelatedArtistsState getState(){
         return state;
     }
