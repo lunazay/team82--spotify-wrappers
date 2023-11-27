@@ -13,7 +13,7 @@ public class GetValenceController {
         this.getValenceInteractor = getValenceInputBoundary;
     }
 
-    void execute(String id, String timeframe) throws IOException {
+    void execute(String id, String timeframe) throws Exception {
 
         // executes the interactor on the id and timeframe
         GetValenceInputData getValenceInputData = new GetValenceInputData(id, timeframe);

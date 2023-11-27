@@ -11,8 +11,8 @@ public class LoginController {
         this.loginUseCaseInteractor = loginUseCaseInteractor;
     }
 
-    public void execute(String token) throws IOException {
-        LoginInputData loginInputData = new LoginInputData(token);
+    public void execute(String code) throws IOException {
+        LoginInputData loginInputData = new LoginInputData(code);
         loginUseCaseInteractor.execute(loginInputData);
     }
 }
