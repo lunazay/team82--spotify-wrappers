@@ -13,19 +13,19 @@ public class TopGenreState {
     private String timeframe = "";
     private String timeframeError = null;
     private String error = null;
-    public ArrayList<String> genres = new ArrayList<>();
+    public ArrayList<Genre> genres = new ArrayList<>();
 
-    public void setGenres(ArrayList<String> genres){
+    public void setGenres(ArrayList<Genre> genres){
         this.genres = genres;
     }
 
-    public ArrayList<String> getGenres(){
+    public ArrayList<Genre> getGenres(){
         return this.genres;
     }
     public TopGenreState(){
     }
 
-    public ArrayList<String> prepareSuccessView(TopGenreOutputData genres){
+    public ArrayList<Genre> prepareSuccessView(TopGenreOutputData genres){
         return genres.getGenreNames();
     }
     public void setId(String id){

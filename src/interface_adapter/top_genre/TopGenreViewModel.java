@@ -21,7 +21,8 @@ public class TopGenreViewModel extends ViewModel {
     public void setState(TopGenreState state){
         this.state = state;
     }
-    public ArrayList<String> getgenres(){
+
+    public ArrayList<Genre> getgenres(){
         return state.getGenres();
     }
     // the Top genre presenter will call this to let the viewmodel to alert the view
@@ -46,24 +47,10 @@ public class TopGenreViewModel extends ViewModel {
 
         // Add components representing the top genre view
         JLabel titleLabel = new JLabel("Top Genres");
+        // Add other UI components as needed
+
         topGenrePanel.add(titleLabel, BorderLayout.NORTH);
-
-        // Retrieve the list of genres from the state
-        ArrayList<String> genres = state.getGenres();
-
-        // Display the list of genres in the view
-        if (genres != null && !genres.isEmpty()) {
-            JPanel genresPanel = new JPanel(new GridLayout(genres.size(), 1));
-            for (String genre : genres) {
-                JLabel genreLabel = new JLabel(genre);
-                genresPanel.add(genreLabel);
-            }
-            topGenrePanel.add(genresPanel, BorderLayout.CENTER);
-        } else {
-            // Handle case when there's no genres available
-            JLabel noDataLabel = new JLabel("No top genres available.");
-            topGenrePanel.add(noDataLabel, BorderLayout.CENTER);
-        }
+        // Add other components to the panel
 
         return topGenrePanel;
     }
