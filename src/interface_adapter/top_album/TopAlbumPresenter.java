@@ -1,8 +1,8 @@
 package interface_adapter.top_album;
 
 import interface_adapter.ViewManagerModel;
-import use_case.TopAlbum.TopAlbumOutputBoundary;
-import use_case.TopAlbum.TopAlbumOutputData;
+import use_case.top_album.TopAlbumOutputBoundary;
+import use_case.top_album.TopAlbumOutputData;
 
 public class TopAlbumPresenter implements TopAlbumOutputBoundary {
     private final TopAlbumViewModel topAlbumViewModel;

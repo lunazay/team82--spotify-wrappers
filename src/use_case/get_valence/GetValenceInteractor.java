@@ -15,19 +15,21 @@ public class GetValenceInteractor implements GetValenceInputBoundary{
     }
 
     @Override
-    public void execute(GetValenceInputData getValenceInputData) throws IOException {
+    public void execute(GetValenceInputData getValenceInputData) throws Exception {
 
         String id = getValenceInputData.getId();
 
         String timeframe = getValenceInputData.getTimeframe();
 
         // uses the data access object to access the data:
-        String valence = getValenceDataAccessObject.getValence(id, timeframe);
 
-        // creating a new output data object with the valence & creating a
-        // sucess view using it
-        GetValenceOutputData getValenceOutputData = new GetValenceOutputData(valence);
-        getValencePresenter.prepareSuccessView(getValenceOutputData);
+        try {
+            String valence = getValenceDataAccessObject.getValence(id, timeframe);
+            GetValenceOutputData getValenceOutputData = new GetValenceOutputData(valence);
+            getValencePresenter.prepareSuccessView(getValenceOutputData);
+        } catch (Exception e) {
+            getValencePresenter.prepareFailView("Listen to some music bro!");
+        }
 
     }
 }
