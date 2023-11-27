@@ -128,14 +128,10 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         double valence_sum = 0;
         int num_elements = 0;
 
-        // calculating the mean valence:
         for (Song song : songs) {
-
             double valence = Double.parseDouble(api.get_valence(song.getId()));
             valence_sum += valence;
-
             num_elements++;
-
         }
 
         // if user has listened to at least one song, return the mean valence
