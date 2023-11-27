@@ -13,12 +13,16 @@ import interface_adapter.ViewManagerModel;
 import interface_adapter.ViewModel;
 import interface_adapter.get_valence.GetValenceViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.related_artists.RelatedArtistsViewModel;
 import interface_adapter.top_album.TopAlbumViewModel;
 import interface_adapter.top_artists.TopArtistsViewModel;
 import interface_adapter.top_genre.TopGenreViewModel;
 import interface_adapter.top_songs.TopSongsViewModel;
+import use_case.login.LoginInputBoundary;
+import use_case.login.LoginInputData;
+import use_case.login.LoginUserDataAccessInterface;
 import view.LoggedInView;
 import view.LoginView;
 import view.ViewManager;
@@ -52,9 +56,15 @@ public class Main {
         TopGenreViewModel topGenreViewModel = new TopGenreViewModel();
 
         UserDataAccessObject userDataAccessObject;
+        try{
+            userDataAccessObject = new UserDataAccessObject();
+        } catch (Exception e){
+            throw new RuntimeException(e);
+        }
 
         // i think we need to do this for every view?
-        // LoginView loginView =
+        LoginView loginView =  LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject) ;
+        views.add(loginView, loginView.viewname);
 
         LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
         views.add(loggedInView, loggedInView.viewName());
@@ -62,7 +72,7 @@ public class Main {
         viewManagerModel.setActiveViewName(loggedInViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
 
-        application.pack();;
+        application.pack();
         application.setVisible(true);
     }
 }
