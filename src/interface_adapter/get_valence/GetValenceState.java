@@ -2,7 +2,7 @@ package interface_adapter.get_valence;
 
 public class GetValenceState {
 
-    private String valence = "";
+    private String valence = ""; // default value of valence is just an empty string
 
     private String error = null;
 

@@ -7,5 +7,6 @@ import java.io.IOException;
 public interface LoginUserDataAccessInterface {
 
     void setToken(String authcode ) throws IOException;
-    User getNewUser() throws IOException;  // TODO: create a user here.
+
+    User getCurrentUser() throws IOException;
 }
