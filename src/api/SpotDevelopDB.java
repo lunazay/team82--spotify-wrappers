@@ -23,15 +23,21 @@ public class SpotDevelopDB implements DevelopDB{
     // instead of calling using authToken use token() method!
 
     private String token() throws IOException {
+        /**
+         * Accesses the token from our supersecret file.
+         */
         File txtFile = new File("./supersecret.txt");
 
-        // writing the token to the file:
+        // reading the token from the file:
         BufferedReader reader = new BufferedReader(new FileReader(txtFile));
         return reader.readLine();
     }
 
     @Override
     public String getUserId() throws IOException {
+        /**
+         * Gets the userid by making an API call to spotify with our token.
+         */
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
         String url = "https://api.spotify.com/v1/me";
@@ -62,6 +68,10 @@ public class SpotDevelopDB implements DevelopDB{
     @Override
     public String getAuthorizationLink() throws MalformedURLException {
 
+        /**
+         * Returns the link users can use to authorize our app to access their account.
+         */
+
         return "https://accounts.spotify.com/authorize?"
                 + "client_id="+client_id+"&"
                 + "response_type=code&"
@@ -71,6 +81,13 @@ public class SpotDevelopDB implements DevelopDB{
 
     @Override
     public String getAuthorizationToken(String authCode) throws IOException {
+
+        /**
+         * Returns the user's authorization token by making an API call.
+         *
+         * @param authCode is the authorization code from the redirect link.
+         *                 This code should be stored in the input data.
+         */
 
         String auth_string = "https://accounts.spotify.com/api/token";
         URL auth_url = new URL(auth_string);
