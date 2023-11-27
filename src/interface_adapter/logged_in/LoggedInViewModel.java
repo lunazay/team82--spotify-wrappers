@@ -2,6 +2,7 @@ package interface_adapter.logged_in;
 
 import interface_adapter.ViewModel;
 
+import javax.swing.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -26,6 +27,11 @@ public class LoggedInViewModel extends ViewModel {
     }
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
+    }
+
+    @Override
+    public JPanel getViewPanel() {
+        return null;
     }
 
     public LoggedInState getState(){

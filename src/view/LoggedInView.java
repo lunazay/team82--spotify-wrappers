@@ -3,6 +3,7 @@ package view;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.logged_in.LoggedInState;
+import interface_adapter.CompositeViewModel;
 import interface_adapter.top_genre.TopGenreViewModel;
 
 
@@ -18,6 +19,7 @@ import java.util.Map;
 public class LoggedInView extends JPanel implements ActionListener, PropertyChangeListener {
         public final String viewName = "logged in";
         private final LoggedInViewModel loggedInViewModel;
+        private final CompositeViewModel compositeView;
         final JButton shortTerm;
         final JButton mediumTerm;
         final JButton longTerm;
@@ -31,6 +33,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
 
             this.loggedInViewModel = loggedInViewModel;
             this.loggedInViewModel.addPropertyChangeListener(this);
+            compositeView = new CompositeViewModel();
 
             JLabel title = new JLabel("Logged In Screen");
             title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -61,12 +64,16 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     public void actionPerformed(ActionEvent evt) {
         String actionCommand = evt.getActionCommand();
         System.out.println("Click " + evt.getActionCommand());
+        JPanel selectedView = null;
         if (actionCommand.equals(loggedInViewModel.SHORT_BUTTON_LABEL)) {
-            showUseCaseView();
+            selectedView = compositeView;
         } else if (actionCommand.equals(loggedInViewModel.MEDIUM_BUTTON_LABEL)) {
-            showUseCaseView();
+            selectedView = compositeView;
         } else if (actionCommand.equals(loggedInViewModel.LONG_BUTTON_LABEL)) {
-            showUseCaseView();
+            selectedView = compositeView;
+        }
+        if (selectedView != null) {
+            showUseCaseView(selectedView);
         }
     }
 

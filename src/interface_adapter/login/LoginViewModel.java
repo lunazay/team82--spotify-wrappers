@@ -3,6 +3,7 @@ package interface_adapter.login;
 import interface_adapter.ViewModel;
 import view.LoginView;
 
+import javax.swing.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -28,6 +29,11 @@ public class LoginViewModel extends ViewModel {
     }
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
+    }
+
+    @Override
+    public JPanel getViewPanel() {
+        return null;
     }
 
     public LoginState getState(){
