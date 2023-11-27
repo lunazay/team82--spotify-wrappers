@@ -19,6 +19,11 @@ public class TopSongsViewModel extends ViewModel {
     public void setState(TopSongsState state){
         this.state = state;
     }
+
+    public ArrayList<String> getsongs(){
+        return state.getSongs();
+    }
+    // the Top genre presenter will call this to let the viewmodel to alert the view
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     // the Top Songs presenter will call this to let the viewmodel to alert the view
     public void firePropertyChanged(){
@@ -36,7 +41,7 @@ public class TopSongsViewModel extends ViewModel {
         topSongsPanel.setLayout(new BorderLayout());
 
         // Add components representing the top genre view
-        JLabel titleLabel = new JLabel("Top Genres");
+        JLabel titleLabel = new JLabel("Top Songs");
         topSongsPanel.add(titleLabel, BorderLayout.NORTH);
 
         // Retrieve the list of genres from the state
@@ -52,7 +57,7 @@ public class TopSongsViewModel extends ViewModel {
             topSongsPanel.add(songsPanel, BorderLayout.CENTER);
         } else {
             // Handle case when there's no genres available
-            JLabel noDataLabel = new JLabel("No top genres available.");
+            JLabel noDataLabel = new JLabel("No top songs available.");
             topSongsPanel.add(noDataLabel, BorderLayout.CENTER);
         }
 
