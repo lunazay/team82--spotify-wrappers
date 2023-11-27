@@ -184,7 +184,7 @@ public class SpotDevelopDB implements DevelopDB{
             Response response = client.newCall(request).execute();
             System.out.println(response);
             JSONObject responseBody = new JSONObject(response.body().string());
-            if (responseBody.getInt("status_code") == 200) {
+            if (responseBody.getInt("code") == 200) {
                 return SongFactory.create(responseBody);
             } else {
                 throw new RuntimeException(responseBody.getString("message"));
@@ -214,7 +214,7 @@ public class SpotDevelopDB implements DevelopDB{
             Response response = client.newCall(request).execute();
             System.out.println(response);
             JSONObject responseBody = new JSONObject(response.body().string());
-            if (responseBody.getInt("status_code") == 200) {
+            if (responseBody.getInt("code") == 200) {
                 return ArtistFactory.create(responseBody);
             } else {
                 throw new RuntimeException(responseBody.getString("message"));
