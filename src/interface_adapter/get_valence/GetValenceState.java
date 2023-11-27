@@ -4,8 +4,10 @@ public class GetValenceState {
 
     private String valence = "";
 
+    private String error = null;
+
     public GetValenceState() {}
-    private String error;
+
 
     public String getValence() { return this.valence; }
 

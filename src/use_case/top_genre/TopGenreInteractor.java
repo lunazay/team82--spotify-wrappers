@@ -17,6 +17,13 @@ public class TopGenreInteractor implements TopGenreInputBoundary {
 
     }
 
+    /**
+     * Creates a list of the names of a user's top genre and passes it in to the TopGenrePresenter, if
+     * there are top artists returned by the API call.
+     * Otherwise, the presenter prepares the fail view.
+     * @param topGenreInputData contains the user id and timeframe to specify the API call
+     */
+
     @Override
     public void execute(TopGenreInputData topGenreInputData) {
         String id = topGenreInputData.getId();

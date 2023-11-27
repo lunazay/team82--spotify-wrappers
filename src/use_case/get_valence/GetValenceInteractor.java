@@ -22,12 +22,14 @@ public class GetValenceInteractor implements GetValenceInputBoundary{
         String timeframe = getValenceInputData.getTimeframe();
 
         // uses the data access object to access the data:
-        String valence = getValenceDataAccessObject.getValence(id, timeframe);
 
-        // creating a new output data object with the valence & creating a
-        // sucess view using it
-        GetValenceOutputData getValenceOutputData = new GetValenceOutputData(valence);
-        getValencePresenter.prepareSuccessView(getValenceOutputData);
+        try {
+            String valence = getValenceDataAccessObject.getValence(id, timeframe);
+            GetValenceOutputData getValenceOutputData = new GetValenceOutputData(valence);
+            getValencePresenter.prepareSuccessView(getValenceOutputData);
+        } catch (Exception e) {
+            getValencePresenter.prepareFailView("Listen to some music bro!");
+        }
 
     }
 }
