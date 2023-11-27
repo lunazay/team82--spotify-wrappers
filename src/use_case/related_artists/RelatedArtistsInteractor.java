@@ -19,7 +19,7 @@ public class RelatedArtistsInteractor implements RelatedArtistsInputBoundary{
      * @param relatedArtistsInputData contains the top artist's id and timeframe to specify the API call
      */
     @Override
-    public void execute(RelatedArtistsInputData relatedArtistsInputData) throws IOException {
+    public void execute(RelatedArtistsInputData relatedArtistsInputData) throws Exception {
         String id = relatedArtistsInputData.getId();
         String timeframe = relatedArtistsInputData.getTimeframe();
         try {
