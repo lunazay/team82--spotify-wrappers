@@ -22,7 +22,7 @@ public class SpotDevelopDB implements DevelopDB{
 
     // instead of calling using authToken use token() method!
 
-    private String token() throws IOException {
+    public String token() throws IOException {
         /**
          * Accesses the token from our supersecret file.
          */
@@ -76,7 +76,7 @@ public class SpotDevelopDB implements DevelopDB{
                 + "client_id="+client_id+"&"
                 + "response_type=code&"
                 + "redirect_uri="+redirect_uri+"&"
-                + "scope=user-read-private%20user-read-email%user-top-read%playlist-modify-public%playlist-modify-private&";
+                + "scope=user-read-private%20user-read-email%20user-top-read%20playlist-modify-public%20playlist-modify-private";
     }
 
     @Override
@@ -139,7 +139,7 @@ public class SpotDevelopDB implements DevelopDB{
 
 
         }
-        return null;
+        throw new IOException(conn.getResponseMessage());
     }
 
     @Override
@@ -151,9 +151,10 @@ public class SpotDevelopDB implements DevelopDB{
 
         HttpURLConnection conn = (HttpURLConnection) request_url.openConnection();
         conn.setRequestMethod("GET");
+        conn.setRequestProperty("Authorization", "Bearer " + token());
         conn.connect();
 
-        if (conn.getResponseMessage().equals("OK")) {
+        if (conn.getResponseCode() == (200)) {
 
             BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String inputLine;
@@ -165,20 +166,16 @@ public class SpotDevelopDB implements DevelopDB{
             }
             in.close();
 
-            JSONObject responseBody = new JSONObject(response);
+            JSONObject responseBody = new JSONObject(response.toString());
 
-            String[] arrayResponse = response.toString().split("[: ,]");
-
-            // return arrayResponse[arrayResponse.length - 1];
-            return responseBody.getString("valence");
+            return (String) responseBody.get("valence").toString();
         }
+            return conn.getResponseMessage();
         } catch (MalformedURLException e) {
             throw new MalformedURLException();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        return null;
     }
 
     @Override
