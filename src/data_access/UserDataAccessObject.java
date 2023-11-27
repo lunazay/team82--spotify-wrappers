@@ -139,7 +139,7 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
      * returns the related artists of them.
      * @param id        the user's Spotify id
      * @param timeframe the API call time_range (short_term: 4 weeks, medium_term: 6 months, long_term: all time)
-     * @return          an ArrayList of the top artist's related artists, as a list of strings
+     * @return          a List of the top artist's related artists, as a list of strings
      */
     @Override
     public List<String> getRelatedArtists(String id, String timeframe) throws Exception {
