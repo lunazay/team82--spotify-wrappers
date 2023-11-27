@@ -1,5 +1,7 @@
 package interface_adapter;
 
+import javax.swing.*;
+import java.awt.*;
 import java.beans.PropertyChangeListener;
 
 public abstract class ViewModel {
@@ -15,4 +17,7 @@ public abstract class ViewModel {
 
     public abstract void firePropertyChanged();
     public abstract void addPropertyChangeListener(PropertyChangeListener listener);
+
+    public abstract JPanel getViewPanel();
+
 }

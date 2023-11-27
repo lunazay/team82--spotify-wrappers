@@ -1,4 +1,5 @@
 package use_case.top_songs;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TopSongsOutputData {
@@ -16,8 +17,8 @@ public class TopSongsOutputData {
 
     }
 
-    public List<String> getSongNames() {
-        return songNames;
+    public ArrayList<String> getSongNames() {
+        return (ArrayList<String>) songNames;
     }
 }
 
