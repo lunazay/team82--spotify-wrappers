@@ -26,11 +26,15 @@ public class GetValenceViewModel extends ViewManagerModel {
         // Retrieve the valence value from the state
         String valence = state.getValence();
 
-        // Display the valence value in the view
-        JLabel valenceLabel = new JLabel(valence != null ? valence : "No valence available");
-        valenceLabel.setHorizontalAlignment(SwingConstants.CENTER); // Center align the label
-        getValencePanel.add(valenceLabel, BorderLayout.CENTER);
+        if (!valence.isEmpty() && valence != ""){
+            JLabel valenceLabel = new JLabel(valence);
+            getValencePanel.add(valenceLabel, BorderLayout.CENTER);
+        } else {
+            JLabel noDataLabel = new JLabel("No Valence available.");
+            getValencePanel.add(noDataLabel, BorderLayout.CENTER);
+        }
 
+        // Display the valence value in the view
         return getValencePanel;
     }
 }

@@ -43,7 +43,6 @@ public class CompositeViewModel extends JPanel{
                 Container parent = getParent();
                 JPanel selectedView = null;
                 // Get the parent container (assuming LoggedInView)
-                LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
                 LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
                 if (loggedInView != null) {
                     selectedView = loggedInView;
@@ -65,7 +64,6 @@ public class CompositeViewModel extends JPanel{
                 repaint();
             }
         });
-
         // Use a separate JPanel for grid layout to organize view models
         JPanel gridPanel = new JPanel(new GridLayout(3, 2)); // Adjust layout as needed
 
