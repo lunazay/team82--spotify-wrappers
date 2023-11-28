@@ -14,8 +14,8 @@ public class TopArtistsTest {
 
     public static void main(String[] args) throws IOException {
         SpotDevelopDB api = new SpotDevelopDB();
-        System.out.println(api.getAuthorizationLink());
-        System.out.println(api.getAuthorizationToken("AQChVsKdnjpC7T_Pkd5fIcsYnJXDXMENi0VZrC9FDKGyXTLy-VFtiJ3hcCY4Y2KP4XdKDU9b7YB_BqCs6vwmWfqPTP6smC4Z4zB1H9CrHOb5pZNx0g2i5EkQhj3-GMyQGLtMZT5PVUjKb7DAGSgH6FNOO4Tp0Gbvp1fMP6msJvJ7bzrsmtr69gnleMM-_e5OPDKPgLchFMiwC6Q9iB1iB8Ve7GXJkg6wuamy-hUCaQQ"));
+        // System.out.println(api.getAuthorizationLink());
+        System.out.println(api.getAuthorizationToken("AQBhr6HWspsATawY3yrlGUSh1q8-eABfgj1-7tcX4BNtuEq6ZNEA3Fdr78KfLcQo1lUkV5dSIt4_2Znvi_vMbW3TUeh4E9-bDVOEbAllDdsLpzyNVhYKpy1M3HygosWM7hd2o3W9JUlCOsHqAtNxk3esPnnJLxsSksqLsKeTw6xUFfr9WBHdkzfpuw2P3rF9cSIG_CPOftL2YbN8qEfHtOYv95VWWy8RYigyrmYVMhPUlb4-nrKjCMqEi_oMNU74WzphEqhwGIPPfOkFWuPtDmpykGkhwIHzCanunR8zSK31apXZIGHPNbvmyAz4crTxvVg"));
     }
 
     @org.junit.Test
