@@ -23,6 +23,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         final JButton shortTerm;
         final JButton mediumTerm;
         final JButton longTerm;
+        final JButton done;
 
     /**
      * A window with a title and 3 JButtons.
@@ -48,15 +49,21 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
             longTerm = new JButton(loggedInViewModel.LONG_BUTTON_LABEL);
             buttons.add(longTerm);
 
+            buttons.add(Box.createVerticalGlue());
+
+            done = new JButton(loggedInViewModel.DONE_BUTTON_LABEL);
+            done.setAlignmentX(Component.CENTER_ALIGNMENT); // Center-align the button
+            buttons.add(done);
+
             shortTerm.addActionListener(this);
             mediumTerm.addActionListener(this);
             longTerm.addActionListener(this);
+            done.addActionListener(this);
 
             this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
             this.add(title);
             this.add(buttons);
-
 
         }
 
@@ -64,20 +71,26 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     public void actionPerformed(ActionEvent evt) {
         String actionCommand = evt.getActionCommand();
         System.out.println("Click " + evt.getActionCommand());
-        JPanel selectedView = null;
-        if (actionCommand.equals(loggedInViewModel.SHORT_BUTTON_LABEL)) {
-            selectedView = compositeView;
-        } else if (actionCommand.equals(loggedInViewModel.MEDIUM_BUTTON_LABEL)) {
-            selectedView = compositeView;
-        } else if (actionCommand.equals(loggedInViewModel.LONG_BUTTON_LABEL)) {
-            selectedView = compositeView;
-        }
-        if (selectedView != null) {
-            showUseCaseView(selectedView);
+        if (actionCommand.equals(loggedInViewModel.SHORT_BUTTON_LABEL) ||
+                actionCommand.equals(loggedInViewModel.MEDIUM_BUTTON_LABEL) ||
+                actionCommand.equals(loggedInViewModel.LONG_BUTTON_LABEL)) {
+            JPanel selectedView = compositeView;
+            if (selectedView != null) {
+                showUseCaseView(selectedView);
+            }
+        } else if (actionCommand.equals(loggedInViewModel.DONE_BUTTON_LABEL)) {
+            // Action for the "Done" button
+            int confirmExit = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?");
+            if (confirmExit == JOptionPane.YES_OPTION) {
+                // Perform necessary cleanup and exit the application
+                JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                frame.dispose(); // Close the JFrame
+                System.exit(0); // Terminate the application
+            }
         }
     }
 
-    private void showUseCaseView(JPanel useCaseView) {
+    public void showUseCaseView(JPanel useCaseView) {
         // Clear the existing content of the LoggedInView and show the selected use case view
         // Here's what the showUseCaseView method does:
         //
