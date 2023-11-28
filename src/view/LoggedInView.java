@@ -49,10 +49,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
             longTerm = new JButton(loggedInViewModel.LONG_BUTTON_LABEL);
             buttons.add(longTerm);
 
-            buttons.add(Box.createVerticalGlue());
-
             done = new JButton(loggedInViewModel.DONE_BUTTON_LABEL);
-            done.setAlignmentX(Component.CENTER_ALIGNMENT); // Center-align the button
             buttons.add(done);
 
             shortTerm.addActionListener(this);
