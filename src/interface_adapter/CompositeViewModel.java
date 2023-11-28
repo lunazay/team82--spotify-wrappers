@@ -32,7 +32,6 @@ public class CompositeViewModel extends JPanel{
         GetValenceViewModel getValenceViewModel = new GetValenceViewModel();
         LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
 
-
         // Create Back button
         JButton backButton = new JButton("Back");
         backButton.addActionListener(new ActionListener() {
