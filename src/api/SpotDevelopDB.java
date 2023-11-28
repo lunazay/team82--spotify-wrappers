@@ -149,6 +149,7 @@ public class SpotDevelopDB implements DevelopDB{
             in.close();
 
             JSONObject responseBody = new JSONObject(response);
+            System.out.println(response);
 
             String[] arrayResponse = response.toString().split("[: ,]");
 
