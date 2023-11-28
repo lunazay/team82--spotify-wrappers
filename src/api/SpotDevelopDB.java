@@ -32,7 +32,7 @@ public class SpotDevelopDB implements DevelopDB{
 
     @Override
     public String getUserId() throws IOException {
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        /*OkHttpClient client = new OkHttpClient().newBuilder().build();
 
         String url = "https://api.spotify.com/v1/me";
         MediaType mediaType = MediaType.parse("application/json");
@@ -56,7 +56,25 @@ public class SpotDevelopDB implements DevelopDB{
             throw new RuntimeException(e);
         } catch (RuntimeException e) {
             throw new RuntimeException(e);
+        }*/
+        OkHttpClient client = new OkHttpClient();
+        String url = "https://api.spotify.com/v1/me";
+        Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .addHeader("Authorization", "Bearer " + token())
+                .build();
+        try (Response response = client.newCall(request).execute()){
+            if (!response.isSuccessful()){
+                throw new IOException("Unexpected code " + response);
+            }
+            String responseBody = response.body().string();
+            JSONObject jsonObject = new JSONObject(responseBody);
+            return jsonObject.getString("id");
+        } catch (JSONException e){
+            throw new IOException("Error parsing JSON response", e);
         }
+
     }
 
     @Override
