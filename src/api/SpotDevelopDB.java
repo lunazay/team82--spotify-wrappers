@@ -5,10 +5,8 @@ import entity.*;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Base64;
 import okhttp3.*;
 import org.json.JSONException;
@@ -22,72 +20,48 @@ public class SpotDevelopDB implements DevelopDB{
 
     // instead of calling using authToken use token() method!
 
-    public String token() throws IOException {
-        /**
-         * Accesses the token from our supersecret file.
-         */
+    private String token() throws IOException {
         File txtFile = new File("./supersecret.txt");
 
-        // reading the token from the file:
+        // writing the token to the file:
         BufferedReader reader = new BufferedReader(new FileReader(txtFile));
         return reader.readLine();
     }
 
     @Override
     public String getUserId() throws IOException {
-        /**
-         * Gets the userid by making an API call to spotify with our token.
-         */
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
-
+        OkHttpClient client = new OkHttpClient();
         String url = "https://api.spotify.com/v1/me";
-        MediaType mediaType = MediaType.parse("application/json");
-        JSONObject requestBody = new JSONObject();
-        requestBody.get("");
-        RequestBody body = RequestBody.create(mediaType, requestBody.toString());
         Request request = new Request.Builder()
                 .url(url)
-                .method("GET", body)
-                .addHeader("Authorization", token())
+                .get()
+                .addHeader("Authorization", "Bearer " + token())
                 .build();
-        try{
-            Response response = client.newCall(request).execute();
-            JSONObject responseBody = new JSONObject(response.body().string());
-            if (responseBody.getInt("status_code") == 200) {
-                return responseBody.getString("id");
-            } else {
-                throw new RuntimeException(responseBody.getString("message"));
+        try (Response response = client.newCall(request).execute()){
+            if (!response.isSuccessful()){
+                throw new IOException("Unexpected code " + response);
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (RuntimeException e) {
-            throw new RuntimeException(e);
+            String responseBody = response.body().string();
+            JSONObject jsonObject = new JSONObject(responseBody);
+            return jsonObject.getString("id");
+        } catch (JSONException e){
+            throw new IOException("Error parsing JSON response", e);
         }
+
     }
 
     @Override
     public String getAuthorizationLink() throws MalformedURLException {
 
-        /**
-         * Returns the link users can use to authorize our app to access their account.
-         */
-
         return "https://accounts.spotify.com/authorize?"
                 + "client_id="+client_id+"&"
                 + "response_type=code&"
                 + "redirect_uri="+redirect_uri+"&"
-                + "scope=user-read-private%20user-read-email%20user-top-read%20playlist-modify-public%20playlist-modify-private";
+                + "scope=user-read-private%20user-read-email%20user-top-read%20playlist-modify-public%20playlist-modify-private&";
     }
 
     @Override
     public String getAuthorizationToken(String authCode) throws IOException {
-
-        /**
-         * Returns the user's authorization token by making an API call.
-         *
-         * @param authCode is the authorization code from the redirect link.
-         *                 This code should be stored in the input data.
-         */
 
         String auth_string = "https://accounts.spotify.com/api/token";
         URL auth_url = new URL(auth_string);
@@ -139,7 +113,7 @@ public class SpotDevelopDB implements DevelopDB{
 
 
         }
-        throw new IOException(conn.getResponseMessage());
+        return null;
     }
 
     @Override
@@ -147,29 +121,30 @@ public class SpotDevelopDB implements DevelopDB{
 
         String request = "https://api.spotify.com/v1/audio-features/" + songId;
         try {
-        URL request_url = new URL(request);
+            URL request_url = new URL(request);
 
-        HttpURLConnection conn = (HttpURLConnection) request_url.openConnection();
-        conn.setRequestMethod("GET");
-        conn.setRequestProperty("Authorization", "Bearer " + token());
-        conn.connect();
+            HttpURLConnection conn = (HttpURLConnection) request_url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Authorization", "Bearer " + token());
+            conn.connect();
+            System.out.println(conn.getResponseCode());
+            if (conn.getResponseCode() == (200)) {
 
-        if (conn.getResponseCode() == (200)) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                    response.append("\n");
+                }
+                in.close();
 
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-                response.append("\n");
+                JSONObject responseBody = new JSONObject(response.toString());
+                System.out.println(responseBody);
+
+                return responseBody.get("valence").toString();
             }
-            in.close();
-
-            JSONObject responseBody = new JSONObject(response.toString());
-
-            return responseBody.get("valence").toString();
-        }
             return conn.getResponseMessage();
         } catch (MalformedURLException e) {
             throw new MalformedURLException();
@@ -179,64 +154,48 @@ public class SpotDevelopDB implements DevelopDB{
     }
 
     @Override
-    public Song[] getTopSongs(String time_frame, int numSongs) throws JSONException, IOException {
-        OkHttpClient client = new OkHttpClient().newBuilder()
-                .build();
-        String url = "https://api.spotify.com/v1/me/top/tracks?" + "time_range=" + time_frame + "&limit=" + numSongs;
-        MediaType mediaType = MediaType.parse("application/json");
-        JSONObject requestBody = new JSONObject();
-        requestBody.get("tracks");
-        RequestBody body = RequestBody.create(mediaType, requestBody.toString());
-        // i dont know what the above line does or why it is deprecated
+    public Song[] getTopSongs(String timeframe, int numSongs) throws JSONException, IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
         Request request = new Request.Builder()
-                .url(url)
-                .method("GET", body)
-                .addHeader("Authorization", token())
-                .addHeader("Content-Type", "application/json")
+                .url("https://api.spotify.com/v1/me/top/tracks?" + "time_range=" + timeframe)
+                .get()
+                .addHeader("Authorization", "Bearer " + token())
                 .build();
-        try{
+
+        try {
             Response response = client.newCall(request).execute();
-            System.out.println(response);
-            JSONObject responseBody = new JSONObject(response.body().string());
-            if (responseBody.getInt("status_code") == 200) {
-                return SongFactory.create(responseBody);
-            } else {
-                throw new RuntimeException(responseBody.getString("message"));
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected code " + response);
             }
-        }
-        catch (IOException | JSONException e) {
+
+            JSONObject responseBody = new JSONObject(response.body().string());
+            System.out.println(responseBody);
+            return SongFactory.create(responseBody);
+        } catch (IOException | JSONException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public Artist[] getTopArtists(String time_frame) throws JSONException, IOException {
-        OkHttpClient client = new OkHttpClient().newBuilder()
-                .build();
-        String url = "https://api.spotify.com/v1/me/top/artists?" + "time_range=" + time_frame;
-        MediaType mediaType = MediaType.parse("application/json");
-        JSONObject requestBody = new JSONObject();
-        requestBody.get("artists");
-        RequestBody body = RequestBody.create(mediaType, requestBody.toString());
+    public Artist[] getTopArtists(String timeframe) throws JSONException, IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
         Request request = new Request.Builder()
-                .url(url)
-                .method("GET", body)
-                .addHeader("Authorization", token())
-                .addHeader("Content-Type", "application/json")
+                .url("https://api.spotify.com/v1/me/top/artists?" + "time_range=" + timeframe)
+                .get()
+                .addHeader("Authorization", "Bearer " + token())
                 .build();
-        try{
+
+        try {
             Response response = client.newCall(request).execute();
-            System.out.println(response);
-            JSONObject responseBody = new JSONObject(response.body().string());
-            if (responseBody.getInt("status_code") == 200) {
-                return ArtistFactory.create(responseBody);
-            } else {
-                throw new RuntimeException(responseBody.getString("message"));
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected code " + response);
             }
-        }
-        catch (IOException | JSONException e) {
+
+            JSONObject responseBody = new JSONObject(response.body().string());
+            System.out.println(responseBody);
+            return ArtistFactory.create(responseBody);
+        } catch (IOException | JSONException e) {
             throw new RuntimeException(e);
         }
     }
-
-    }
+}
