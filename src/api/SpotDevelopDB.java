@@ -166,7 +166,7 @@ public class SpotDevelopDB implements DevelopDB{
 
     @Override
     public Song[] getTopSongs(String timeframe, int numSongs) throws JSONException, IOException {
-        OkHttpClient client = new OkHttpClient().newBuilder()
+        /*OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         String url = "https://api.spotify.com/v1/me/top/tracks?" + "time_range=" + timeframe + "&limit=" + numSongs;
         MediaType mediaType = MediaType.parse("application/json");
@@ -192,11 +192,44 @@ public class SpotDevelopDB implements DevelopDB{
         }
         catch (IOException | JSONException e) {
             throw new RuntimeException(e);
+        }*/
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = RequestBody.create(mediaType, "");
+        Request request = new Request.Builder()
+                .url("https://api.spotify.com/v1/me/top/artists")
+                .method("GET", null)
+                .build();
+        try{
+            Response response = client.newCall(request).execute();
+            System.out.println(response);
+            JSONObject responseBody = new JSONObject(response.body().string());
+            return SongFactory.create(responseBody);
+        }
+        catch (IOException | JSONException e) {
+            throw new RuntimeException(e);
         }
     }
 
     @Override
     public Artist[] getTopArtists(String timeframe) throws JSONException, IOException {
+        /*String request = "https://api.spotify.com/v1/me/top/artists";
+        try {
+            URL request_url = new URL(request);
+            HttpURLConnection conn = (HttpURLConnection) request_url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Authorization", "Bearer " + token());
+            conn.connect();
+
+            if (conn.getResponseCode() == (200)){
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+
+                while
+            }
+        }*/
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         String url = "https://api.spotify.com/v1/me/top/artists?" + "time_range=" + timeframe;
