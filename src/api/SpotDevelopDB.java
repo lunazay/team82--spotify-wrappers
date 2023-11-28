@@ -130,39 +130,36 @@ public class SpotDevelopDB implements DevelopDB{
 
         String request = "https://api.spotify.com/v1/audio-features/" + songId;
         try {
-        URL request_url = new URL(request);
+            URL request_url = new URL(request);
 
-        HttpURLConnection conn = (HttpURLConnection) request_url.openConnection();
-        conn.setRequestMethod("GET");
-        conn.connect();
+            HttpURLConnection conn = (HttpURLConnection) request_url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Authorization", "Bearer " + token());
+            conn.connect();
+            System.out.println(conn.getResponseCode());
+            if (conn.getResponseCode() == (200)) {
 
-        if (conn.getResponseMessage().equals("OK")) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String inputLine;
-            StringBuffer response = new StringBuffer();
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                    response.append("\n");
+                }
+                in.close();
 
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-                response.append("\n");
+                JSONObject responseBody = new JSONObject(response.toString());
+                System.out.println(responseBody);
+
+                return responseBody.get("valence").toString();
             }
-            in.close();
-
-            JSONObject responseBody = new JSONObject(response);
-            System.out.println(response);
-
-            String[] arrayResponse = response.toString().split("[: ,]");
-
-            // return arrayResponse[arrayResponse.length - 1];
-            return responseBody.getString("valence");
-        }
+            return conn.getResponseMessage();
         } catch (MalformedURLException e) {
             throw new MalformedURLException();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        return null;
     }
 
     @Override
