@@ -33,7 +33,7 @@ public class GetValenceInteractor implements GetValenceInputBoundary{
             GetValenceOutputData getValenceOutputData = new GetValenceOutputData(valence);
             getValencePresenter.prepareSuccessView(getValenceOutputData);
         } catch (Exception e) {
-            getValencePresenter.prepareFailView("Listen to some music bro!");
+            getValencePresenter.prepareFailView(e.getMessage());
         }
 
     }
