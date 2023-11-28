@@ -5,10 +5,8 @@ import entity.*;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Base64;
 import okhttp3.*;
 import org.json.JSONException;
@@ -22,7 +20,7 @@ public class SpotDevelopDB implements DevelopDB{
 
     // instead of calling using authToken use token() method!
 
-    public String token() throws IOException {
+    private String token() throws IOException {
         File txtFile = new File("./supersecret.txt");
 
         // writing the token to the file:
@@ -159,7 +157,7 @@ public class SpotDevelopDB implements DevelopDB{
     public Song[] getTopSongs(String timeframe, int numSongs) throws JSONException, IOException {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         Request request = new Request.Builder()
-                .url("https://api.spotify.com/v1/me/top/tracks")
+                .url("https://api.spotify.com/v1/me/top/tracks?" + "time_range=" + timeframe)
                 .get()
                 .addHeader("Authorization", "Bearer " + token())
                 .build();
@@ -182,7 +180,7 @@ public class SpotDevelopDB implements DevelopDB{
     public Artist[] getTopArtists(String timeframe) throws JSONException, IOException {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         Request request = new Request.Builder()
-                .url("https://api.spotify.com/v1/me/top/artists")
+                .url("https://api.spotify.com/v1/me/top/artists?" + "time_range=" + timeframe)
                 .get()
                 .addHeader("Authorization", "Bearer " + token())
                 .build();
@@ -200,4 +198,4 @@ public class SpotDevelopDB implements DevelopDB{
             throw new RuntimeException(e);
         }
     }
-    }
+}
