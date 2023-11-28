@@ -125,33 +125,35 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         throw new Exception();
     }
 
+    /**
+     * Gets the average valence of the user's top songs.
+     * @param id contains the user id to specify the api call to top songs
+     * @param timeframe contains the timeframe to specify the api call to top songs
+     * @return the average valence of the user's top songs.
+     */
     @Override
     public String getValence(String id, String timeframe) throws Exception {
 
-        /**
-         * Gets the average valence of the user's top songs.
-         * @param id contains the user id to specify the api call to top songs
-         * @param timeframe contains the timeframe to specify the api call to top songs
-         * @return the average valence of the user's top songs.
-         */
+        try {
+            Song[] songs = getTopSongs(id, timeframe); // getting top songs. Throws exception if
+                                                       // there are 0 top songs.
 
-        Song[] songs = getTopSongs(id, timeframe); // getting top songs
+            double valence_sum = 0;
+            int num_elements = 0;
 
-        double valence_sum = 0;
-        int num_elements = 0;
+            for (Song song : songs) {
+                double valence = Double.parseDouble(api.get_valence(song.getId()));
+                valence_sum += valence;
+                num_elements++;
+            }
+            // if user has listened to at least one song, return the mean valence
+            return String.valueOf(valence_sum / num_elements);
 
-        for (Song song : songs) {
-            double valence = Double.parseDouble(api.get_valence(song.getId()));
-            valence_sum += valence;
-            num_elements++;
+        } catch (Exception e) {
+            throw new Exception("Listen to some music bro!");
+            // throws this exception if the user has listened to no music.
         }
 
-        // if user has listened to at least one song, return the mean valence
-        if (num_elements > 0) { return String.valueOf(valence_sum / num_elements); }
-
-        // if user has listened to no songs, then we obviously can't return a value
-        // for valence & we have to throw an exception
-        throw new Exception();
 
     }
 
@@ -168,13 +170,13 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         return topArtist.getRelatedArtists();
     }
 
+    /**
+     * Stores the user's API token inside our supersecret file.
+     *
+     * @param authCode is the authorization code from the redirect link.
+     */
     @Override
     public void setToken( String authCode ) throws IOException {
-        /**
-         * Stores the user's API token inside our supersecret file.
-         *
-         * @param authCode is the authorization code from the redirect link.
-         */
         String token = api.getAuthorizationToken(authCode);
 
         File txtFile = new File("./supersecret.txt");
@@ -186,13 +188,13 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     }
 
 
+    /**
+     * Gets the current user based on the token currently stored in our super
+     * secret file.
+     * @return the current user of the application.
+     */
     @Override
     public User getCurrentUser() throws IOException {
-        /**
-         * Gets the current user based on the token currently stored in our super
-         * secret file.
-         * @return the current user of the application.
-         */
         User user = new User(api.getUserId());
         return user;
     }
