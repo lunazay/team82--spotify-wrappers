@@ -230,7 +230,7 @@ public class SpotDevelopDB implements DevelopDB{
                 while
             }
         }*/
-        OkHttpClient client = new OkHttpClient().newBuilder()
+        /*OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         String url = "https://api.spotify.com/v1/me/top/artists?" + "time_range=" + timeframe;
         MediaType mediaType = MediaType.parse("application/json");
@@ -251,6 +251,23 @@ public class SpotDevelopDB implements DevelopDB{
             } else {
                 throw new RuntimeException(responseBody.getString("message"));
             }
+        }
+        catch (IOException | JSONException e) {
+            throw new RuntimeException(e);
+        }*/
+        OkHttpClient client = new OkHttpClient().newBuilder()
+                .build();
+        MediaType mediaType = MediaType.parse("text/plain");
+        RequestBody body = RequestBody.create(mediaType, "");
+        Request request = new Request.Builder()
+                .url("https://api.spotify.com/v1/me/top/artists")
+                .method("GET", null)
+                .build();
+        try{
+            Response response = client.newCall(request).execute();
+            System.out.println(response);
+            JSONObject responseBody = new JSONObject(response.body().string());
+            return ArtistFactory.create(responseBody);
         }
         catch (IOException | JSONException e) {
             throw new RuntimeException(e);
