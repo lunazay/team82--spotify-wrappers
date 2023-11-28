@@ -15,9 +15,9 @@ public class TopArtistsTest {
 
     public static void main(String[] args) throws IOException {
         SpotDevelopDB api = new SpotDevelopDB();
-        //System.out.println(api.getAuthorizationLink());
-        //String authcode = "AQCsJ6wUm4dzaw1XBtq-2JGN0s72LcGAIGG5GUfNY_eQLVOvaBQ9eTUaDgqvTowjY7MdvlcOs9AIeaJ6roVbtc4XQGAdLxEVqWD7FBLWkpAt2rMUJfe5RixrE56eV1HEoIKSb4ft3b6vLzhtSdrhdiC4xrwhdCftVTT0tpTOPMFJtVzc9vlsqTV2qqloGGfJeOoAFna6UOeH54jmkVLzDwAL-fOW2XGmfUI5pZ4-VbPuv5WhLb9WET6D4gvQ7HLhIa9ibebihZP9MdMAZpEZo-VQvggtld68ROFxkoxw7neUU_q04-DvwvRstyvtmvnMEO4";
-        //System.out.println(api.getAuthorizationToken(authcode));
+        System.out.println(api.getAuthorizationLink());
+        String authCode = "AQD8tCOuYth3H3LLWyfJOQb0ScNXj-bRBqvzNOFPt3_5gLQERNltntdoY8j2X5CrfUZSHaJVaz2UaU0WJtdR3nmwe986mIuRoPc2B5Mn1gfnqDE9GM8Om88XlJDvc83AwHIIK4yWNoLMWoWZO2Gxbxnk3Kmn2mmopYAUMh3YjQUg4I1ZhEYYLLJ6a4IcZNvNaWQ0TtarI3v5ZZhIIifq5L56G2fVDc1ZzbZxZs9HobbLSAyN4Id2kCNDe4mwkiB5C8IRG9GD2UsjTEoQslsLumTnP4vjIpTdvaHPHVrsXaNunhMxTF4pJJPRm231ZN5QeR8";
+        System.out.println(api.getAuthorizationToken(authCode));
         System.out.println(api.getUserId());
     }
 
@@ -25,7 +25,6 @@ public class TopArtistsTest {
     public void testTopArtist() throws Exception {
         UserDataAccessObject userDataAccessObject = new UserDataAccessObject();
         SpotDevelopDB api = new SpotDevelopDB();
-        String valence = api.get_valence("62ke5zFUJN6RvtXZgVH0F8");
         Artist[] topArtists = userDataAccessObject.getTopArtists("31kaxlo4ik6qs6vu3gtkb4i5iyye", "long_term");
         assert(Objects.equals(topArtists[0].getName(), "Paloma Faith"));
     }

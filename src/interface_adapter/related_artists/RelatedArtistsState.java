@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RelatedArtistsState {
-    private List<String> relatedArtists = new ArrayList<>();
+    public List<String> relatedArtists = new ArrayList<>();
     private String error = null;
     public RelatedArtistsState(RelatedArtistsState copy){
         relatedArtists = copy.relatedArtists;
