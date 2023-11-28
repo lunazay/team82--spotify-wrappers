@@ -44,6 +44,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
         logIn.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
+                        String actionCommand = evt.getActionCommand();
+                        System.out.println("Click " + evt.getActionCommand());
 
                         if (evt.getSource().equals(logIn)){
                             LoginState currentState = loginViewModel.getState();
@@ -53,13 +55,24 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                     }
-                    // TODO: we need to figure out what the input data needs to be before finishing this. ;
                 }
 
             }
         }
         );
-        cancel.addActionListener(this);
+        cancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                String actionCommand = evt.getActionCommand();
+                System.out.println("Click " + evt.getActionCommand());
+                // Action for the "Cancel" button
+                int confirmExit = JOptionPane.showConfirmDialog(LoginView.this, "Are you sure you want to exit?");
+                if (confirmExit == JOptionPane.YES_OPTION) {
+                    // Perform necessary cleanup and exit the application
+                    System.exit(0); // Terminate the application
+                }
+            }
+        });
 
         codeInputField.addKeyListener(new KeyListener() {
             @Override
