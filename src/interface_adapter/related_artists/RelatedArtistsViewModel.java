@@ -4,11 +4,14 @@ import interface_adapter.ViewModel;
 
 
 import javax.swing.*;
+import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RelatedArtistsViewModel extends ViewModel {
+
     private RelatedArtistsState state = new RelatedArtistsState();
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     public RelatedArtistsViewModel(){
@@ -29,7 +32,32 @@ public class RelatedArtistsViewModel extends ViewModel {
 
     @Override
     public JPanel getViewPanel() {
-        return null;
+        // Create and configure the JPanel for the top genre view
+        JPanel relatedArtistPanel = new JPanel();
+        relatedArtistPanel.setLayout(new BorderLayout());
+
+        // Add components representing the top genre view
+        JLabel titleLabel = new JLabel("Related Artist");
+        relatedArtistPanel.add(titleLabel, BorderLayout.NORTH);
+
+        // Retrieve the list of genres from the state
+        List<String> relatedArtist = state.getRelatedArtists();
+
+        // Display the list of genres in the view
+        if (relatedArtist != null && !relatedArtist.isEmpty()) {
+            JPanel artistPanel = new JPanel(new GridLayout(relatedArtist.size(), 1));
+            for (String artist : relatedArtist) {
+                JLabel artistLabel = new JLabel(artist);
+                artistPanel.add(artistLabel);
+            }
+            relatedArtistPanel.add(artistPanel, BorderLayout.CENTER);
+        } else {
+            // Handle case when there's no genres available
+            JLabel noDataLabel = new JLabel("No related artist available.");
+            relatedArtistPanel.add(noDataLabel, BorderLayout.CENTER);
+        }
+
+        return relatedArtistPanel;
     }
 
     public RelatedArtistsState getState(){

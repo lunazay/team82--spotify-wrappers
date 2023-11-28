@@ -73,7 +73,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                 }
             }
         });
-
+        // not sure this does anything when the key is pressed and/ or released, what are you trying to do?
         codeInputField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
