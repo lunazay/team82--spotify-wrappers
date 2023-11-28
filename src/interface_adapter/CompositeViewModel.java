@@ -69,7 +69,7 @@ public class CompositeViewModel extends JPanel{
 
         // Add view panels to the gridPanel
         gridPanel.add(getValenceViewModel.getViewPanel());
-        // gridPanel.add(relatedArtistsViewModel.getViewPanel());
+        gridPanel.add(relatedArtistsViewModel.getViewPanel());
         gridPanel.add(topGenreViewModel.getViewPanel());
         gridPanel.add(topSongsViewModel.getViewPanel());
         // gridPanel.add(topAlbumViewModel.getViewPanel());
