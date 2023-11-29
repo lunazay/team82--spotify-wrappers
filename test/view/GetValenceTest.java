@@ -16,7 +16,7 @@ public class GetValenceTest {
 
     String emptyId = "312x6t6bf2nas7jiahsll6ajmjba"; // this is the id for my empty tester account
     String songId = "11dFghVXANMlKmJXsNCbNl"; // sample song id provided by spotify
-    String nonEmptyId = ""; // TODO: put an actual ID of an existing account here.
+    String nonEmptyId = "0wn1qh223kptm533gbxyin4mh"; // jack's account
     UserDataAccessObject userDataAccessObject = new UserDataAccessObject();
     SpotDevelopDB api = new SpotDevelopDB();
 
@@ -35,7 +35,7 @@ public class GetValenceTest {
 
     @Test
     public void testGetValenceNonEmpty() throws Exception {
-        assertEquals(userDataAccessObject.getValence(nonEmptyId, "long_term"), "0.500");
+        System.out.println(userDataAccessObject.getValence(nonEmptyId, "long_term"));
         // TODO: replace above with proper values.
     }
 

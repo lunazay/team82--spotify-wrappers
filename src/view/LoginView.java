@@ -40,12 +40,12 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         codeInputInfo.add(codeInputField);
 
         JPanel buttons = new JPanel();
+        start = new JButton(loginViewModel.START_BUTTON_LABEL);
+        buttons.add(start);
         logIn = new JButton(loginViewModel.LOGIN_BUTTON_LABEL);
         buttons.add(logIn);
         cancel = new JButton(loginViewModel.CANCEL_BUTTON_LABEL);
         buttons.add(cancel);
-        start = new JButton(loginViewModel.START_BUTTON_LABEL);
-        buttons.add(start);
 
         // JPanel loginPanel = loginViewModel.getViewPanel();
         //add(loginPanel);

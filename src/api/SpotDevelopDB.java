@@ -138,8 +138,6 @@ public class SpotDevelopDB implements DevelopDB{
                 in.close();
 
                 JSONObject responseBody = new JSONObject(response.toString());
-                System.out.println(responseBody);
-
                 return responseBody.get("valence").toString();
             }
             return conn.getResponseMessage();
