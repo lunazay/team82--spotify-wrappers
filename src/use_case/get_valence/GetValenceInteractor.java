@@ -17,13 +17,18 @@ public class GetValenceInteractor implements GetValenceInputBoundary{
     @Override
     public void execute(GetValenceInputData getValenceInputData) throws Exception {
 
-        String id = getValenceInputData.getId();
+        /**
+         * Gets the valence of the user's top songs and passes it in to the getValencePresenter, if
+         * the user has listened to any songs.
+         * Otherwise, the presenter prepares the fail view.
+         * @param getValenceInputData contains the user id and timeframe to specify the API call.
+         */
 
+        // getting the id and the timeframe from our input data:
+        String id = getValenceInputData.getId();
         String timeframe = getValenceInputData.getTimeframe();
 
-        // uses the data access object to access the data:
-
-        try {
+        try {  // uses the data access object to access the data:
             String valence = getValenceDataAccessObject.getValence(id, timeframe);
             GetValenceOutputData getValenceOutputData = new GetValenceOutputData(valence);
             getValencePresenter.prepareSuccessView(getValenceOutputData);

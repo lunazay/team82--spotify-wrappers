@@ -19,8 +19,8 @@ public class LoginPresenter implements LoginOutputBoundary {
     }
     @Override
     public void prepareSuccessView(LoginOutputData response){
+        // on success, switch to logged in view
         LoggedInState loggedInState = loggedInViewModel.getState();
-        // TODO: IMPLEMENT what we want this to do loggedInState.
         this.loggedInViewModel.setState(loggedInState);
         this.loggedInViewModel.firePropertyChanged();
         this.viewManagerModel.setActiveViewName(loggedInViewModel.getViewName());
@@ -30,7 +30,7 @@ public class LoginPresenter implements LoginOutputBoundary {
     @Override
     public void prepareFailView(String error){
         LoginState loginState = loginViewModel.getState();
-        // TODO: chnage the state
+        loginState.setLoginError("Could not log in, try again!");
         loginViewModel.firePropertyChanged();
     }
 }

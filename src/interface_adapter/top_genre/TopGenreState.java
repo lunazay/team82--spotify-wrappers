@@ -1,20 +1,32 @@
 package interface_adapter.top_genre;
 
+import entity.Genre;
+import use_case.top_genre.TopGenreOutputData;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 public class TopGenreState {
     private String id = "";
     private String idError = null;
     private String timeframe = "";
     private String timeframeError = null;
     private String error = null;
+    public ArrayList<String> genres = new ArrayList<>();
 
-    public TopGenreState(TopGenreState copy){
-        id = copy.id;
-        idError = copy.idError;
-        timeframe = copy.timeframe;
-        timeframeError = copy.timeframeError;
-        error = copy.error;
+    public void setGenres(ArrayList<String> genres){
+        this.genres = genres;
+    }
+
+    public ArrayList<String> getGenres(){
+        return this.genres;
     }
     public TopGenreState(){
+    }
+
+    public ArrayList<String> prepareSuccessView(TopGenreOutputData genres){
+        return genres.getGenreNames();
     }
     public void setId(String id){
         this.id = id;

@@ -1,11 +1,7 @@
 package use_case.top_genre;
 import entity.Genre;
-import entity.Song;
-import use_case.top_songs.TopSongsInputData;
-import use_case.top_songs.TopSongsOutputData;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TopGenreInteractor implements TopGenreInputBoundary {
     final TopGenreDataAccessInterface userDataAccessObject;
@@ -31,7 +27,7 @@ public class TopGenreInteractor implements TopGenreInputBoundary {
 
         try {
             ArrayList<Genre> topGenres = userDataAccessObject.getTopGenres(id, timeframe);
-            List<String> topGenreTitles = new ArrayList<String>(5);
+            ArrayList<String> topGenreTitles = new ArrayList<>(5);
 
             Integer genreNumber = 1;
 

@@ -1,31 +1,40 @@
 package interface_adapter.get_valence;
 
-import interface_adapter.ViewModel;
+import interface_adapter.ViewManagerModel;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 
-public class GetValenceViewModel extends ViewModel {
+public class GetValenceViewModel extends ViewManagerModel {
 
     private GetValenceState state = new GetValenceState();
-
-    public GetValenceViewModel() {
-        super("get valence");
-    }
 
     public void setState(GetValenceState state) { this.state = state; }
 
     public GetValenceState getState() { return this.state; }
 
-    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+    public JPanel getViewPanel() {
+        // Create and configure the JPanel for the top genre view
+        JPanel getValencePanel = new JPanel();
+        getValencePanel.setLayout(new BorderLayout());
 
-    @Override
-    public void firePropertyChanged() {
-        support.firePropertyChange("state", null, this.state);
-    }
+        // Add components representing the view
+        JLabel titleLabel = new JLabel("Valence"); // Update label accordingly
+        getValencePanel.add(titleLabel, BorderLayout.NORTH);
 
-    @Override
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        support.addPropertyChangeListener(listener);
+        // Retrieve the valence value from the state
+        String valence = state.getValence();
+
+        if (!valence.isEmpty() && valence != ""){
+            JLabel valenceLabel = new JLabel(valence);
+            getValencePanel.add(valenceLabel, BorderLayout.CENTER);
+        } else {
+            JLabel noDataLabel = new JLabel("No Valence available.");
+            getValencePanel.add(noDataLabel, BorderLayout.CENTER);
+        }
+
+        // Display the valence value in the view
+        return getValencePanel;
     }
 }

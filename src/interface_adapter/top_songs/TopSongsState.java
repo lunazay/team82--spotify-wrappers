@@ -1,5 +1,7 @@
 package interface_adapter.top_songs;
 
+import java.util.ArrayList;
+
 public class TopSongsState {
     private String id = "";
     private String idError = null;
@@ -7,15 +9,24 @@ public class TopSongsState {
     private String timeframeError = null;
 
     public String error;
+    public ArrayList<String> songs;
 
     public TopSongsState(TopSongsState copy){
         id = copy.id;
         idError = copy.idError;
         timeframe = copy.timeframe;
-        timeframeError = copy.timeframeError;
         error = copy.error;
+        songs = copy.songs;
     }
     public TopSongsState(){
+    }
+
+    public void setSongs(ArrayList<String> songs){
+        this.songs = songs;
+    }
+
+    public ArrayList<String> getSongs(){
+        return this.songs;
     }
     public void setId(String id){
         this.id = id;
@@ -28,9 +39,6 @@ public class TopSongsState {
     public void setIdError(String idError) {
         this.idError = idError;
     }
-    public void setTimeframeError(String timeframeError) {
-        this.timeframeError = timeframeError;
-    }
     public String getId(){
         return id;
     }
@@ -40,9 +48,6 @@ public class TopSongsState {
 
     public String getIdError() {
         return idError;
-    }
-    public String getTimeframeError() {
-        return timeframeError;
     }
 
     public void setError(String error) {

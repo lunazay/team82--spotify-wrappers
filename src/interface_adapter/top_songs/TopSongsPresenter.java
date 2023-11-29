@@ -17,7 +17,8 @@ public class TopSongsPresenter implements TopSongsOutputBoundary {
     @Override
     public void prepareSuccessView(TopSongsOutputData topSongsOutputData) {
         TopSongsState topSongsState = topSongsViewModel.getState();
-        topSongsState.setId(topSongsState.getId()); // is this line necessary?
+        topSongsState.setId(topSongsState.getId());
+        topSongsState.setSongs(topSongsOutputData.getSongNames());
         topSongsViewModel.firePropertyChanged();
         viewManagerModel.setActiveViewName((topSongsViewModel.getViewName()));
         viewManagerModel.firePropertyChanged();
