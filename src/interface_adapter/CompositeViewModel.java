@@ -1,6 +1,5 @@
 package interface_adapter;
 
-import app.LoggedInFactory;
 import interface_adapter.get_valence.GetValenceController;
 import interface_adapter.get_valence.GetValenceViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
@@ -53,7 +52,6 @@ public class CompositeViewModel extends JPanel{
                 Container parent = getParent();
                 JPanel selectedView = null;
                 // Get the parent container (assuming LoggedInView)
-                // LoggedInView loggedInView = LoggedInFactory.create();
                 LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
                 if (loggedInView != null) {
                     selectedView = loggedInView;

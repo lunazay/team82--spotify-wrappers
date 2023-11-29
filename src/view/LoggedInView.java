@@ -51,7 +51,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
      * @param relatedArtistsController
      */
 
-    public LoggedInView(LoggedInViewModel loggedInViewModel, TopGenreController topGenreController, TopAlbumController topAlbumController, TopSongsController topSongsController, TopArtistsController topArtistsController, GetValenceController getValenceController, RelatedArtistsController relatedArtistsController) {
+    public LoggedInView(LoggedInViewModel loggedInViewModel, TopGenreController topGenreController, TopAlbumController topAlbumController, TopSongsController topSongsController, TopArtistsController topArtistsController, GetValenceController getValenceController, RelatedArtistsController relatedArtistsController){
 
             this.loggedInViewModel = loggedInViewModel;
             this.topAlbumController = topAlbumController;
