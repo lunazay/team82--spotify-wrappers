@@ -8,6 +8,7 @@ public class ArtistFactory {
      * Creates a list of Artist objects from an API response
      * @param response API call for a user's top artists as a JSONObject. The JSONObject has several get methods
      *                 to return desired objects.
+     * @return an array of Artist objects
      */
     public static Artist[] create(JSONObject response) {
         Artist[] artists = new Artist[50];

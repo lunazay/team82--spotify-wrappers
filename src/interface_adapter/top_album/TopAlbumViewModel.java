@@ -36,12 +36,12 @@ public class TopAlbumViewModel extends ViewModel {
 
     @Override
     public JPanel getViewPanel() {
-        // Create and configure the JPanel for the top genre view
+        // Create and configure the JPanel for the top album view
         JPanel topAlbumPanel = new JPanel();
         topAlbumPanel.setLayout(new BorderLayout());
 
-        // Add components representing the top genre view
-        JLabel titleLabel = new JLabel("Top Genres");
+        // Add components representing the top album view
+        JLabel titleLabel = new JLabel("Top Albums");
         // Add other UI components as needed
 
         topAlbumPanel.add(titleLabel, BorderLayout.NORTH);

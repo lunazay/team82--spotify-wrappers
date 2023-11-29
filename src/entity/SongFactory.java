@@ -7,6 +7,7 @@ public class SongFactory {
      * Creates a list of Song objects from an API response
      * @param response API call for a user's top songs as a JSONObject. The JSONObject has several get methods
      *                 to return desired objects.
+     * @return an array of Song objects
      */
     public static Song[] create(JSONObject response) {
         Song[] songs = new Song[50];
