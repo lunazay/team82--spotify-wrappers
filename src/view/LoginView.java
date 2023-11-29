@@ -26,6 +26,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
     final JButton logIn;
     final JButton cancel;
+    final JButton start;
     public LoginView(LoginViewModel loginViewModel, LoginController controller){
         this.loginController = controller;
         this.loginViewModel = loginViewModel;
@@ -33,11 +34,18 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
         JLabel title = new JLabel("Login Screen");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        JPanel codeInputInfo = new JPanel();
+        codeInputInfo.add(new JLabel("Code input"));
+        codeInputInfo.add(codeInputField);
+
         JPanel buttons = new JPanel();
         logIn = new JButton(loginViewModel.LOGIN_BUTTON_LABEL);
         buttons.add(logIn);
         cancel = new JButton(loginViewModel.CANCEL_BUTTON_LABEL);
         buttons.add(cancel);
+        start = new JButton(loginViewModel.START_BUTTON_LABEL);
+        buttons.add(start);
 
         // JPanel loginPanel = loginViewModel.getViewPanel();
         //add(loginPanel);
@@ -73,7 +81,21 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                 }
             }
         });
-        // not sure this does anything when the key is pressed and/ or released, what are you trying to do?
+
+        start.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (e.getSource().equals(start)) {
+                    Desktop desktop = Desktop.getDesktop();
+                    try { URI uri = new URI(url);
+                    desktop.browse(uri);}
+                    catch (URISyntaxException | IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            }
+        });
+
         codeInputField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -93,6 +115,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
+        this.add(codeInputInfo);
         this.add(buttons);
     }
 
@@ -125,10 +148,12 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     }
 
     private void setFields(LoginState state){
+        codeInputField.setText(state.getCode());
         //TODO: figure out after the input data is figured out.
     }
 
     public String getViewname(){
         return viewname;
     }
+
 }

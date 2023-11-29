@@ -12,7 +12,7 @@ public class LoginTest {
     SpotDevelopDB api = new SpotDevelopDB();
     String link = api.getAuthorizationLink();
 
-    String code = "AQD3v_pPZZjqsJnz-GzZk-oWFvBV5ILpsxfuElHYNlzzLCKj1vg4zaK-mzZ-lQARrO0jV3HSRC-mVh-rk0KMkav6Hv4rAT43vRJ4A49MAO1A0x56dIWAfmD_U-lhK4uJM9du6tkDC42N6UA-FZl4EBY1eTYm8vlx1zr6V1noMAf9EKNeHsNVmmqskmcgO1qDG0zf3CBOvCLSzKoN8PUCbzH0JsocXK4171S7y7cbaYpar3FkAiCMQJ1DyP-45ETFuSv6esQUplzJ9Hsoz_K_2Q2XWB0aVkzYGL27Tr9eVdI3Jz7gV3uauFo1mT-SNdzHHKg";
+    String code = "AQDrR7RGecdLg_OFnX8cy9YI5DLeC1s2L3mr8oSA-WgBiagxYj28jbkT9HGl7rBZvMHu-bBIOSkDltJMawHxWRMcfeperTAfiNbW-2A2ZWAkV1F6AfplZDVv920wkj79uglUoWktZuVLc_qk9mxjViO7300pb_MXMgJyTKAEIvy2LZw336kRu157A_OkykHhAvICXN0hWKvumGBZjP8E2STuE2RJnBe4VM9x96jRuT5t1ScnHZxkN5HssbxfAR2GtfJAWpjZfECku-46jatfcAxg7LHQBK4R_g7BBm5BkyM9TreCXXDYB7y_2zIpP0FfpBw";
 
     public LoginTest() throws MalformedURLException {
         System.out.println(link);
@@ -21,7 +21,7 @@ public class LoginTest {
     @org.junit.Test
     public void testSetToken() throws IOException {
         System.out.println(api.token());
-        // dataAccessObject.setToken(code);
+        dataAccessObject.setToken(code);
         System.out.println(api.token());
     }
 }
