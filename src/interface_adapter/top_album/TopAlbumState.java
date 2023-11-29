@@ -1,5 +1,6 @@
 package interface_adapter.top_album;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,19 +16,24 @@ public class TopAlbumState {
 
     public TopAlbumState() {}
 
+
     public void setTopAlbumNames(List<String> topAlbumNames) {
+
         this.topAlbumNames = topAlbumNames;
     }
 
     public void setError(String error){
+
         this.error = error;
     }
     public String getError() {
+
         return this.error;
     }
 
     @Override
     public String toString(){
+
         return "TopAlbumState{" + "topAlbumNames='" + topAlbumNames + '}';
     }
 
