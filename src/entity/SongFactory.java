@@ -34,7 +34,7 @@ public class SongFactory {
                 artists.add(currArtistName);
             }
 
-            songs[i] = new Song(id, name, 0, artists, album);
+            songs[i] = new Song(id, name, artists, album);
         }
 
         return songs;
