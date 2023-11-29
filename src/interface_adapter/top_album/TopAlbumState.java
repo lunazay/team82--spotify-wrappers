@@ -8,6 +8,8 @@ public class TopAlbumState {
 
     private List<String> topAlbumNames = Collections.emptyList();
 
+    public String timeframe;
+
     private String error = null;
     public TopAlbumState(TopAlbumState copy){
         topAlbumNames = copy.topAlbumNames;
@@ -44,9 +46,11 @@ public class TopAlbumState {
     }
 
 
+    public void setTimeFrame(String timeFrame) {
+        this.timeframe = timeFrame;
+    }
 
-
-
-
-
+    public String getTimeframe() {
+        return timeframe;
+    }
 }
