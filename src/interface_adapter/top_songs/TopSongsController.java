@@ -10,7 +10,9 @@ public class TopSongsController {
         this.topSongsUseCaseInteractor = topSongsInputBoundary;
     }
 
-    public void execute(String timeframe, String id) {
+    public void execute( String id) {
+        TopSongsState topSongsState = new TopSongsState();
+        String timeframe = topSongsState.getTimeframe();
         TopSongsInputData topSongsInputData = new TopSongsInputData(timeframe, id);
 
         topSongsUseCaseInteractor.execute(topSongsInputData);

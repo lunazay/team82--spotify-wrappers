@@ -6,7 +6,9 @@ import java.util.List;
 
 public class TopAlbumState {
 
-    private List<String> topAlbumNames = Collections.emptyList();
+    public List<String> topAlbumNames = Collections.emptyList();
+
+    public String timeframe;
 
     private String error = null;
     public TopAlbumState(TopAlbumState copy){
@@ -22,7 +24,7 @@ public class TopAlbumState {
         this.topAlbumNames = topAlbumNames;
     }
 
-    public List<String> getTopAlbumNames(List<String> topAlbumNames) {
+    public List<String> getTopAlbumNames() {
 
         return topAlbumNames;
 
@@ -44,9 +46,11 @@ public class TopAlbumState {
     }
 
 
+    public void setTimeFrame(String timeFrame) {
+        this.timeframe = timeFrame;
+    }
 
-
-
-
-
+    public String getTimeframe() {
+        return timeframe;
+    }
 }
