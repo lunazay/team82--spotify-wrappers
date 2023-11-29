@@ -87,9 +87,8 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         for (Song song : topSongs) {
             // my thought process here is to iterate through the Songs and for each song,
             // get its album and return in a list.
-            Album[] albums = song.getAlbums();
-            Album topAlbum = albums[0];
-            topAlbums.add(topAlbum);
+            Album album = song.getAlbum();
+            topAlbums.add(album);
         }
 
         return topAlbums;
