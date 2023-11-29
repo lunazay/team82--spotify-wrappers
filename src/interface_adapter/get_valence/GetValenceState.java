@@ -7,6 +7,7 @@ public class GetValenceState {
     public String timeframe;
 
     private String error = null;
+    private String id;
 
     public GetValenceState() {}
 
@@ -24,5 +25,9 @@ public class GetValenceState {
 
     public String getTimeframe() {
         return timeframe;
+    }
+
+    public String getId() {
+        return id;
     }
 }
