@@ -1,5 +1,7 @@
 package view;
 
+import api.SpotDevelopDB;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,5 +11,11 @@ import static org.junit.Assert.*;
 
 
 public class RelatedArtistsTest {
+
+    SpotDevelopDB api = new SpotDevelopDB();
+    @org.junit.Test
+    public void testAPIGetRelatedArtists() throws Exception{
+        assert(api.get)
+    }
 
 }
