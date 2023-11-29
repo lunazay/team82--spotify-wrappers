@@ -22,7 +22,7 @@ public class SpotDevelopDB implements DevelopDB{
 
     // instead of calling using authToken use token() method!
 
-    private String token() throws IOException {
+    public String token() throws IOException {
         File txtFile = new File("./supersecret.txt");
 
         // writing the token to the file:
