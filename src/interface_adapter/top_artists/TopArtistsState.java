@@ -17,6 +17,10 @@ public class TopArtistsState {
 
     public TopArtistsState() {}
 
+    public List<String> getArtistNames(){
+        return artistNames;
+    }
+
     public void setArtistNames(List<String> artistNames) {
         this.artistNames = artistNames;
     }

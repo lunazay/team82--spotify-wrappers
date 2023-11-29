@@ -81,7 +81,7 @@ public class CompositeViewModel extends JPanel{
         gridPanel.add(relatedArtistsViewModel.getViewPanel());
         gridPanel.add(topGenreViewModel.getViewPanel());
         gridPanel.add(topSongsViewModel.getViewPanel());
-        // gridPanel.add(topAlbumViewModel.getViewPanel());
+        gridPanel.add(topAlbumViewModel.getViewPanel());
         // gridPanel.add(topArtistsViewModel.getViewPanel());
 
         add(backButton, BorderLayout.SOUTH); // Add the Back button at the top
