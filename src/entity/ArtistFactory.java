@@ -17,11 +17,11 @@ public class ArtistFactory {
         JSONArray items = (JSONArray) response.get("items");
 
         for (int i = 0; (i < items.length() && i < 50); i++) {
-            JSONObject curr_artist = (JSONObject) items.get(i);
-            String id = (String) curr_artist.get("id");
-            String name = (String) curr_artist.get("name");
-            JSONArray genreArray = (JSONArray) curr_artist.get("genres");
-//            JSONArray relatedArtistsArray = (JSONArray) curr_artist.get("related artists");
+            JSONObject currArtist = (JSONObject) items.get(i);
+            String id = (String) currArtist.get("id");
+            String name = (String) currArtist.get("name");
+            JSONArray genreArray = (JSONArray) currArtist.get("genres");
+//            JSONArray relatedArtistsArray = (JSONArray) currArtist.get("related artists");
 
             Genre[] genres = new Genre[10];
             for (int x = 0; (x < genreArray.length() && x < 5); x++) {
