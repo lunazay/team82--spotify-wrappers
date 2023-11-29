@@ -1,8 +1,12 @@
 package interface_adapter.related_artists;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.logged_in.LoggedInState;
+import interface_adapter.top_genre.TopGenreState;
+import use_case.login.LoginOutputData;
 import use_case.related_artists.RelatedArtistsOutputBoundary;
 import use_case.related_artists.RelatedArtistsOutputData;
+import use_case.top_genre.TopGenreOutputData;
 
 public class RelatedArtistsPresenter implements RelatedArtistsOutputBoundary {
     private final RelatedArtistsViewModel relatedArtistsViewModel;
@@ -23,6 +27,9 @@ public class RelatedArtistsPresenter implements RelatedArtistsOutputBoundary {
     public void prepareSuccessView(RelatedArtistsOutputData artists) {
         RelatedArtistsState relatedArtistsState = relatedArtistsViewModel.getState();
         relatedArtistsState.setRelatedArtists(artists.getRelatedArtists());
+        relatedArtistsViewModel.firePropertyChanged();
+        viewManagerModel.setActiveViewName(relatedArtistsViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
 
     @Override

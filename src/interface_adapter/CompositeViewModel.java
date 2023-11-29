@@ -1,15 +1,24 @@
 package interface_adapter;
 
+import app.LoggedInUseCaseFactory;
+import interface_adapter.get_valence.GetValenceController;
 import interface_adapter.get_valence.GetValenceViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.related_artists.RelatedArtistsController;
 import interface_adapter.related_artists.RelatedArtistsViewModel;
+import interface_adapter.top_album.TopAlbumController;
 import interface_adapter.top_album.TopAlbumViewModel;
+import interface_adapter.top_artists.TopArtistsController;
 import interface_adapter.top_artists.TopArtistsViewModel;
+import interface_adapter.top_genre.TopGenreController;
 import interface_adapter.top_genre.TopGenreViewModel;
+import interface_adapter.top_songs.TopSongsController;
 import interface_adapter.top_songs.TopSongsViewModel;
+import use_case.top_songs.TopSongsInputBoundary;
 import view.LoggedInView;
 
 import javax.swing.*;
+import javax.swing.text.View;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +30,8 @@ public class CompositeViewModel extends JPanel{
     private TopSongsViewModel topSongsViewModel;
     private TopAlbumViewModel topAlbumViewModel;
     private TopArtistsViewModel topArtistsViewModel;
+    private TopGenreController topGenreController;
+
 
     public CompositeViewModel(){
         setLayout(new GridLayout(3, 2)); // Adjust layout as needed
@@ -43,7 +54,8 @@ public class CompositeViewModel extends JPanel{
                 Container parent = getParent();
                 JPanel selectedView = null;
                 // Get the parent container (assuming LoggedInView)
-                LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
+                ViewManagerModel viewManagerModel = new ViewManagerModel();
+                LoggedInView loggedInView = LoggedInUseCaseFactory.create(viewManagerModel, loggedInViewModel);
                 if (loggedInView != null) {
                     selectedView = loggedInView;
                     showLoggedInView(loggedInView); // Show LoggedInView again
@@ -69,11 +81,11 @@ public class CompositeViewModel extends JPanel{
 
         // Add view panels to the gridPanel
         gridPanel.add(getValenceViewModel.getViewPanel());
-        // gridPanel.add(relatedArtistsViewModel.getViewPanel());
+        gridPanel.add(relatedArtistsViewModel.getViewPanel());
         gridPanel.add(topGenreViewModel.getViewPanel());
         gridPanel.add(topSongsViewModel.getViewPanel());
-        // gridPanel.add(topAlbumViewModel.getViewPanel());
-        // gridPanel.add(topArtistsViewModel.getViewPanel());
+        gridPanel.add(topAlbumViewModel.getViewPanel());
+        gridPanel.add(topArtistsViewModel.getViewPanel());
 
         add(backButton, BorderLayout.SOUTH); // Add the Back button at the top
         add(gridPanel, BorderLayout.CENTER); // Add the gridPanel to hold view models

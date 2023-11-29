@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.List;
 
 public class TopArtistsViewModel extends ViewModel {
     public static final String BUTTON_LABEL = "label";      // example of a button label name
@@ -34,16 +35,28 @@ public class TopArtistsViewModel extends ViewModel {
 
     @Override
     public JPanel getViewPanel() {
-        // Create and configure the JPanel for the top genre view
+        /// Create and configure the JPanel for the top genre view
         JPanel topArtistPanel = new JPanel();
         topArtistPanel.setLayout(new BorderLayout());
 
-        // Add components representing the top genre view
-        JLabel titleLabel = new JLabel("Top Genres");
-        // Add other UI components as needed
-
+        // Add components representing the top artist view
+        JLabel titleLabel = new JLabel("Top Artist");
         topArtistPanel.add(titleLabel, BorderLayout.NORTH);
-        // Add other components to the panel
+
+        List<String> artists = state.getArtistNames();
+
+        if (artists != null && !artists.isEmpty()) {
+            JPanel artistPanel = new JPanel(new GridLayout(artists.size(), 1));
+            for (String artist : artists) {
+                JLabel artistLabel = new JLabel(artist);
+                artistPanel.add(artistLabel);
+            }
+            topArtistPanel.add(artistPanel, BorderLayout.CENTER);
+        } else {
+            // Handle case when there's no genres available
+            JLabel noDataLabel = new JLabel("No top artists available.");
+            topArtistPanel.add(noDataLabel, BorderLayout.CENTER);
+        }
 
         return topArtistPanel;
     }

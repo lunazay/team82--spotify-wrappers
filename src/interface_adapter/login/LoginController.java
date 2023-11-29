@@ -7,6 +7,7 @@ import java.io.IOException;
 
 public class LoginController {
     final LoginInputBoundary loginUseCaseInteractor;
+
     public LoginController(LoginInputBoundary loginUseCaseInteractor){
         this.loginUseCaseInteractor = loginUseCaseInteractor;
     }

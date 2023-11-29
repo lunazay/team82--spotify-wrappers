@@ -11,14 +11,20 @@ import entity.Genre;
 
 import interface_adapter.ViewManagerModel;
 import interface_adapter.ViewModel;
+import interface_adapter.get_valence.GetValenceController;
 import interface_adapter.get_valence.GetValenceViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.related_artists.RelatedArtistsController;
 import interface_adapter.related_artists.RelatedArtistsViewModel;
+import interface_adapter.top_album.TopAlbumController;
 import interface_adapter.top_album.TopAlbumViewModel;
+import interface_adapter.top_artists.TopArtistsController;
 import interface_adapter.top_artists.TopArtistsViewModel;
+import interface_adapter.top_genre.TopGenreController;
 import interface_adapter.top_genre.TopGenreViewModel;
+import interface_adapter.top_songs.TopSongsController;
 import interface_adapter.top_songs.TopSongsViewModel;
 import use_case.login.LoginInputBoundary;
 import use_case.login.LoginInputData;
@@ -66,10 +72,10 @@ public class Main {
         LoginView loginView =  LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject) ;
         views.add(loginView, loginView.viewname);
 
-        LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
+        LoggedInView loggedInView =  LoggedInUseCaseFactory.create(viewManagerModel, loggedInViewModel);
         views.add(loggedInView, loggedInView.viewName());
 
-        viewManagerModel.setActiveViewName(loggedInViewModel.getViewName());
+        viewManagerModel.setActiveViewName(loginViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
 
         application.pack();

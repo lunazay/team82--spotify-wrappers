@@ -7,6 +7,8 @@ import java.util.List;
 public class RelatedArtistsState {
     public List<String> relatedArtists = new ArrayList<>();
     private String error = null;
+    public String timeframe;
+    public String id;
     public RelatedArtistsState(RelatedArtistsState copy){
         relatedArtists = copy.relatedArtists;
         error = copy.error;
@@ -22,4 +24,15 @@ public class RelatedArtistsState {
         this.error = error;
     }
 
+    public void setTimeFrame(String timeFrame) {
+        this.timeframe = timeFrame;
+    }
+
+    public String getTimeframe() {
+        return timeframe;
+    }
+
+    public String getId() {
+        return id;
+    }
 }

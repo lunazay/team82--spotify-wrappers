@@ -4,13 +4,15 @@ import use_case.top_genre.TopGenreInputBoundary;
 import use_case.top_genre.TopGenreInputData;
 
 public class TopGenreController {
-    final TopGenreInputBoundary userTopGenreUseCaseInteractor;
+    private final TopGenreInputBoundary userTopGenreUseCaseInteractor;
 
     public TopGenreController(TopGenreInputBoundary userTopGenreUseCaseInteractor) {
         this.userTopGenreUseCaseInteractor = userTopGenreUseCaseInteractor;
     }
 
-    public void execute(String id, String timeframe){
+    public void execute(String id){
+        TopGenreState topGenreState = new TopGenreState();
+        String timeframe = topGenreState.getTimeframe();
         TopGenreInputData topGenreInputData = new TopGenreInputData(timeframe, id);
         userTopGenreUseCaseInteractor.execute(topGenreInputData);
     }
