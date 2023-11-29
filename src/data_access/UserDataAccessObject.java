@@ -7,6 +7,8 @@ import entity.Song;
 import entity.Album;
 import entity.Genre;
 import entity.User;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import use_case.get_valence.GetValenceDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.related_artists.RelatedArtistsDataAccessInterface;
@@ -155,7 +157,15 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     @Override
     public List<String> getRelatedArtists(String id, String timeframe) throws Exception {
         Artist topArtist = getTopArtists(id, timeframe)[0];
-        return topArtist.getRelatedArtists();
+        String topArtistId = topArtist.getId();
+        JSONObject relatedArtists = api.getRelatedArtists(topArtistId);
+        JSONArray items = (JSONArray) relatedArtists.get("items");
+        List<String> listRelatedArtists = new ArrayList<>();
+        for (int i = 0; (i < items.length() && i < 50); i++) {
+            JSONObject currArtist = (JSONObject) items.get(i);
+            listRelatedArtists.add((String) currArtist.get("name"));
+        }
+        return listRelatedArtists;
     }
 
     /**
@@ -174,7 +184,6 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         writer.write(token);
         writer.close();
     }
-
 
     /**
      * Gets the current user based on the token currently stored in our super

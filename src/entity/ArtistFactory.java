@@ -21,19 +21,12 @@ public class ArtistFactory {
             String id = (String) currArtist.get("id");
             String name = (String) currArtist.get("name");
             JSONArray genreArray = (JSONArray) currArtist.get("genres");
-//            JSONArray relatedArtistsArray = (JSONArray) currArtist.get("related artists");
 
             Genre[] genres = new Genre[10];
             for (int x = 0; (x < genreArray.length() && x < 5); x++) {
                 genres[x] = new Genre((String) genreArray.get(x));
             }
 
-//            List<String> relatedArtists = new ArrayList<>(5);
-//            for (int y = 0; (y < relatedArtistsArray.length() && y < 5); y++) {
-//                relatedArtists.set(y, (String) relatedArtistsArray.get(y));
-//            }
-
-            // artists[i] = new Artist(id, name, genres, relatedArtists);
             artists[i] = new Artist(id, name, genres, Collections.emptyList());
         }
 
