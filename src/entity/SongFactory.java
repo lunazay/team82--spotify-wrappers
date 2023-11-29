@@ -1,6 +1,8 @@
 package entity;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class SongFactory {
@@ -15,14 +17,24 @@ public class SongFactory {
 
         for (int i = 0; (i < items.length() && i < 50); i++) {
             JSONObject curr_song = (JSONObject) items.get(i);
+
             String id = (String) curr_song.get("id");
             String name = (String) curr_song.get("name");
-            int length = (int) curr_song.get("length");
-            Album album = new Album((String) curr_song.get("album"));
 
-            List<String> artist = (List<String>) curr_song.get("artist");
+            JSONObject albumObject = (JSONObject) curr_song.get("album");
+            String albumName = (String) albumObject.get("name");
+            Album album = new Album(albumName);
 
-            songs[i] = new Song(id, name, length, artist, album);
+            JSONArray artistsArray = (JSONArray) curr_song.get("artists");
+            List<String> artists = new ArrayList<>();
+
+            for (int x = 0; (x < artistsArray.length() && x < 3); x++) {
+                JSONObject currArtist = (JSONObject) artistsArray.get(x);
+                String currArtistName = currArtist.getString("name");
+                artists.add(currArtistName);
+            }
+
+            songs[i] = new Song(id, name, 0, artists, album);
         }
 
         return songs;
