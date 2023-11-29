@@ -8,6 +8,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.List;
+
 import okhttp3.*;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -48,6 +50,28 @@ public class SpotDevelopDB implements DevelopDB{
             throw new IOException("Error parsing JSON response", e);
         }
 
+    }
+
+    @Override
+    public JSONObject getRelatedArtists(String topArtistID) throws IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        Request request = new Request.Builder()
+                .url("https://api.spotify.com/v1/artists/" + topArtistID + "/related-artists")
+                .get()
+                .addHeader("Authorization", "Bearer " + token())
+                .build();
+        try{
+            Response response = client.newCall(request).execute();
+            if (!response.isSuccessful()){
+                throw new IOException("Unexpected code " + response);
+            }
+
+            JSONObject responseBody = new JSONObject(response.body().string());
+            System.out.println(responseBody);
+            return responseBody;
+        }catch (IOException | JSONException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
