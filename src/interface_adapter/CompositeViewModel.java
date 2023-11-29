@@ -28,6 +28,7 @@ public class CompositeViewModel extends JPanel{
     private TopSongsViewModel topSongsViewModel;
     private TopAlbumViewModel topAlbumViewModel;
     private TopArtistsViewModel topArtistsViewModel;
+    private TopGenreController topGenreController;
 
 
     public CompositeViewModel(){

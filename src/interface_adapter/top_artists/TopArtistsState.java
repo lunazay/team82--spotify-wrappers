@@ -8,6 +8,7 @@ public class TopArtistsState {
     private String artistNamesError = null;
 
     private String timeframe = "";
+    private String id;
 
     public TopArtistsState(TopArtistsState copy) {
         this.artistNames = copy.artistNames;
@@ -39,5 +40,9 @@ public class TopArtistsState {
 
     public String getTimeframe() {
         return timeframe;
+    }
+
+    public String getId() {
+        return id;
     }
 }

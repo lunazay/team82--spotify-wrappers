@@ -8,6 +8,7 @@ public class RelatedArtistsState {
     private List<String> relatedArtists = new ArrayList<>();
     private String error = null;
     public String timeframe;
+    public String id;
     public RelatedArtistsState(RelatedArtistsState copy){
         relatedArtists = copy.relatedArtists;
         error = copy.error;
@@ -29,5 +30,9 @@ public class RelatedArtistsState {
 
     public String getTimeframe() {
         return timeframe;
+    }
+
+    public String getId() {
+        return id;
     }
 }

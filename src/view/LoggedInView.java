@@ -15,7 +15,6 @@ import interface_adapter.top_genre.TopGenreController;
 import interface_adapter.top_genre.TopGenreState;
 import interface_adapter.top_songs.TopSongsController;
 import interface_adapter.top_songs.TopSongsState;
-import use_case.top_songs.TopSongsInputBoundary;
 
 
 import javax.swing.*;
@@ -29,25 +28,40 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         public final String viewName = "logged in";
         private final LoggedInViewModel loggedInViewModel;
         private final CompositeViewModel compositeView;
+
+        private final TopGenreController topGenreController;
+        private final TopAlbumController topAlbumController;
+        private final TopSongsController topSongsController;
+        private final TopArtistsController topArtistsController;
+        private final GetValenceController getValenceController;
+        private final RelatedArtistsController relatedArtistsController;
         final JButton shortTerm;
         final JButton mediumTerm;
         final JButton longTerm;
         final JButton done;
 
-        //private final TopGenreController topGenreController;
-
     /**
      * A window with a title and 3 JButtons.
      *
      * @param loggedInViewModel
+     * @param topAlbumController
+     * @param topSongsController
+     * @param topArtistsController
+     * @param getValenceController
+     * @param relatedArtistsController
      */
 
-    public LoggedInView(LoggedInViewModel loggedInViewModel){
+    public LoggedInView(LoggedInViewModel loggedInViewModel, TopGenreController topGenreController, TopAlbumController topAlbumController, TopSongsController topSongsController, TopArtistsController topArtistsController, GetValenceController getValenceController, RelatedArtistsController relatedArtistsController){
 
             this.loggedInViewModel = loggedInViewModel;
+            this.topAlbumController = topAlbumController;
+            this.topSongsController = topSongsController;
+            this.topArtistsController = topArtistsController;
+            this.getValenceController = getValenceController;
+            this.relatedArtistsController = relatedArtistsController;
             this.loggedInViewModel.addPropertyChangeListener(this);
             compositeView = new CompositeViewModel();
-            //this.topGenreController = topGenreController;
+            this.topGenreController = topGenreController;
 
 
             JLabel title = new JLabel("Logged In Screen");
@@ -91,13 +105,26 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
 
         if (actionCommand.equals(loggedInViewModel.SHORT_BUTTON_LABEL)){
             LoggedInState currentState = loggedInViewModel.getState();
-
             topGenreState.setTimeframe("short_term");
             topSongsState.setTimeframe("short_term");
             topArtistsState.setTimeFrame("short_term");
             topAlbumState.setTimeFrame("short_term");
             getValenceState.setTimeFrame("short_term");
             relatedArtistsState.setTimeFrame("short_term");
+            topGenreController.execute(topGenreState.getId());
+            topArtistsController.execute(topArtistsState.getId());
+            topAlbumController.execute(topArtistsState.getId());
+            topSongsController.execute(topSongsState.getId());
+            try {
+                getValenceController.execute(getValenceState.getId());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                relatedArtistsController.execute(relatedArtistsState.getId());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
 
             JPanel selectedView = compositeView;
             if (selectedView != null) {
@@ -106,12 +133,27 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         }
         if (actionCommand.equals(loggedInViewModel.MEDIUM_BUTTON_LABEL)){
             LoggedInState currentState = loggedInViewModel.getState();
+            topGenreController.execute(topGenreState.getId());
             topGenreState.setTimeframe("medium_term");
             topSongsState.setTimeframe("medium_term");
             topArtistsState.setTimeFrame("medium_term");
             topAlbumState.setTimeFrame("medium_term");
             getValenceState.setTimeFrame("medium_term");
             relatedArtistsState.setTimeFrame("medium_term");
+            topGenreController.execute(topGenreState.getId());
+            topArtistsController.execute(topArtistsState.getId());
+            topAlbumController.execute(topArtistsState.getId());
+            topSongsController.execute(topSongsState.getId());
+            try {
+                getValenceController.execute(getValenceState.getId());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                relatedArtistsController.execute(relatedArtistsState.getId());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             JPanel selectedView = compositeView;
             if (selectedView != null) {
                 showUseCaseView(selectedView);
@@ -119,12 +161,27 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         }
         if (actionCommand.equals(loggedInViewModel.LONG_BUTTON_LABEL)){
             LoggedInState currentState = loggedInViewModel.getState();
+            topGenreController.execute(topGenreState.getId());
             topGenreState.setTimeframe("long_term");
             topSongsState.setTimeframe("long_term");
             topArtistsState.setTimeFrame("long_term");
             topAlbumState.setTimeFrame("long_term");
             getValenceState.setTimeFrame("long_term");
             relatedArtistsState.setTimeFrame("long_term");
+            topGenreController.execute(topGenreState.getId());
+            topArtistsController.execute(topArtistsState.getId());
+            topAlbumController.execute(topArtistsState.getId());
+            topSongsController.execute(topSongsState.getId());
+            try {
+                getValenceController.execute(getValenceState.getId());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                relatedArtistsController.execute(relatedArtistsState.getId());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             JPanel selectedView = compositeView;
             if (selectedView != null) {
                 showUseCaseView(selectedView);
