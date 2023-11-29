@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.ArrayList;
 
 public class TopAlbumViewModel extends ViewModel {
     private static final String TITLE_LABEL = "top album view";
@@ -38,30 +37,16 @@ public class TopAlbumViewModel extends ViewModel {
     @Override
     public JPanel getViewPanel() {
         // Create and configure the JPanel for the top genre view
-        JPanel topAlnumsPanel = new JPanel();
-        topAlbumsPanel.setLayout(new BorderLayout());
+        JPanel topAlbumPanel = new JPanel();
+        topAlbumPanel.setLayout(new BorderLayout());
 
         // Add components representing the top genre view
-        JLabel titleLabel = new JLabel("Top Albums");
-        topAlbumsPanel.add(titleLabel, BorderLayout.NORTH);
+        JLabel titleLabel = new JLabel("Top Genres");
+        // Add other UI components as needed
 
-        // Retrieve the list of genres from the state
-        ArrayList<String> genres = state.get();
+        topAlbumPanel.add(titleLabel, BorderLayout.NORTH);
+        // Add other components to the panel
 
-        // Display the list of genres in the view
-        if (genres != null && !genres.isEmpty()) {
-            JPanel genresPanel = new JPanel(new GridLayout(genres.size(), 1));
-            for (String genre : genres) {
-                JLabel genreLabel = new JLabel(genre);
-                genresPanel.add(genreLabel);
-            }
-            topGenrePanel.add(genresPanel, BorderLayout.CENTER);
-        } else {
-            // Handle case when there's no genres available
-            JLabel noDataLabel = new JLabel("No top genres available.");
-            topGenrePanel.add(noDataLabel, BorderLayout.CENTER);
-        }
-
-        return topGenrePanel;
+        return topAlbumPanel;
     }
 }
