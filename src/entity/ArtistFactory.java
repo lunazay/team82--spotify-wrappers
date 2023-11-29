@@ -16,7 +16,7 @@ public class ArtistFactory {
         Artist[] artists = new Artist[50];
         JSONArray items = (JSONArray) response.get("items");
 
-        for (int i = 0; i < response.length(); i++) {
+        for (int i = 0; (i < items.length() && i < 50); i++) {
             JSONObject curr_artist = (JSONObject) items.get(i);
             String id = (String) curr_artist.get("id");
             String name = (String) curr_artist.get("name");
@@ -29,7 +29,7 @@ public class ArtistFactory {
             }
 
 //            List<String> relatedArtists = new ArrayList<>(5);
-//            for (int y = 0; y < 5; y++) {
+//            for (int y = 0; (y < relatedArtistsArray.length() && y < 5); y++) {
 //                relatedArtists.set(y, (String) relatedArtistsArray.get(y));
 //            }
 
