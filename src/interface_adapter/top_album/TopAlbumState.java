@@ -22,6 +22,12 @@ public class TopAlbumState {
         this.topAlbumNames = topAlbumNames;
     }
 
+    public List<String> getTopAlbumNames(List<String> topAlbumNames) {
+
+        return topAlbumNames;
+
+    }
+
     public void setError(String error){
 
         this.error = error;
