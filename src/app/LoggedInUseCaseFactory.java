@@ -9,11 +9,16 @@ import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.related_artists.RelatedArtistsController;
+import interface_adapter.related_artists.RelatedArtistsPresenter;
+import interface_adapter.related_artists.RelatedArtistsViewModel;
 import interface_adapter.top_album.TopAlbumController;
 import interface_adapter.top_album.TopAlbumPresenter;
 import interface_adapter.top_album.TopAlbumViewModel;
 import interface_adapter.top_artists.TopArtistsController;
+import interface_adapter.top_artists.TopArtistsPresenter;
+import interface_adapter.top_artists.TopArtistsViewModel;
 import interface_adapter.top_genre.TopGenreController;
+import interface_adapter.top_genre.TopGenrePresenter;
 import interface_adapter.top_genre.TopGenreViewModel;
 import interface_adapter.top_songs.TopSongsController;
 import interface_adapter.top_songs.TopSongsPresenter;
@@ -24,8 +29,19 @@ import use_case.get_valence.GetValenceInputBoundary;
 import use_case.get_valence.GetValenceInteractor;
 import use_case.get_valence.GetValenceOutputBoundary;
 import use_case.login.LoginUserDataAccessInterface;
+import use_case.related_artists.RelatedArtistsDataAccessInterface;
+import use_case.related_artists.RelatedArtistsInputBoundary;
+import use_case.related_artists.RelatedArtistsInteractor;
+import use_case.related_artists.RelatedArtistsOutputBoundary;
 import use_case.top_album.*;
+import use_case.top_artists.TopArtistsDataAccessInterface;
+import use_case.top_artists.TopArtistsInputBoundary;
+import use_case.top_artists.TopArtistsInteractor;
+import use_case.top_artists.TopArtistsOutputBoundary;
 import use_case.top_genre.TopGenreDataAccessInterface;
+import use_case.top_genre.TopGenreInputBoundary;
+import use_case.top_genre.TopGenreInteractor;
+import use_case.top_genre.TopGenreOutputBoundary;
 import use_case.top_songs.TopSongsDataAccessInterface;
 import use_case.top_songs.TopSongsInputBoundary;
 import use_case.top_songs.TopSongsInteractor;
@@ -61,7 +77,6 @@ public class LoggedInUseCaseFactory {
 
             return null;
 
-            // TODO: do this last; once we have all the Gets for al the use cases.
     }
 
     private static GetValenceController createGetValenceUseCase(ViewManagerModel viewManagerModel) throws IOException {
@@ -98,6 +113,41 @@ public class LoggedInUseCaseFactory {
 
         return new TopAlbumController(topAlbumInteractor);
     }
+
+    private static TopGenreController createTopGenreController(ViewManagerModel viewManagerModel) throws IOException {
+
+        TopGenreDataAccessInterface topGenreDataAccessInterface = new UserDataAccessObject();
+        TopGenreViewModel topGenreViewModel = new TopGenreViewModel();
+        TopGenreOutputBoundary topGenreOutputData = new TopGenrePresenter(topGenreViewModel, viewManagerModel);
+
+        TopGenreInputBoundary userGenreInteractor = new TopGenreInteractor(
+                topGenreDataAccessInterface, topGenreOutputData);
+
+        return new TopGenreController(userGenreInteractor);
+    }
+
+    private static TopArtistsController createTopArtistsUseCase(ViewManagerModel viewManagerModel) throws IOException {
+
+        TopArtistsDataAccessInterface topArtistsDataAccessInterface = new UserDataAccessObject();
+        TopArtistsViewModel topArtistsViewModel = new TopArtistsViewModel();
+        TopArtistsOutputBoundary topArtistsOutputBoundary = new TopArtistsPresenter(viewManagerModel, topArtistsViewModel);
+
+        TopArtistsInputBoundary userArtistInteractor = new TopArtistsInteractor(topArtistsDataAccessInterface, topArtistsOutputBoundary);
+
+        return new TopArtistsController(userArtistInteractor);
+    }
+
+    private static RelatedArtistsController createRelatedArtistsUseCase(ViewManagerModel viewManagerModel) throws IOException {
+
+        RelatedArtistsDataAccessInterface relatedArtistsDataAccessInterface = new UserDataAccessObject();
+        RelatedArtistsViewModel relatedArtistsViewModel = new RelatedArtistsViewModel();
+        RelatedArtistsOutputBoundary relatedArtistsOutputBoundary = new RelatedArtistsPresenter(viewManagerModel, relatedArtistsViewModel);
+
+        RelatedArtistsInputBoundary userArtistInteractor = new RelatedArtistsInteractor(relatedArtistsDataAccessInterface, relatedArtistsOutputBoundary);
+
+        return new RelatedArtistsController(userArtistInteractor);
+    }
+
 
 
 }

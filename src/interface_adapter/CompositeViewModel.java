@@ -1,5 +1,6 @@
 package interface_adapter;
 
+import app.LoggedInUseCaseFactory;
 import interface_adapter.get_valence.GetValenceController;
 import interface_adapter.get_valence.GetValenceViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
@@ -17,6 +18,7 @@ import use_case.top_songs.TopSongsInputBoundary;
 import view.LoggedInView;
 
 import javax.swing.*;
+import javax.swing.text.View;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -52,7 +54,8 @@ public class CompositeViewModel extends JPanel{
                 Container parent = getParent();
                 JPanel selectedView = null;
                 // Get the parent container (assuming LoggedInView)
-                LoggedInView loggedInView = new LoggedInView(loggedInViewModel);
+                ViewManagerModel viewManagerModel = new ViewManagerModel();
+                LoggedInView loggedInView = LoggedInUseCaseFactory.create(viewManagerModel, loggedInViewModel);
                 if (loggedInView != null) {
                     selectedView = loggedInView;
                     showLoggedInView(loggedInView); // Show LoggedInView again

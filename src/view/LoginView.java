@@ -20,8 +20,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
     public final String viewname = "log in";
     private final LoginViewModel loginViewModel;
     private final LoginController loginController;
-    private String url = "https://developer.spotify.com";
-
+    private String url = "https://accounts.spotify.com/authorize?client_id=bad90b33466e4f208c7655eede3ac628&response_type=code&redirect_uri=https://oauth.pstmn.io/v1/browser-callback&scope=user-read-private%20user-read-email%20user-top-read%20playlist-modify-public%20playlist-modify-private&";
     final JTextField codeInputField = new JTextField(15);
 
     final JButton logIn;
