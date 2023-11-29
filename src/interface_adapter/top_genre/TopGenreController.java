@@ -4,7 +4,7 @@ import use_case.top_genre.TopGenreInputBoundary;
 import use_case.top_genre.TopGenreInputData;
 
 public class TopGenreController {
-    final TopGenreInputBoundary userTopGenreUseCaseInteractor;
+    private final TopGenreInputBoundary userTopGenreUseCaseInteractor;
 
     public TopGenreController(TopGenreInputBoundary userTopGenreUseCaseInteractor) {
         this.userTopGenreUseCaseInteractor = userTopGenreUseCaseInteractor;
