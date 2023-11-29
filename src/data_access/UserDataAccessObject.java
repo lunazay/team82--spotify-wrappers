@@ -81,6 +81,7 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
      */
     @Override
     public ArrayList<Album> getTopAlbums(String id, String timeframe) throws Exception {
+
         Song[] topSongs = api.getTopSongs(timeframe, 50);
         ArrayList<Album> topAlbums = new ArrayList<>();
 
@@ -88,8 +89,19 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
             // my thought process here is to iterate through the Songs and for each song,
             // get its album and return in a list.
             Album[] albums = song.getAlbums();
-            Album topAlbum = albums[0];
-            topAlbums.add(topAlbum);
+
+            // considering another use case: checking for 'singles'
+            // if the song has no albums, do not include it in the output list.
+            if (albums != null && albums.length > 0) {
+                Album topAlbum = albums[0];
+
+                // checking edge case to avoid duplicate albums
+                if (!topAlbums.contains(topAlbum)) {
+
+                    topAlbums.add(topAlbum);
+
+                }
+            }
         }
 
         return topAlbums;
