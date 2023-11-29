@@ -20,7 +20,7 @@ public class SpotDevelopDB implements DevelopDB{
 
     // instead of calling using authToken use token() method!
 
-    private String token() throws IOException {
+    public String token() throws IOException { // TODO: change this back to private when done testing.
         File txtFile = new File("./supersecret.txt");
 
         // writing the token to the file:
@@ -106,10 +106,8 @@ public class SpotDevelopDB implements DevelopDB{
             }
             in.close();
 
-            String[] arrayResponse = response.toString().split("[: ,]");
-
-            // trimming the " characters that are at the beginning and end of the string
-            return arrayResponse[1].substring(1, arrayResponse[1].length() - 1);
+            JSONObject responseBody = new JSONObject(response.toString());
+            return responseBody.get("access_token").toString();
 
 
         }
@@ -127,7 +125,6 @@ public class SpotDevelopDB implements DevelopDB{
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Authorization", "Bearer " + token());
             conn.connect();
-            System.out.println(conn.getResponseCode());
             if (conn.getResponseCode() == (200)) {
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -141,8 +138,6 @@ public class SpotDevelopDB implements DevelopDB{
                 in.close();
 
                 JSONObject responseBody = new JSONObject(response.toString());
-                System.out.println(responseBody);
-
                 return responseBody.get("valence").toString();
             }
             return conn.getResponseMessage();
