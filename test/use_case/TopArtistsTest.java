@@ -8,7 +8,6 @@ import java.util.Objects;
 import api.SpotDevelopDB;
 import data_access.UserDataAccessObject;
 import entity.Artist;
-import org.junit.Assert;;
 
 public class TopArtistsTest {
 
