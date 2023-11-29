@@ -20,9 +20,4 @@ public abstract class ViewModel {
 
     public abstract JPanel getViewPanel();
 
-    public String userId;
-
-    public void setUserId(String currentUserId) {
-        this.userId = currentUserId;
-    }
 }

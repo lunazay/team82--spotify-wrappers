@@ -111,17 +111,17 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
             topAlbumState.setTimeFrame("short_term");
             getValenceState.setTimeFrame("short_term");
             relatedArtistsState.setTimeFrame("short_term");
-            topGenreController.execute(topGenreState.getId());
-            topArtistsController.execute(topArtistsState.getId());
-            topAlbumController.execute(topArtistsState.getId());
-            topSongsController.execute(topSongsState.getId());
+            topGenreController.execute("short_term", currentState.getid());
+            topArtistsController.execute(currentState.getid());
+            topAlbumController.execute(currentState.getid());
+            topSongsController.execute(currentState.getid());
             try {
-                getValenceController.execute(getValenceState.getId());
+                getValenceController.execute(currentState.getid());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
             try {
-                relatedArtistsController.execute(relatedArtistsState.getId());
+                relatedArtistsController.execute(currentState.getid());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -133,14 +133,13 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         }
         if (actionCommand.equals(loggedInViewModel.MEDIUM_BUTTON_LABEL)){
             LoggedInState currentState = loggedInViewModel.getState();
-            topGenreController.execute(topGenreState.getId());
+            topGenreController.execute("medium_term", topGenreState.getId());
             topGenreState.setTimeframe("medium_term");
             topSongsState.setTimeframe("medium_term");
             topArtistsState.setTimeFrame("medium_term");
             topAlbumState.setTimeFrame("medium_term");
             getValenceState.setTimeFrame("medium_term");
             relatedArtistsState.setTimeFrame("medium_term");
-            topGenreController.execute(topGenreState.getId());
             topArtistsController.execute(topArtistsState.getId());
             topAlbumController.execute(topArtistsState.getId());
             topSongsController.execute(topSongsState.getId());
@@ -161,14 +160,14 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         }
         if (actionCommand.equals(loggedInViewModel.LONG_BUTTON_LABEL)){
             LoggedInState currentState = loggedInViewModel.getState();
-            topGenreController.execute(topGenreState.getId());
+            topGenreController.execute("long_term", topGenreState.getId());
             topGenreState.setTimeframe("long_term");
             topSongsState.setTimeframe("long_term");
             topArtistsState.setTimeFrame("long_term");
             topAlbumState.setTimeFrame("long_term");
             getValenceState.setTimeFrame("long_term");
             relatedArtistsState.setTimeFrame("long_term");
-            topGenreController.execute(topGenreState.getId());
+            topGenreController.execute("long_term", topGenreState.getId());
             topArtistsController.execute(topArtistsState.getId());
             topAlbumController.execute(topArtistsState.getId());
             topSongsController.execute(topSongsState.getId());

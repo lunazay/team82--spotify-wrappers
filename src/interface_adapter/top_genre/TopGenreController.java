@@ -10,9 +10,9 @@ public class TopGenreController {
         this.userTopGenreUseCaseInteractor = userTopGenreUseCaseInteractor;
     }
 
-    public void execute(String id){
+    public void execute(String timeframe, String id){
         TopGenreState topGenreState = new TopGenreState();
-        String timeframe = topGenreState.getTimeframe();
+        // String timeframe = topGenreState.getTimeframe();
         TopGenreInputData topGenreInputData = new TopGenreInputData(timeframe, id);
         userTopGenreUseCaseInteractor.execute(topGenreInputData);
     }
