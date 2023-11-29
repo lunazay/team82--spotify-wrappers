@@ -1,4 +1,4 @@
-package use_case;
+package view;
 
 import javax.swing.*;
 import java.awt.*;
