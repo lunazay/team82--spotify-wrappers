@@ -1,4 +1,5 @@
 package entity;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.List;
 
@@ -10,23 +11,16 @@ public class SongFactory {
      */
     public static Song[] create(JSONObject response) {
         Song[] songs = new Song[50];
+        JSONArray items = (JSONArray) response.get("items");
 
-        for (int i = 0; i < response.length(); i++) {
-            String id = response.getString("id");
-            String name = response.getString("name");
+        for (int i = 0; (i < items.length() && i < 50); i++) {
+            JSONObject curr_song = (JSONObject) items.get(i);
+            String id = (String) curr_song.get("id");
+            String name = (String) curr_song.get("name");
+            int length = (int) curr_song.get("length");
+            Album album = new Album((String) curr_song.get("album"));
 
-            int length = response.getInt("length");
-
-            List<String> artist = (List<String>) response.get("artist");
-            List<String> albumList = (List<String>) response.get("album");
-
-            Album[] album = new Album[50]; // I put 50 since each song has an album
-            //String album = response.getString("album");
-
-            for (int x = 0; x < 50; x++) {
-                album[x] = new Album(albumList.get(x));
-            }
-
+            List<String> artist = (List<String>) curr_song.get("artist");
 
             songs[i] = new Song(id, name, length, artist, album);
         }
