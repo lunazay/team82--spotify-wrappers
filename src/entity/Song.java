@@ -4,28 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Song extends DataObject{
-    private final int length;
-    private List<String> artists = new ArrayList<>();
+    private final List<String> artists;
+    private final Album album;
 
-    private final Album[] albums;
-
-    public Song(String id, String name, int length, List<String> artists, Album[] albums){
+    public Song(String id, String name, List<String> artists, Album album){
         super(id, name);
-        this.length = length;
         this.artists = artists;
-        this.albums = albums;
+        this.album = album;
     }
-
 
     public List<String> getArtist() {
         return artists;
     }
 
-    public Album[] getAlbums() {
-        return albums;
+    public Album getAlbum() {
+        return album;
     }
 
-    public int getLength() {
-        return length;
-    }
 }
