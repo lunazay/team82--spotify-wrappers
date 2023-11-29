@@ -1,12 +1,19 @@
 package interface_adapter;
 
+import interface_adapter.get_valence.GetValenceController;
 import interface_adapter.get_valence.GetValenceViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.related_artists.RelatedArtistsController;
 import interface_adapter.related_artists.RelatedArtistsViewModel;
+import interface_adapter.top_album.TopAlbumController;
 import interface_adapter.top_album.TopAlbumViewModel;
+import interface_adapter.top_artists.TopArtistsController;
 import interface_adapter.top_artists.TopArtistsViewModel;
+import interface_adapter.top_genre.TopGenreController;
 import interface_adapter.top_genre.TopGenreViewModel;
+import interface_adapter.top_songs.TopSongsController;
 import interface_adapter.top_songs.TopSongsViewModel;
+import use_case.top_songs.TopSongsInputBoundary;
 import view.LoggedInView;
 
 import javax.swing.*;
@@ -22,6 +29,7 @@ public class CompositeViewModel extends JPanel{
     private TopAlbumViewModel topAlbumViewModel;
     private TopArtistsViewModel topArtistsViewModel;
 
+
     public CompositeViewModel(){
         setLayout(new GridLayout(3, 2)); // Adjust layout as needed
         RelatedArtistsViewModel relatedArtistsViewModel = new RelatedArtistsViewModel();
@@ -31,6 +39,7 @@ public class CompositeViewModel extends JPanel{
         TopArtistsViewModel topArtistsViewModel = new TopArtistsViewModel();
         GetValenceViewModel getValenceViewModel = new GetValenceViewModel();
         LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
+
 
         // Create Back button
         JButton backButton = new JButton("Back");

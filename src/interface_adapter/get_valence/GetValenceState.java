@@ -4,6 +4,8 @@ public class GetValenceState {
 
     private String valence = ""; // default value of valence is just an empty string
 
+    public String timeframe;
+
     private String error = null;
 
     public GetValenceState() {}
@@ -15,5 +17,12 @@ public class GetValenceState {
 
     public void setError(String error) {
         this.error = error;
+    }
+    public void setTimeFrame(String timeFrame) {
+        this.timeframe = timeFrame;
+    }
+
+    public String getTimeframe() {
+        return timeframe;
     }
 }
