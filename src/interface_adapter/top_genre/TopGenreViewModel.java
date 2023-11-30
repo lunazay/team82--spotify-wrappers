@@ -22,9 +22,7 @@ public class TopGenreViewModel extends ViewModel {
     public void setState(TopGenreState state){
         this.state = state;
     }
-    public ArrayList<String> getgenres(){
-        return this.genres;
-    }
+
     // the Top genre presenter will call this to let the viewmodel to alert the view
 
     public void setgenres(ArrayList<String> genres){
@@ -34,8 +32,7 @@ public class TopGenreViewModel extends ViewModel {
     public void firePropertyChanged(){
         support.firePropertyChange("state", null, this.state);
     }
-
-    // do i need an override here?
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener){
         support.addPropertyChangeListener(listener);
     }
