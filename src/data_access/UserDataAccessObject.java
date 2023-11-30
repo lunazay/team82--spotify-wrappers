@@ -193,8 +193,8 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
      * @return the current user of the application.
      */
     @Override
-    public User getCurrentUser() throws IOException {
+    public String getCurrentUserId() throws IOException {
         User user = new User(api.getUserId());
-        return user;
+        return user.getId();
     }
 }
