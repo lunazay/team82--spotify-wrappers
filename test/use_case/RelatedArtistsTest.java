@@ -1,4 +1,4 @@
-package view;
+package use_case;
 
 import api.SpotDevelopDB;
 import data_access.UserDataAccessObject;
