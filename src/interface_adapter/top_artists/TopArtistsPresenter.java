@@ -24,7 +24,7 @@ public class TopArtistsPresenter implements TopArtistsOutputBoundary {
         // Updates the current TopArtistsState with the list of the user's top artists.
         TopArtistsState topArtistsState = topArtistsViewModel.getState();
         topArtistsState.setArtistNames(artists.getArtistNames());
-        this.topArtistsViewModel.setState(topArtistsState);
+        topArtistsViewModel.setState(topArtistsState);
         topArtistsViewModel.firePropertyChanged();
 
         // Changes the view to reflect updates.
