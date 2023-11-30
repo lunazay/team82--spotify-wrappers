@@ -21,9 +21,9 @@ public class LoginInteractor implements LoginInputBoundary{
         userDataAccessInterface.setToken(codeInput);
 
         // and also getting the user id back:
-        User currentUser = userDataAccessInterface.getCurrentUser();
+        String currentUserId = userDataAccessInterface.getCurrentUserId();
 
-        LoginOutputData loginOutputData = new LoginOutputData(currentUser);
+        LoginOutputData loginOutputData = new LoginOutputData(currentUserId);
         loginPresenter.prepareSuccessView(loginOutputData);
     }
 }

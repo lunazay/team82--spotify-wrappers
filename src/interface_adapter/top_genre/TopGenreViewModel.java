@@ -25,6 +25,7 @@ public class TopGenreViewModel extends ViewModel {
         return state.getGenres();
     }
     // the Top genre presenter will call this to let the viewmodel to alert the view
+    @Override
     public void firePropertyChanged(){
         support.firePropertyChange("state", null, this.state);
     }
