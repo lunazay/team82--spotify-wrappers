@@ -34,12 +34,10 @@ public class LoggedInViewModel extends ViewModel {
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
-
     @Override
     public JPanel getViewPanel() {
         return null;
     }
-
     public LoggedInState getState(){
         return state;
     }

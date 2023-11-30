@@ -10,9 +10,9 @@ public class TopAlbumController {
         this.topAlbumUseCaseInteractor = topAlbumInputBoundary;
     }
 
-    public void execute( String id) {
+    public void execute( String timeframe, String id) {
         TopAlbumState topAlbumState = new TopAlbumState();
-        String timeframe = topAlbumState.getTimeframe();
+        //String timeframe = topAlbumState.getTimeframe();
         TopAlbumInputData topAlbumInputData = new TopAlbumInputData(timeframe, id);
 
         topAlbumUseCaseInteractor.execute(topAlbumInputData);
