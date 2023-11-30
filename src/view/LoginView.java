@@ -84,6 +84,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String actionCommand = e.getActionCommand();
                 if (e.getSource().equals(start)) {
                     Desktop desktop = Desktop.getDesktop();
                     try { URI uri = new URI(url);
@@ -148,7 +149,6 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
     private void setFields(LoginState state){
         codeInputField.setText(state.getCode());
-        //TODO: figure out after the input data is figured out.
     }
 
     public String getViewname(){
