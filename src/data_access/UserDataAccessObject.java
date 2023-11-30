@@ -56,12 +56,14 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         ArrayList<Genre> topGenres = new ArrayList<Genre>();
         int count = 0;
         for (Artist artist: topArtist){
+            System.out.println(artist.getName());
             // I want to return an array list of Genre objects because that is how we
             // decided our design implementation will be
             Genre[] genres = artist.getGenres();
+            System.out.println(genres[0].getName());
 
             for (Genre topGenre : genres) {
-                if (!topGenres.contains(topGenre)) {
+                if (!topGenres.contains(topGenre) && topGenre != null) {
                     topGenres.add(topGenre);
                     count++;
                     if (count >= 5) {
