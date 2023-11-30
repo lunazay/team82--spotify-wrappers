@@ -165,6 +165,7 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
      */
     @Override
     public void setToken( String authCode ) throws IOException {
+        try{
         String token = api.getAuthorizationToken(authCode);
 
         File txtFile = new File("./supersecret.txt");
@@ -172,7 +173,9 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         // writing the token to the file:
         BufferedWriter writer = new BufferedWriter(new FileWriter(txtFile));
         writer.write(token);
-        writer.close();
+        writer.close();}
+        catch(IOException e){
+        }
     }
 
 

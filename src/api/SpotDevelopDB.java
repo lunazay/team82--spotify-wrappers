@@ -14,8 +14,8 @@ import org.json.JSONObject;
 
 public class SpotDevelopDB implements DevelopDB{
 
-    String client_id = "bad90b33466e4f208c7655eede3ac628";
-    String client_secret = "15abfd5161e84bfe893606e4eb74f5f6";
+    String client_id = "fa7844760a39469e9a57b866630fcbda";
+    String client_secret = "b5ffd00b1a344c72ab89e00c472cf83a";
     String redirect_uri = "https://oauth.pstmn.io/v1/browser-callback";
 
     // instead of calling using authToken use token() method!

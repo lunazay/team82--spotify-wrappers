@@ -54,13 +54,14 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     public LoggedInView(LoggedInViewModel loggedInViewModel, TopGenreController topGenreController, TopAlbumController topAlbumController, TopSongsController topSongsController, TopArtistsController topArtistsController, GetValenceController getValenceController, RelatedArtistsController relatedArtistsController){
 
             this.loggedInViewModel = loggedInViewModel;
+            this.loggedInViewModel.addPropertyChangeListener(this);
+            compositeView = new CompositeViewModel();
+
             this.topAlbumController = topAlbumController;
             this.topSongsController = topSongsController;
             this.topArtistsController = topArtistsController;
             this.getValenceController = getValenceController;
             this.relatedArtistsController = relatedArtistsController;
-            this.loggedInViewModel.addPropertyChangeListener(this);
-            compositeView = new CompositeViewModel();
             this.topGenreController = topGenreController;
 
 
@@ -188,8 +189,9 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     }
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        LoggedInState state = (LoggedInState) evt.getNewValue();
-
+        if(evt.getPropertyName().equals("state")){
+            LoggedInState State = (LoggedInState) evt.getNewValue();
+        }
     }
 
     public String viewName() {
