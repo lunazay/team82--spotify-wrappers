@@ -62,6 +62,7 @@ public class SpotDevelopDB implements DevelopDB{
 
     @Override
     public String getAuthorizationToken(String authCode) throws IOException {
+        // Hopefully works this time
 
         String auth_string = "https://accounts.spotify.com/api/token";
         URL auth_url = new URL(auth_string);
