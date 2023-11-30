@@ -11,8 +11,6 @@ public class TopAlbumController {
     }
 
     public void execute( String timeframe, String id) {
-        TopAlbumState topAlbumState = new TopAlbumState();
-        //String timeframe = topAlbumState.getTimeframe();
         TopAlbumInputData topAlbumInputData = new TopAlbumInputData(timeframe, id);
 
         topAlbumUseCaseInteractor.execute(topAlbumInputData);

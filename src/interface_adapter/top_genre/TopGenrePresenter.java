@@ -19,6 +19,7 @@ public class TopGenrePresenter implements TopGenreOutputBoundary {
         TopGenreState topGenreState = topGenreViewModel.getState();
         topGenreState.setGenres(user.getGenreNames());
         this.topGenreViewModel.setState(topGenreState);
+        this.topGenreViewModel.setgenres(user.getGenreNames());
         this.topGenreViewModel.firePropertyChanged();
     }
 

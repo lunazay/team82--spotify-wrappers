@@ -11,8 +11,6 @@ public class TopGenreController {
     }
 
     public void execute(String timeframe, String id){
-        // TopGenreState topGenreState = new TopGenreState();
-        // String timeframe = topGenreState.getTimeframe();
         TopGenreInputData topGenreInputData = new TopGenreInputData(timeframe, id);
         userTopGenreUseCaseInteractor.execute(topGenreInputData);
     }

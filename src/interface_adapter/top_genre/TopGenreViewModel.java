@@ -14,6 +14,7 @@ public class TopGenreViewModel extends ViewModel {
     // any buttons/ titles we want dsiplayed should be written here
     private TopGenreState state = new TopGenreState();
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+    private ArrayList<String> genres;
 
     public TopGenreViewModel(){
         super("top genres");
@@ -22,9 +23,13 @@ public class TopGenreViewModel extends ViewModel {
         this.state = state;
     }
     public ArrayList<String> getgenres(){
-        return state.getGenres();
+        return this.genres;
     }
     // the Top genre presenter will call this to let the viewmodel to alert the view
+
+    public void setgenres(ArrayList<String> genres){
+        this.genres = genres;
+    }
     @Override
     public void firePropertyChanged(){
         support.firePropertyChange("state", null, this.state);
@@ -50,7 +55,7 @@ public class TopGenreViewModel extends ViewModel {
         topGenrePanel.add(titleLabel, BorderLayout.NORTH);
 
         // Retrieve the list of genres from the state
-        ArrayList<String> genres = state.getGenres();
+        ArrayList<String> genres = this.genres;
 
         // Display the list of genres in the view
         if (genres != null && !genres.isEmpty()) {
