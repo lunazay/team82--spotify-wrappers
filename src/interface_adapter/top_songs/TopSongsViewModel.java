@@ -36,18 +36,18 @@ public class TopSongsViewModel extends ViewModel {
 
     @Override
     public JPanel getViewPanel() {
-        // Create and configure the JPanel for the top genre view
+        // Create and configure the JPanel for the top song view
         JPanel topSongsPanel = new JPanel();
         topSongsPanel.setLayout(new BorderLayout());
 
-        // Add components representing the top genre view
+        // Add components representing the top song view
         JLabel titleLabel = new JLabel("Top Songs");
         topSongsPanel.add(titleLabel, BorderLayout.NORTH);
 
-        // Retrieve the list of genres from the state
+        // Retrieve the list of songs from the state
         ArrayList<String> songs = state.getSongs();
 
-        // Display the list of genres in the view
+        // Display the list of songs in the view
         if (songs != null && !songs.isEmpty()) {
             JPanel songsPanel = new JPanel(new GridLayout(songs.size(), 1));
             for (String song : songs) {
@@ -56,7 +56,7 @@ public class TopSongsViewModel extends ViewModel {
             }
             topSongsPanel.add(songsPanel, BorderLayout.CENTER);
         } else {
-            // Handle case when there's no genres available
+            // Handle case when there's no songs available
             JLabel noDataLabel = new JLabel("No top songs available.");
             topSongsPanel.add(noDataLabel, BorderLayout.CENTER);
         }

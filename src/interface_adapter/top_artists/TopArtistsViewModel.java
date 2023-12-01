@@ -35,7 +35,7 @@ public class TopArtistsViewModel extends ViewModel {
 
     @Override
     public JPanel getViewPanel() {
-        /// Create and configure the JPanel for the top genre view
+        /// Create and configure the JPanel for the top artist view
         JPanel topArtistPanel = new JPanel();
         topArtistPanel.setLayout(new BorderLayout());
 
@@ -53,7 +53,7 @@ public class TopArtistsViewModel extends ViewModel {
             }
             topArtistPanel.add(artistPanel, BorderLayout.CENTER);
         } else {
-            // Handle case when there's no genres available
+            // Handle case when there's no artists available
             JLabel noDataLabel = new JLabel("No top artists available.");
             topArtistPanel.add(noDataLabel, BorderLayout.CENTER);
         }
