@@ -55,15 +55,16 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     public ArrayList<Genre> getTopGenres(String id, String timeframe) throws Exception {
         Artist[] topArtist = getTopArtists(id, timeframe);
         ArrayList<Genre> topGenres = new ArrayList<Genre>();
+        List<String> genreNames = new ArrayList<>();
         int count = 0;
         for (Artist artist: topArtist){
             // I want to return an array list of Genre objects because that is how we
             // decided our design implementation will be
             Genre[] genres = artist.getGenres();
             Genre topGenre = genres[0];
-
-            if (!topGenres.contains(topGenre) && topGenre != null) {
+            if (!genreNames.contains(topGenre.getName())) {
                 topGenres.add(topGenre);
+                genreNames.add(topGenre.getName());
                 count++;
                 if (count >= 5) {
                     break;
