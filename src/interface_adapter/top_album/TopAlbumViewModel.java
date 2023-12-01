@@ -46,19 +46,19 @@ public class TopAlbumViewModel extends ViewModel {
         // Add other UI components as needed
         topAlbumPanel.add(titleLabel, BorderLayout.NORTH);
 
-        // Retrieve the list of genres from the state
+        // Retrieve the list of albums from the state
         List<String> albums = state.getTopAlbumNames();
 
-        // Display the list of genres in the view
+        // Display the list of albums in the view
         if (albums != null && !albums.isEmpty()) {
-            JPanel genresPanel = new JPanel(new GridLayout(albums.size(), 1));
+            JPanel albumsPanel = new JPanel(new GridLayout(albums.size(), 1));
             for (String album : albums) {
-                JLabel genreLabel = new JLabel(album);
-                genresPanel.add(genreLabel);
+                JLabel albumLabel = new JLabel(album);
+                albumsPanel.add(albumLabel);
             }
-            topAlbumPanel.add(genresPanel, BorderLayout.CENTER);
+            topAlbumPanel.add(albumsPanel, BorderLayout.CENTER);
         } else {
-            // Handle case when there's no genres available
+            // Handle case when there's no albums available
             JLabel noDataLabel = new JLabel("No top albums available.");
             topAlbumPanel.add(noDataLabel, BorderLayout.CENTER);
         }
