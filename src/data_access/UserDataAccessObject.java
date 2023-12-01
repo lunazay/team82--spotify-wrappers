@@ -90,6 +90,7 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
 
         Song[] topSongs = api.getTopSongs(timeframe);
         ArrayList<Album> topAlbums = new ArrayList<>();
+        List<String> albumName = new ArrayList<>();
 
         for (Song song : topSongs) {
             // my thought process here is to iterate through the Songs and for each song,
@@ -98,9 +99,10 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
             Album topAlbum = song.getAlbum();
 
             // checking edge case to avoid duplicate albums
-            if (!topAlbums.contains(topAlbum) && topAlbum != null) {
+            if (!albumName.contains(topAlbum.getName())) {
 
                 topAlbums.add(topAlbum);
+                albumName.add(topAlbum.getName());
 
             }
         }
