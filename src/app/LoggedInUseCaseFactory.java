@@ -61,6 +61,7 @@ public class LoggedInUseCaseFactory {
         LoggedInViewModel loggedInViewModel) {
 
             try {
+                System.out.println("i made it to logged in factory");
                 TopGenreController topGenreController = createTopGenreController(viewManagerModel);
                 TopAlbumController topAlbumController = createTopAlbumUseCase(viewManagerModel);
                 TopSongsController topSongsController = createTopSongsUseCase(viewManagerModel);

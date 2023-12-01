@@ -1,5 +1,6 @@
 package view;
 
+import interface_adapter.ViewManagerModel;
 import interface_adapter.get_valence.GetValenceController;
 import interface_adapter.get_valence.GetValenceState;
 import interface_adapter.logged_in.LoggedInViewModel;
@@ -13,6 +14,7 @@ import interface_adapter.top_artists.TopArtistsController;
 import interface_adapter.top_artists.TopArtistsState;
 import interface_adapter.top_genre.TopGenreController;
 import interface_adapter.top_genre.TopGenreState;
+import interface_adapter.top_genre.TopGenreViewModel;
 import interface_adapter.top_songs.TopSongsController;
 import interface_adapter.top_songs.TopSongsState;
 
@@ -23,11 +25,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 
 public class LoggedInView extends JPanel implements ActionListener, PropertyChangeListener {
         public final String viewName = "logged in";
         private final LoggedInViewModel loggedInViewModel;
         private final CompositeViewModel compositeView;
+        private final ViewManagerModel viewManagerModel;
 
         private final TopGenreController topGenreController;
         private final TopAlbumController topAlbumController;
@@ -61,6 +65,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
             this.relatedArtistsController = relatedArtistsController;
             this.loggedInViewModel.addPropertyChangeListener(this);
             compositeView = new CompositeViewModel();
+            viewManagerModel = new ViewManagerModel();
             this.topGenreController = topGenreController;
 
 
@@ -101,9 +106,9 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
             LoggedInState currentState = loggedInViewModel.getState();
             topGenreController.execute("short_term", currentState.getid());
             topArtistsController.execute("short_term", currentState.getid());
-            topAlbumController.execute("short_term", currentState.getid());
-            topSongsController.execute("short_term", currentState.getid());
-            try {
+            // topAlbumController.execute("short_term", currentState.getid());
+            // topSongsController.execute("short_term", currentState.getid());
+            /*try {
                 getValenceController.execute("short_term", currentState.getid());
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -112,9 +117,9 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
                 relatedArtistsController.execute("short_term", currentState.getid());
             } catch (Exception e) {
                 throw new RuntimeException(e);
-            }
+            }*/
 
-            JPanel selectedView = compositeView;
+            JPanel selectedView = viewManagerModel;
             if (selectedView != null) {
                 showUseCaseView(selectedView);
             }
@@ -135,7 +140,8 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-            JPanel selectedView = compositeView;
+            displayOutput();
+            JPanel selectedView = viewManagerModel;
             if (selectedView != null) {
                 showUseCaseView(selectedView);
             }
@@ -156,7 +162,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-            JPanel selectedView = compositeView;
+            JPanel selectedView = viewManagerModel;
             if (selectedView != null) {
                 showUseCaseView(selectedView);
             }
@@ -194,6 +200,18 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
 
     public String viewName() {
         return viewName;
+    }
+
+    public void displayOutput() {
+        StringBuilder topgenres = new StringBuilder();
+        TopGenreViewModel topGenreViewModel = new TopGenreViewModel();
+        ArrayList<String> outputList = topGenreViewModel.getState().getGenres();
+        for (String user : outputList) {
+            topgenres.append(user).append(",");
+
+        }
+        JOptionPane.showMessageDialog(this, "top Genres:" + topgenres);
+
     }
 }
 

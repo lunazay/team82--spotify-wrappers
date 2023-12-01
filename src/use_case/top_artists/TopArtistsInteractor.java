@@ -32,7 +32,7 @@ public class TopArtistsInteractor implements TopArtistsInputBoundary {
 
             int i = 0;
             for (Artist artist : topArtists) {
-                topArtistNames.set(i, artist.getName());
+                topArtistNames.add(i, artist.getName());
                 i = i + 1;
             }
 

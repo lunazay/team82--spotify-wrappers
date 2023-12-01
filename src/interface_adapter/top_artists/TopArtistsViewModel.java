@@ -45,7 +45,7 @@ public class TopArtistsViewModel extends ViewModel {
 
         List<String> artists = state.getArtistNames();
 
-        if (artists != null && !artists.isEmpty()) {
+        if (artists != null) {
             JPanel artistPanel = new JPanel(new GridLayout(artists.size(), 1));
             for (String artist : artists) {
                 JLabel artistLabel = new JLabel(artist);

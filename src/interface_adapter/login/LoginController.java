@@ -15,5 +15,6 @@ public class LoginController {
     public void execute(String code) throws IOException {
         LoginInputData loginInputData = new LoginInputData(code);
         loginUseCaseInteractor.execute(loginInputData);
+        System.out.println("i made it to the login Intractor and i executed");
     }
 }

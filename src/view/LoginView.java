@@ -1,8 +1,13 @@
 package view;
 
+import app.LoggedInUseCaseFactory;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
+import interface_adapter.top_artists.TopArtistsViewModel;
+import interface_adapter.top_genre.TopGenreViewModel;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -17,6 +22,7 @@ import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewname = "log in";
@@ -57,10 +63,15 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                         System.out.println("Click " + evt.getActionCommand());
 
                         if (evt.getSource().equals(logIn)){
+                            ViewManagerModel viewManagerModel = new ViewManagerModel();
+                            LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
+
+                            System.out.println("i made it to log in view");
                             LoginState currentState = loginViewModel.getState();
                             try {
                                 loginController.execute(currentState.getCode());
-                                openLink("https://developer.spotify.com"); // Replace with your URL
+
+                                displayOutput();
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                     }
@@ -127,22 +138,8 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         this.add(buttons);
     }
 
-    private void openLink(String url) {
-        if (Desktop.isDesktopSupported()) {
-            Desktop desktop = Desktop.getDesktop();
-            try {
-                desktop.browse(new URI(url));
-            } catch (IOException | URISyntaxException e) {
-                e.printStackTrace();
-                // Handle the exception (e.g., show an error message)
-            }
-        } else {
-            // Desktop not supported, handle this case
-            // You can also provide an alternative method to open the link in this case
-            // For example, show a message to the user to copy-paste the link into their browser
-        }
-    }
-    
+
+
     public void actionPerformed(ActionEvent evt) {
         LoginState currentState = loginViewModel.getState();
         String stateCode = currentState.getCode();
@@ -164,4 +161,17 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         return viewname;
     }
 
-}
+    public void displayOutput() {
+        StringBuilder topgenres = new StringBuilder();
+        TopGenreViewModel topGenreViewModel = new TopGenreViewModel();
+        ArrayList<String> outputList = topGenreViewModel.getState().getGenres();
+        for (String user : outputList) {
+            topgenres.append(user).append(",");
+
+        }
+        JOptionPane.showMessageDialog(this, "top Genres:" + topgenres);
+
+    }
+    }
+
+
