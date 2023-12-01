@@ -29,7 +29,7 @@ public class TopSongsInteractor implements TopSongsInputBoundary {
 
         try {
             Song[] topSongs = userDataAccessObject.getTopSongs(id, timeframe);
-            List<String> topSongTitles = new ArrayList<String>(50);
+            List<String> topSongTitles = new ArrayList<String>();
 
             Integer songNumber = 1;
 

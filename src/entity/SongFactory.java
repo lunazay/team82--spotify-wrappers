@@ -13,10 +13,10 @@ public class SongFactory {
      * @return an array of Song objects
      */
     public static Song[] create(JSONObject response) {
-        Song[] songs = new Song[50];
+        Song[] songs = new Song[20];
         JSONArray items = (JSONArray) response.get("items");
 
-        for (int i = 0; (i < items.length() && i < 50); i++) {
+        for (int i = 0; (i < items.length() && i < 20); i++) {
             JSONObject curr_song = (JSONObject) items.get(i);
 
             String id = (String) curr_song.get("id");

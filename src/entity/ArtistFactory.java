@@ -3,7 +3,9 @@ package entity;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class ArtistFactory {
     /**
@@ -13,16 +15,16 @@ public class ArtistFactory {
      * @return array of Artist objects of the user's <=50 top artists.
      */
     public static Artist[] create(JSONObject response) {
-        Artist[] artists = new Artist[50];
+        Artist[] artists = new Artist[20];
         JSONArray items = (JSONArray) response.get("items");
 
-        for (int i = 0; (i < items.length() && i < 50); i++) {
+        for (int i = 0; (i < items.length() && i < 20); i++) {
             JSONObject currArtist = (JSONObject) items.get(i);
             String id = (String) currArtist.get("id");
             String name = (String) currArtist.get("name");
             JSONArray genreArray = (JSONArray) currArtist.get("genres");
 
-            Genre[] genres = new Genre[10];
+            Genre[] genres = new Genre[5];
             for (int x = 0; (x < genreArray.length() && x < 5); x++) {
                 genres[x] = new Genre((String) genreArray.get(x));
             }

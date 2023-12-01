@@ -59,16 +59,16 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
             // I want to return an array list of Genre objects because that is how we
             // decided our design implementation will be
             Genre[] genres = artist.getGenres();
+            Genre topGenre = genres[0];
 
-            for (Genre topGenre : genres) {
-                if (!topGenres.contains(topGenre) && topGenre != null) {
+            if (!topGenres.contains(topGenre) && topGenre != null) {
                     topGenres.add(topGenre);
                     count++;
                     if (count >= 5) {
                         break;
                     }
                 }
-            }
+
             // since I only want the top 5 genres, I'm only counting till 5
             if (count >= 5) {
                 break;
