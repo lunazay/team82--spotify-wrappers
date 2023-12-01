@@ -54,7 +54,6 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     @Override
     public ArrayList<Genre> getTopGenres(String id, String timeframe) throws Exception {
         Artist[] topArtist = getTopArtists(id, timeframe);
-        Set<Genre> uniqueGenres = new HashSet<>();
         ArrayList<Genre> topGenres = new ArrayList<Genre>();
         int count = 0;
         for (Artist artist: topArtist){
@@ -64,12 +63,12 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
             Genre topGenre = genres[0];
 
             if (!topGenres.contains(topGenre) && topGenre != null) {
-                    topGenres.add(topGenre);
-                    count++;
-                    if (count >= 5) {
-                        break;
-                    }
+                topGenres.add(topGenre);
+                count++;
+                if (count >= 5) {
+                    break;
                 }
+            }
 
             // since I only want the top 5 genres, I'm only counting till 5
             if (count >= 5) {
