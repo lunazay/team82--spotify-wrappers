@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 
 public class TopAlbumTest {
 
-    String id = "..."; // TODO get id
+    String id = "baller4life7579";
 
     /**
      * The main method to execute the test.
@@ -31,7 +31,7 @@ public class TopAlbumTest {
     public static void main(String[] args) throws IOException {
 
         SpotDevelopDB api = new SpotDevelopDB();
-        String myAuthCode = "..."; // TODO get my code
+        String myAuthCode = "AQDmqVFpz_u4r5LFlrvPFZxYKPDqHOcNV9sd7TTr15bZINmvqpAtz22z0hrLzH285bK0sjSuNNFQrV-tojOmOEvsJjyezEz7c9mOkRPGQd6no4gXa_89F9xUoAxyxYanNj27Iuqg4R-Ae2C6xZFkQrWBFA2PUM0B_C36WMSf9ux_zzbheIw9AiDoH6Rt7Rk4_qNReFukTIn9KcDgpKYjceNKHqMRW3ddqJjI0vdw5LfAbXcq7I3k7PbdH6R4oihmrhE-Duu2KgJo-02JuKq9EXW_fOT_imglmL8ZI77FRS-tb_6gSzbWZW-I7PpnS2vJ7PU";
         System.out.println(api.getAuthorizationToken(myAuthCode));
 
     }
