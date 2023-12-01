@@ -5,6 +5,8 @@ import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
 
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -95,21 +97,28 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
             }
         });
 
-        codeInputField.addKeyListener(new KeyListener() {
+        codeInputField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void insertUpdate(DocumentEvent e) {
+                updateTextField();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                updateTextField();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                // Plain text components don't fire these events
+            }
+
+            private void updateTextField() {
                 LoginState currentState = loginViewModel.getState();
                 currentState.setCode(codeInputField.getText());
                 loginViewModel.setState(currentState);
             }
-
-            @Override
-            public void keyPressed(KeyEvent e) {}
-
-            @Override
-            public void keyReleased(KeyEvent e) {}
         });
-
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
