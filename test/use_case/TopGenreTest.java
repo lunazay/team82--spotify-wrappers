@@ -8,6 +8,9 @@ import api.SpotDevelopDB;
 import data_access.UserDataAccessObject;
 import entity.Genre;
 
+/**
+ * This class contains tests for the TopGenres use case.
+ */
 public class TopGenreTest {
     private String userID = "31gqehqotfmiji3bbkreneh7d3ia";
     public static void main(String[] args) throws IOException {
@@ -16,6 +19,12 @@ public class TopGenreTest {
         System.out.println(api.getAuthorizationToken(authcode));
     }
 
+    /**
+     * Retrieves the top genres for a user.
+     *
+     * @return ArrayList of top genres.
+     * @throws Exception If an error occurs during data retrieval.
+     */
     public ArrayList<Genre> getTopGenres() throws Exception{
         UserDataAccessObject user = new UserDataAccessObject();
         ArrayList<Genre> topGenres = user.getTopGenres(userID, "long_term");

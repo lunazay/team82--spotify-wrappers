@@ -14,6 +14,9 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class contains tests for the RelatedArtists use case.
+ */
 
 public class RelatedArtistsTest {
 

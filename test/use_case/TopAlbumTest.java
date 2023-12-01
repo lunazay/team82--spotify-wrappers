@@ -14,9 +14,20 @@ import java.util.Objects;
 
 import static org.junit.Assert.*;
 
+/**
+ * This class contains tests for the TopAlbum use case.
+ */
+
 public class TopAlbumTest {
 
     String id = "..."; // TODO get id
+
+    /**
+     * The main method to execute the test.
+     *
+     * @param args Command-line arguments.
+     * @throws IOException If an I/O error occurs.
+     */
     public static void main(String[] args) throws IOException {
 
         SpotDevelopDB api = new SpotDevelopDB();
@@ -25,6 +36,12 @@ public class TopAlbumTest {
 
     }
 
+    /**
+     * Retrieves the top albums for a user.
+     *
+     * @return ArrayList of top albums.
+     * @throws Exception If an error occurs during data retrieval.
+     */
     public ArrayList<Album> getTopAlbums() throws Exception {
 
         UserDataAccessObject userDataAccessObject = new UserDataAccessObject();
@@ -33,6 +50,11 @@ public class TopAlbumTest {
 
     }
 
+    /**
+     * Test method for the getTopAlbums function.
+     *
+     * @throws Exception If an error occurs during the test.
+     */
     @org.junit.Test
     public void testTopAlbum() throws Exception {
 
