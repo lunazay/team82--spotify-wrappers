@@ -1,3 +1,19 @@
+package use_case;
+
+import api.SpotDevelopDB;
+import data_access.UserDataAccessObject;
+import entity.Song;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.Objects;
+
+import static org.junit.Assert.*;
+
+public class TopSongsTest {
 
     public static void main(String[] args) throws IOException {
         SpotDevelopDB api = new SpotDevelopDB();
@@ -9,6 +25,7 @@
         UserDataAccessObject userDataAccessObject = new UserDataAccessObject();
 
         Song[] topSongs = userDataAccessObject.getTopSongs("0wn1qh223kptm533gbxyin4mh", "long_term");
-        assert(Objects.equals(topSongs[0].getName(), "Living with a Stranger"));
+        assert (Objects.equals(topSongs[0].getName(), "Living with a Stranger"));
     }
+}
 
