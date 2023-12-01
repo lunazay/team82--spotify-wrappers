@@ -42,6 +42,7 @@ public class TopSongsViewModel extends ViewModel {
 
         // Add components representing the top song view
         JLabel titleLabel = new JLabel("Top Songs");
+        titleLabel.setFont(new Font(titleLabel.getFont().getName(), Font.BOLD, titleLabel.getFont().getSize())); // Set font to bold
         topSongsPanel.add(titleLabel, BorderLayout.NORTH);
 
         // Retrieve the list of songs from the state
