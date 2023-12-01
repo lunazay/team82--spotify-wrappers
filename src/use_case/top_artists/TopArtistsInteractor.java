@@ -28,11 +28,11 @@ public class TopArtistsInteractor implements TopArtistsInputBoundary {
 
         try {
             Artist[] topArtists = userDataAccessObject.getTopArtists(id, timeframe);
-            List<String> topArtistNames = new ArrayList<String>(50);
+            List<String> topArtistNames = new ArrayList<String>();
 
             int i = 0;
             for (Artist artist : topArtists) {
-                topArtistNames.set(i, artist.getName());
+                topArtistNames.add(i, artist.getName());
                 i = i + 1;
             }
 
