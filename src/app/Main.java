@@ -9,6 +9,7 @@ import entity.Artist;
 import entity.Song;
 import entity.Genre;
 
+import interface_adapter.CompositeViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.ViewModel;
 import interface_adapter.get_valence.GetValenceController;
@@ -35,6 +36,7 @@ import view.ViewManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 
@@ -54,6 +56,7 @@ public class Main {
 
         LoginViewModel loginViewModel = new LoginViewModel();
         LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
+        CompositeViewModel compositeViewModel = new CompositeViewModel();
         GetValenceViewModel getValenceViewModel = new GetValenceViewModel();
         RelatedArtistsViewModel relatedArtistsViewModel = new RelatedArtistsViewModel();
         TopSongsViewModel topSongsViewModel = new TopSongsViewModel();
@@ -72,7 +75,7 @@ public class Main {
         LoginView loginView =  LoginUseCaseFactory.create(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject) ;
         views.add(loginView, loginView.viewname);
 
-        LoggedInView loggedInView =  LoggedInUseCaseFactory.create(viewManagerModel, loggedInViewModel);
+        LoggedInView loggedInView =  LoggedInUseCaseFactory.create(viewManagerModel, loggedInViewModel, compositeViewModel);
         views.add(loggedInView, loggedInView.viewname);
 
         viewManagerModel.setActiveViewName(loginViewModel.getViewName());

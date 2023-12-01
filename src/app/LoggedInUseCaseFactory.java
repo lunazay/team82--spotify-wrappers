@@ -1,6 +1,7 @@
 package app;
 
 import data_access.UserDataAccessObject;
+import interface_adapter.CompositeViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.get_valence.GetValenceController;
 import interface_adapter.get_valence.GetValencePresenter;
@@ -50,6 +51,8 @@ import view.LoggedInView;
 import view.LoginView;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 
 public class LoggedInUseCaseFactory {
@@ -57,20 +60,21 @@ public class LoggedInUseCaseFactory {
     private LoggedInUseCaseFactory() {}
 
     public static LoggedInView create(
-        ViewManagerModel viewManagerModel,
-        LoggedInViewModel loggedInViewModel) {
+            ViewManagerModel viewManagerModel,
+            LoggedInViewModel loggedInViewModel,
+            CompositeViewModel compositeViewModel) {
 
             try {
-                TopGenreController topGenreController = createTopGenreController(viewManagerModel);
+                TopGenreController topGenreController = createTopGenreController(viewManagerModel, compositeViewModel);
                 TopAlbumController topAlbumController = createTopAlbumUseCase(viewManagerModel);
                 TopSongsController topSongsController = createTopSongsUseCase(viewManagerModel);
                 TopArtistsController topArtistsController = createTopArtistsUseCase(viewManagerModel);
-                GetValenceController getValenceController = createGetValenceUseCase(viewManagerModel);
+                GetValenceController getValenceController = createGetValenceUseCase(viewManagerModel, compositeViewModel);
                 RelatedArtistsController relatedArtistsController = createRelatedArtistsUseCase(viewManagerModel);
 
 
                 return new LoggedInView(loggedInViewModel, topGenreController, topAlbumController, topSongsController,
-                        topArtistsController,getValenceController,relatedArtistsController);
+                        topArtistsController,getValenceController,relatedArtistsController, compositeViewModel);
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(null, "Could not open user data file.");
             }
@@ -79,9 +83,11 @@ public class LoggedInUseCaseFactory {
 
     }
 
-    private static GetValenceController createGetValenceUseCase(ViewManagerModel viewManagerModel) throws IOException {
+    private static GetValenceController createGetValenceUseCase(ViewManagerModel viewManagerModel,
+                                                                CompositeViewModel compositeViewModel) throws IOException {
         GetValenceDataAccessInterface getValenceDataAccessInterface = new UserDataAccessObject();
         GetValenceViewModel getValenceViewModel = new GetValenceViewModel();
+        getValenceViewModel.addPropertyChangeListener((PropertyChangeListener) compositeViewModel);
         GetValenceOutputBoundary getValenceOutputBoundary = new GetValencePresenter(getValenceViewModel, viewManagerModel);
 
         GetValenceInputBoundary getValenceInteractor = new GetValenceInteractor(
@@ -114,10 +120,12 @@ public class LoggedInUseCaseFactory {
         return new TopAlbumController(topAlbumInteractor);
     }
 
-    private static TopGenreController createTopGenreController(ViewManagerModel viewManagerModel) throws IOException {
+    private static TopGenreController createTopGenreController(ViewManagerModel viewManagerModel,
+                                                               CompositeViewModel compositeViewModel) throws IOException {
 
         TopGenreDataAccessInterface topGenreDataAccessInterface = new UserDataAccessObject();
         TopGenreViewModel topGenreViewModel = new TopGenreViewModel();
+        topGenreViewModel.addPropertyChangeListener((PropertyChangeListener) compositeViewModel);
         TopGenreOutputBoundary topGenreOutputData = new TopGenrePresenter(topGenreViewModel, viewManagerModel);
 
         TopGenreInputBoundary userGenreInteractor = new TopGenreInteractor(

@@ -3,7 +3,12 @@ package view;
 import api.SpotDevelopDB;
 import app.Main;
 import data_access.UserDataAccessObject;
+import interface_adapter.get_valence.GetValencePresenter;
+import interface_adapter.get_valence.GetValenceViewModel;
 import org.junit.Test;
+import use_case.get_valence.GetValenceDataAccessInterface;
+import use_case.get_valence.GetValenceInteractor;
+import use_case.get_valence.GetValenceOutputBoundary;
 
 import javax.swing.*;
 

@@ -51,7 +51,11 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
      * @param relatedArtistsController
      */
 
-    public LoggedInView(LoggedInViewModel loggedInViewModel, TopGenreController topGenreController, TopAlbumController topAlbumController, TopSongsController topSongsController, TopArtistsController topArtistsController, GetValenceController getValenceController, RelatedArtistsController relatedArtistsController){
+
+    public LoggedInView(LoggedInViewModel loggedInViewModel, TopGenreController topGenreController,
+                        TopAlbumController topAlbumController, TopSongsController topSongsController,
+                        TopArtistsController topArtistsController, GetValenceController getValenceController,
+                        RelatedArtistsController relatedArtistsController, CompositeViewModel compositeView){
 
             this.loggedInViewModel = loggedInViewModel;
             this.topAlbumController = topAlbumController;
@@ -60,9 +64,8 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
             this.getValenceController = getValenceController;
             this.relatedArtistsController = relatedArtistsController;
             this.loggedInViewModel.addPropertyChangeListener(this);
-            compositeView = new CompositeViewModel();
+            this.compositeView = compositeView;
             this.topGenreController = topGenreController;
-
 
             JLabel title = new JLabel("Logged In Screen");
             title.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -114,7 +117,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
                 throw new RuntimeException(e);
             }
 
-            JPanel selectedView = compositeView;
+            JPanel selectedView = compositeView.getGridPanel();
             if (selectedView != null) {
                 showUseCaseView(selectedView);
             }
@@ -188,7 +191,13 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     }
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        LoggedInState state = (LoggedInState) evt.getNewValue();
+        // LoggedInState state = (LoggedInState) evt.getNewValue();
+        if (evt.getPropertyName().equals("TopGenreState")) {
+            TopGenreState state = (TopGenreState) evt.getNewValue();
+            LoggedInState loggedInState = loggedInViewModel.getState();
+            loggedInState.setTopGenreState(state);
+            loggedInViewModel.setState(loggedInState);
+        }
 
     }
 
