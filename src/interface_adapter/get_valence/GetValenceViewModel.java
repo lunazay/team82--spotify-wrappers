@@ -31,6 +31,7 @@ public class GetValenceViewModel extends ViewManagerModel {
 
         // Add components representing the view
         JLabel titleLabel = new JLabel("Valence"); // Update label accordingly
+        titleLabel.setFont(new Font(titleLabel.getFont().getName(), Font.BOLD, titleLabel.getFont().getSize())); // Set font to bold
         getValencePanel.add(titleLabel, BorderLayout.NORTH);
 
         // Retrieve the valence value from the state

@@ -1,5 +1,7 @@
 package view;
 
+import app.LoggedInUseCaseFactory;
+import interface_adapter.ViewManagerModel;
 import interface_adapter.get_valence.GetValenceController;
 import interface_adapter.get_valence.GetValenceState;
 import interface_adapter.logged_in.LoggedInViewModel;
@@ -118,6 +120,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
             }
 
             JPanel selectedView = compositeView.getGridPanel();
+            addBackButton(selectedView);
             if (selectedView != null) {
                 showUseCaseView(selectedView);
             }
@@ -139,6 +142,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
                 throw new RuntimeException(e);
             }
             JPanel selectedView = compositeView.getGridPanel();
+            addBackButton(selectedView);
             if (selectedView != null) {
                 showUseCaseView(selectedView);
             }
@@ -160,6 +164,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
                 throw new RuntimeException(e);
             }
             JPanel selectedView = compositeView.getGridPanel();
+            addBackButton(selectedView);
             if (selectedView != null) {
                 showUseCaseView(selectedView);
             }
@@ -199,6 +204,26 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
             loggedInViewModel.setState(loggedInState);
         }
 
+    }
+
+    public void addBackButton(JPanel panel) {
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                System.out.println(("Click" + evt.getActionCommand()));
+                // Get the parent container (assuming LoggedInView)
+                ViewManagerModel viewManagerModel = new ViewManagerModel();
+                LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
+                CompositeViewModel compositeViewModel = new CompositeViewModel();
+                LoggedInView loggedInView = LoggedInUseCaseFactory.create(viewManagerModel, loggedInViewModel, compositeViewModel);
+                if (loggedInView != null) {
+                    showUseCaseView(loggedInView); // Show LoggedInView again
+                }
+            }
+
+        });
+        panel.add(backButton);
     }
 
 }

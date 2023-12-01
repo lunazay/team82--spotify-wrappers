@@ -38,6 +38,7 @@ public class RelatedArtistsViewModel extends ViewModel {
 
         // Add components representing the related artists view
         JLabel titleLabel = new JLabel("Related Artist");
+        titleLabel.setFont(new Font(titleLabel.getFont().getName(), Font.BOLD, titleLabel.getFont().getSize())); // Set font to bold
         relatedArtistPanel.add(titleLabel, BorderLayout.NORTH);
 
         // Retrieve the list of related artists from the state
