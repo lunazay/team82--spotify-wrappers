@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface DevelopDB {
 
-    Song[] getTopSongs(String time_frame, int numSongs) throws IOException;
+    Song[] getTopSongs(String time_frame) throws IOException;
 
     Artist[] getTopArtists(String time_frame) throws IOException;
 

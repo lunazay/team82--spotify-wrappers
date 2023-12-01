@@ -19,6 +19,7 @@ import use_case.top_songs.TopSongsDataAccessInterface;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGenreDataAccessInterface,
@@ -35,7 +36,7 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
      */
     @Override
     public Song[] getTopSongs(String id, String timeframe) throws Exception {
-        Song[] songs = api.getTopSongs(timeframe, 50);
+        Song[] songs = api.getTopSongs(timeframe);
 
         if (songs.length > 0) {
             return songs;
@@ -54,20 +55,21 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     public ArrayList<Genre> getTopGenres(String id, String timeframe) throws Exception {
         Artist[] topArtist = getTopArtists(id, timeframe);
         ArrayList<Genre> topGenres = new ArrayList<Genre>();
+        List<String> genreNames = new ArrayList<>();
         int count = 0;
         for (Artist artist: topArtist){
             // I want to return an array list of Genre objects because that is how we
             // decided our design implementation will be
             Genre[] genres = artist.getGenres();
             Genre topGenre = genres[0];
-
-            if (!topGenres.contains(topGenre) && topGenre != null) {
-                    topGenres.add(topGenre);
-                    count++;
-                    if (count >= 5) {
-                        break;
-                    }
+            if (!genreNames.contains(topGenre.getName())) {
+                topGenres.add(topGenre);
+                genreNames.add(topGenre.getName());
+                count++;
+                if (count >= 5) {
+                    break;
                 }
+            }
 
             // since I only want the top 5 genres, I'm only counting till 5
             if (count >= 5) {
@@ -86,8 +88,9 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     @Override
     public ArrayList<Album> getTopAlbums(String id, String timeframe) throws Exception {
 
-        Song[] topSongs = api.getTopSongs(timeframe, 50);
+        Song[] topSongs = api.getTopSongs(timeframe);
         ArrayList<Album> topAlbums = new ArrayList<>();
+        List<String> albumName = new ArrayList<>();
 
         for (Song song : topSongs) {
             // my thought process here is to iterate through the Songs and for each song,
@@ -96,9 +99,10 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
             Album topAlbum = song.getAlbum();
 
             // checking edge case to avoid duplicate albums
-            if (!topAlbums.contains(topAlbum) && topAlbum != null) {
+            if (!albumName.contains(topAlbum.getName())) {
 
                 topAlbums.add(topAlbum);
+                albumName.add(topAlbum.getName());
 
             }
         }
@@ -168,7 +172,7 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         Artist topArtist = getTopArtists(id, timeframe)[0];
         String topArtistId = topArtist.getId();
         JSONObject relatedArtists = api.getRelatedArtists(topArtistId);
-        JSONArray items = (JSONArray) relatedArtists.get("items");
+        JSONArray items = (JSONArray) relatedArtists.get("artists");
         List<String> listRelatedArtists = new ArrayList<>();
         for (int i = 0; (i < items.length() && i < 50); i++) {
             JSONObject currArtist = (JSONObject) items.get(i);
