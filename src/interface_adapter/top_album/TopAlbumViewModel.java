@@ -24,7 +24,7 @@ public class TopAlbumViewModel extends ViewModel {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
 
     public void firePropertyChanged() {
-        support.firePropertyChange("state", null, this.state);
+        support.firePropertyChange("TopAlbumState", null, this.state);
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener){
