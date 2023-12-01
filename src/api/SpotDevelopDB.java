@@ -90,11 +90,9 @@ public class SpotDevelopDB implements DevelopDB{
         String auth_string = "https://accounts.spotify.com/api/token";
         URL auth_url = new URL(auth_string);
 
-
         String post_data = "grant_type=authorization_code&" +
                 "code=" + authCode + "&" +
                 "redirect_uri=" + "https%3A%2F%2Foauth.pstmn.io%2Fv1%2Fbrowser-callback";
-
 
         byte[] postData = post_data.getBytes(StandardCharsets.UTF_8);
 
@@ -132,8 +130,6 @@ public class SpotDevelopDB implements DevelopDB{
 
             JSONObject responseBody = new JSONObject(response.toString());
             return responseBody.get("access_token").toString();
-
-
         }
         return null;
     }

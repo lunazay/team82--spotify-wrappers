@@ -3,6 +3,7 @@ package interface_adapter;
 import app.LoggedInUseCaseFactory;
 import interface_adapter.get_valence.GetValenceController;
 import interface_adapter.get_valence.GetValenceViewModel;
+import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.related_artists.RelatedArtistsController;
 import interface_adapter.related_artists.RelatedArtistsViewModel;
@@ -11,6 +12,7 @@ import interface_adapter.top_album.TopAlbumViewModel;
 import interface_adapter.top_artists.TopArtistsController;
 import interface_adapter.top_artists.TopArtistsViewModel;
 import interface_adapter.top_genre.TopGenreController;
+import interface_adapter.top_genre.TopGenreState;
 import interface_adapter.top_genre.TopGenreViewModel;
 import interface_adapter.top_songs.TopSongsController;
 import interface_adapter.top_songs.TopSongsViewModel;
@@ -22,27 +24,34 @@ import javax.swing.text.View;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 
-public class CompositeViewModel extends JPanel{
+public class CompositeViewModel extends JPanel implements PropertyChangeListener{
     private GetValenceViewModel getValenceViewModel;
     private RelatedArtistsViewModel relatedArtistsViewModel;
-    private TopGenreViewModel topGenreViewModel;
+    public TopGenreViewModel topGenreViewModel;
     private TopSongsViewModel topSongsViewModel;
     private TopAlbumViewModel topAlbumViewModel;
     private TopArtistsViewModel topArtistsViewModel;
     private TopGenreController topGenreController;
 
+    public JPanel gridPanel;
 
-    public CompositeViewModel(){
-        setLayout(new GridLayout(3, 2)); // Adjust layout as needed
-        RelatedArtistsViewModel relatedArtistsViewModel = new RelatedArtistsViewModel();
-        TopGenreViewModel topGenreViewModel = new TopGenreViewModel();
-        TopSongsViewModel topSongsViewModel = new TopSongsViewModel();
-        TopAlbumViewModel topAlbumViewModel = new TopAlbumViewModel();
-        TopArtistsViewModel topArtistsViewModel = new TopArtistsViewModel();
-        GetValenceViewModel getValenceViewModel = new GetValenceViewModel();
+    final PropertyChangeSupport support = new PropertyChangeSupport(this);
+
+    public CompositeViewModel() {
+        setLayout(new GridLayout(3, 2)); // Adjust layout as needed;
+
+        this.relatedArtistsViewModel = new RelatedArtistsViewModel();
+        this.topGenreViewModel = new TopGenreViewModel();
+        this.topSongsViewModel = new TopSongsViewModel();
+        this.topAlbumViewModel = new TopAlbumViewModel();
+        this.topArtistsViewModel = new TopArtistsViewModel();
+        this.getValenceViewModel = new GetValenceViewModel();
         LoggedInViewModel loggedInViewModel = new LoggedInViewModel();
-
 
         // Create Back button
         JButton backButton = new JButton("Back");
@@ -55,12 +64,13 @@ public class CompositeViewModel extends JPanel{
                 JPanel selectedView = null;
                 // Get the parent container (assuming LoggedInView)
                 ViewManagerModel viewManagerModel = new ViewManagerModel();
-                LoggedInView loggedInView = LoggedInUseCaseFactory.create(viewManagerModel, loggedInViewModel);
+                LoggedInView loggedInView = LoggedInUseCaseFactory.create(viewManagerModel, loggedInViewModel, CompositeViewModel.this);
                 if (loggedInView != null) {
                     selectedView = loggedInView;
                     showLoggedInView(loggedInView); // Show LoggedInView again
                 }
             }
+
             public void showLoggedInView(JPanel loggedInView) {
                 // Clear the existing content of the LoggedInView and show the selected use case view
                 // Here's what the showUseCaseView method does:
@@ -77,7 +87,7 @@ public class CompositeViewModel extends JPanel{
             }
         });
         // Use a separate JPanel for grid layout to organize view models
-        JPanel gridPanel = new JPanel(new GridLayout(3, 2)); // Adjust layout as needed
+        gridPanel = new JPanel(new GridLayout(3, 2)); // Adjust layout as needed
 
         // Add view panels to the gridPanel
         gridPanel.add(getValenceViewModel.getViewPanel());
@@ -93,4 +103,31 @@ public class CompositeViewModel extends JPanel{
 
     }
 
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        if (evt.getPropertyName().equals("TopGenreState")) {
+            TopGenreState currentState = (TopGenreState) evt.getNewValue();
+            ArrayList<String> genres = currentState.getGenres();
+            this.topGenreViewModel.setgenres(genres);
+        }
+
+    }
+
+    public JPanel getGridPanel() {
+        gridPanel = new JPanel(new GridLayout(3, 2)); // Adjust layout as needed
+
+        // Add view panels to the gridPanel
+        gridPanel.add(getValenceViewModel.getViewPanel());
+        gridPanel.add(relatedArtistsViewModel.getViewPanel());
+        gridPanel.add(topGenreViewModel.getViewPanel());
+        gridPanel.add(topSongsViewModel.getViewPanel());
+        gridPanel.add(topAlbumViewModel.getViewPanel());
+        gridPanel.add(topArtistsViewModel.getViewPanel());
+
+        JButton backButton = new JButton("Back");
+        add(backButton, BorderLayout.SOUTH); // Add the Back button at the top
+        add(gridPanel, BorderLayout.CENTER); // Add the gridPanel to hold view models
+
+        return gridPanel;
+    }
 }
