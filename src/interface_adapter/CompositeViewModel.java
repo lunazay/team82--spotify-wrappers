@@ -16,6 +16,7 @@ import interface_adapter.top_genre.TopGenreController;
 import interface_adapter.top_genre.TopGenreState;
 import interface_adapter.top_genre.TopGenreViewModel;
 import interface_adapter.top_songs.TopSongsController;
+import interface_adapter.top_songs.TopSongsState;
 import interface_adapter.top_songs.TopSongsViewModel;
 import use_case.top_songs.TopSongsInputBoundary;
 import view.LoggedInView;
@@ -113,6 +114,10 @@ public class CompositeViewModel extends JPanel implements PropertyChangeListener
             TopAlbumState currentState = (TopAlbumState) evt.getNewValue();
             // List<String> albums = currentState.getTopAlbumNames();
             this.topAlbumViewModel.setState(currentState);
+        }
+        if (evt.getPropertyName().equals("TopSongsState")) {
+            TopSongsState currentState = (TopSongsState) evt.getNewValue();
+            this.topSongsViewModel.setState(currentState);
         }
 
     }

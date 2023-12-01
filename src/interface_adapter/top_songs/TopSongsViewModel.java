@@ -27,7 +27,7 @@ public class TopSongsViewModel extends ViewModel {
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
     // the Top Songs presenter will call this to let the viewmodel to alert the view
     public void firePropertyChanged(){
-        support.firePropertyChange("state", null, this.state);
+        support.firePropertyChange("TopSongsState", null, this.state);
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener){
