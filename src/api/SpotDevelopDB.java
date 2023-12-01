@@ -169,7 +169,7 @@ public class SpotDevelopDB implements DevelopDB{
     }
 
     @Override
-    public Song[] getTopSongs(String timeframe, int numSongs) throws JSONException, IOException {
+    public Song[] getTopSongs(String timeframe) throws JSONException, IOException {
         OkHttpClient client = new OkHttpClient().newBuilder().build();
         Request request = new Request.Builder()
                 .url("https://api.spotify.com/v1/me/top/tracks?" + "time_range=" + timeframe)
