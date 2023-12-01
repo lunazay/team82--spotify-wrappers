@@ -60,7 +60,6 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
                             LoginState currentState = loginViewModel.getState();
                             try {
                                 loginController.execute(currentState.getCode());
-                                openLink("https://developer.spotify.com"); // Replace with your URL
                             } catch (IOException e) {
                                 throw new RuntimeException(e);
                     }
@@ -125,22 +124,6 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         this.add(title);
         this.add(codeInputInfo);
         this.add(buttons);
-    }
-
-    private void openLink(String url) {
-        if (Desktop.isDesktopSupported()) {
-            Desktop desktop = Desktop.getDesktop();
-            try {
-                desktop.browse(new URI(url));
-            } catch (IOException | URISyntaxException e) {
-                e.printStackTrace();
-                // Handle the exception (e.g., show an error message)
-            }
-        } else {
-            // Desktop not supported, handle this case
-            // You can also provide an alternative method to open the link in this case
-            // For example, show a message to the user to copy-paste the link into their browser
-        }
     }
     
     public void actionPerformed(ActionEvent evt) {

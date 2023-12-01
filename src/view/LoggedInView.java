@@ -25,7 +25,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class LoggedInView extends JPanel implements ActionListener, PropertyChangeListener {
-        public final String viewName = "logged in";
+        public final String viewname = "logged in";
         private final LoggedInViewModel loggedInViewModel;
         private final CompositeViewModel compositeView;
 
@@ -192,8 +192,5 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
 
     }
 
-    public String viewName() {
-        return viewName;
-    }
 }
 
