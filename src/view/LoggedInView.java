@@ -138,7 +138,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-            JPanel selectedView = compositeView;
+            JPanel selectedView = compositeView.getGridPanel();
             if (selectedView != null) {
                 showUseCaseView(selectedView);
             }
@@ -159,7 +159,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-            JPanel selectedView = compositeView;
+            JPanel selectedView = compositeView.getGridPanel();
             if (selectedView != null) {
                 showUseCaseView(selectedView);
             }

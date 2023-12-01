@@ -1,6 +1,7 @@
 package interface_adapter.top_album;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.top_genre.TopGenreState;
 import use_case.top_album.TopAlbumOutputBoundary;
 import use_case.top_album.TopAlbumOutputData;
 
@@ -19,15 +20,15 @@ public class TopAlbumPresenter implements TopAlbumOutputBoundary {
         TopAlbumState topAlbumState = topAlbumViewModel.getState();
         topAlbumState.setTopAlbumNames(album.getAlbumNames());
         this.topAlbumViewModel.setState(topAlbumState);
-        topAlbumViewModel.firePropertyChanged();
-        viewManagerModel.setActiveViewName(topAlbumViewModel.getViewName());
-        viewManagerModel.firePropertyChanged();
+        this.topAlbumViewModel.firePropertyChanged();
+
     }
 
     @Override
     public void prepareFailView(String error){
         TopAlbumState topAlbumState = topAlbumViewModel.getState();
         topAlbumState.setError(error);
+        topAlbumViewModel.setState(topAlbumState);
         topAlbumViewModel.firePropertyChanged();
     }
 }

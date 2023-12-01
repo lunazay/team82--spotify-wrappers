@@ -27,6 +27,7 @@ public class RelatedArtistsPresenter implements RelatedArtistsOutputBoundary {
     public void prepareSuccessView(RelatedArtistsOutputData artists) {
         RelatedArtistsState relatedArtistsState = relatedArtistsViewModel.getState();
         relatedArtistsState.setRelatedArtists(artists.getRelatedArtists());
+        relatedArtistsViewModel.setState(relatedArtistsState);
         relatedArtistsViewModel.firePropertyChanged();
         viewManagerModel.setActiveViewName(relatedArtistsViewModel.getViewName());
         viewManagerModel.firePropertyChanged();

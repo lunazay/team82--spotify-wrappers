@@ -4,6 +4,8 @@ import interface_adapter.ViewManagerModel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 
 public class GetValenceViewModel extends ViewManagerModel {
@@ -13,6 +15,14 @@ public class GetValenceViewModel extends ViewManagerModel {
     public void setState(GetValenceState state) { this.state = state; }
 
     public GetValenceState getState() { return this.state; }
+
+    private final PropertyChangeSupport support = new PropertyChangeSupport(this);
+    public void firePropertyChanged() {
+        support.firePropertyChange("ValenceState", null, this.state);
+    }
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        support.addPropertyChangeListener(listener);
+    }
 
     public JPanel getViewPanel() {
         // Create and configure the JPanel for the valence view

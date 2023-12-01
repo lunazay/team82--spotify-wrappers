@@ -66,11 +66,11 @@ public class LoggedInUseCaseFactory {
 
             try {
                 TopGenreController topGenreController = createTopGenreController(viewManagerModel, compositeViewModel);
-                TopAlbumController topAlbumController = createTopAlbumUseCase(viewManagerModel);
-                TopSongsController topSongsController = createTopSongsUseCase(viewManagerModel);
-                TopArtistsController topArtistsController = createTopArtistsUseCase(viewManagerModel);
+                TopAlbumController topAlbumController = createTopAlbumUseCase(viewManagerModel, compositeViewModel);
+                TopSongsController topSongsController = createTopSongsUseCase(viewManagerModel, compositeViewModel);
+                TopArtistsController topArtistsController = createTopArtistsUseCase(viewManagerModel, compositeViewModel);
                 GetValenceController getValenceController = createGetValenceUseCase(viewManagerModel, compositeViewModel);
-                RelatedArtistsController relatedArtistsController = createRelatedArtistsUseCase(viewManagerModel);
+                RelatedArtistsController relatedArtistsController = createRelatedArtistsUseCase(viewManagerModel, compositeViewModel);
 
 
                 return new LoggedInView(loggedInViewModel, topGenreController, topAlbumController, topSongsController,
@@ -96,10 +96,11 @@ public class LoggedInUseCaseFactory {
         return new GetValenceController(getValenceInteractor);
     }
 
-    private static TopSongsController createTopSongsUseCase(ViewManagerModel viewManagerModel) throws IOException {
+    private static TopSongsController createTopSongsUseCase(ViewManagerModel viewManagerModel, CompositeViewModel compositeViewModel) throws IOException {
 
         TopSongsDataAccessInterface topSongsDataAccessInterface = new UserDataAccessObject();
         TopSongsViewModel topSongsViewModel = new TopSongsViewModel();
+        topSongsViewModel.addPropertyChangeListener((PropertyChangeListener) compositeViewModel);
         TopSongsOutputBoundary topSongsOutputBoundary = new TopSongsPresenter(viewManagerModel, topSongsViewModel);
 
         TopSongsInputBoundary topSongsInteractor = new TopSongsInteractor(
@@ -108,10 +109,12 @@ public class LoggedInUseCaseFactory {
         return new TopSongsController(topSongsInteractor);
     }
 
-    private static TopAlbumController createTopAlbumUseCase(ViewManagerModel viewManagerModel) throws IOException {
+    private static TopAlbumController createTopAlbumUseCase(ViewManagerModel viewManagerModel,
+                                                            CompositeViewModel compositeViewModel) throws IOException {
 
         TopAlbumDataAccessInterface topAlbumDataAccessInterface = new UserDataAccessObject();
         TopAlbumViewModel topAlbumViewModel = new TopAlbumViewModel();
+        topAlbumViewModel.addPropertyChangeListener((PropertyChangeListener) compositeViewModel);
         TopAlbumOutputBoundary topAlbumOutputBoundary = new TopAlbumPresenter(viewManagerModel, topAlbumViewModel);
 
         TopAlbumInputBoundary topAlbumInteractor = new TopAlbumInteractor(
@@ -134,10 +137,11 @@ public class LoggedInUseCaseFactory {
         return new TopGenreController(userGenreInteractor);
     }
 
-    private static TopArtistsController createTopArtistsUseCase(ViewManagerModel viewManagerModel) throws IOException {
+    private static TopArtistsController createTopArtistsUseCase(ViewManagerModel viewManagerModel, CompositeViewModel compositeViewModel) throws IOException {
 
         TopArtistsDataAccessInterface topArtistsDataAccessInterface = new UserDataAccessObject();
         TopArtistsViewModel topArtistsViewModel = new TopArtistsViewModel();
+        topArtistsViewModel.addPropertyChangeListener((PropertyChangeListener) compositeViewModel);
         TopArtistsOutputBoundary topArtistsOutputBoundary = new TopArtistsPresenter(viewManagerModel, topArtistsViewModel);
 
         TopArtistsInputBoundary userArtistInteractor = new TopArtistsInteractor(topArtistsDataAccessInterface, topArtistsOutputBoundary);
@@ -145,10 +149,12 @@ public class LoggedInUseCaseFactory {
         return new TopArtistsController(userArtistInteractor);
     }
 
-    private static RelatedArtistsController createRelatedArtistsUseCase(ViewManagerModel viewManagerModel) throws IOException {
+    private static RelatedArtistsController createRelatedArtistsUseCase(ViewManagerModel viewManagerModel,
+                                                                        CompositeViewModel compositeViewModel) throws IOException {
 
         RelatedArtistsDataAccessInterface relatedArtistsDataAccessInterface = new UserDataAccessObject();
         RelatedArtistsViewModel relatedArtistsViewModel = new RelatedArtistsViewModel();
+        relatedArtistsViewModel.addPropertyChangeListener((PropertyChangeListener) compositeViewModel);
         RelatedArtistsOutputBoundary relatedArtistsOutputBoundary = new RelatedArtistsPresenter(viewManagerModel, relatedArtistsViewModel);
 
         RelatedArtistsInputBoundary userArtistInteractor = new RelatedArtistsInteractor(relatedArtistsDataAccessInterface, relatedArtistsOutputBoundary);
