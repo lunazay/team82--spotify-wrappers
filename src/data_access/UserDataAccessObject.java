@@ -161,7 +161,7 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         Artist topArtist = getTopArtists(id, timeframe)[0];
         String topArtistId = topArtist.getId();
         JSONObject relatedArtists = api.getRelatedArtists(topArtistId);
-        JSONArray items = (JSONArray) relatedArtists.get("items");
+        JSONArray items = (JSONArray) relatedArtists.get("artists");
         List<String> listRelatedArtists = new ArrayList<>();
         for (int i = 0; (i < items.length() && i < 50); i++) {
             JSONObject currArtist = (JSONObject) items.get(i);
