@@ -10,7 +10,7 @@ import java.beans.PropertyChangeSupport;
 
 public class LoginViewModel extends ViewModel {
 
-    public final String TITLE_LABLE = "log in view";
+    public final String TITLE_LABEL = "log in view";
 
     public String code;
 
@@ -19,7 +19,7 @@ public class LoginViewModel extends ViewModel {
     public static final String CANCEL_BUTTON_LABEL = "Cancel";
     private LoginState state = new LoginState();
 
-    public String codeOuput(){
+    public String codeOutput(){
         return state.getCode();
     }
     public LoginViewModel(){

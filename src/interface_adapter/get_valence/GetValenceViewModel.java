@@ -15,7 +15,7 @@ public class GetValenceViewModel extends ViewManagerModel {
     public GetValenceState getState() { return this.state; }
 
     public JPanel getViewPanel() {
-        // Create and configure the JPanel for the top genre view
+        // Create and configure the JPanel for the valence view
         JPanel getValencePanel = new JPanel();
         getValencePanel.setLayout(new BorderLayout());
 

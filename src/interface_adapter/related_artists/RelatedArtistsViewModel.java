@@ -32,18 +32,18 @@ public class RelatedArtistsViewModel extends ViewModel {
 
     @Override
     public JPanel getViewPanel() {
-        // Create and configure the JPanel for the top genre view
+        // Create and configure the JPanel for the related artists view
         JPanel relatedArtistPanel = new JPanel();
         relatedArtistPanel.setLayout(new BorderLayout());
 
-        // Add components representing the top genre view
+        // Add components representing the related artists view
         JLabel titleLabel = new JLabel("Related Artist");
         relatedArtistPanel.add(titleLabel, BorderLayout.NORTH);
 
-        // Retrieve the list of genres from the state
+        // Retrieve the list of related artists from the state
         List<String> relatedArtist = state.getRelatedArtists();
 
-        // Display the list of genres in the view
+        // Display the list of related artists in the view
         if (relatedArtist != null && !relatedArtist.isEmpty()) {
             JPanel artistPanel = new JPanel(new GridLayout(relatedArtist.size(), 1));
             for (String artist : relatedArtist) {
@@ -52,7 +52,7 @@ public class RelatedArtistsViewModel extends ViewModel {
             }
             relatedArtistPanel.add(artistPanel, BorderLayout.CENTER);
         } else {
-            // Handle case when there's no genres available
+            // Handle case when there's no related artist available
             JLabel noDataLabel = new JLabel("No related artist available.");
             relatedArtistPanel.add(noDataLabel, BorderLayout.CENTER);
         }
