@@ -10,8 +10,6 @@ import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
@@ -19,15 +17,20 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class LoginView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewname = "log in";
+    public final String viewName = "log in";
     private final LoginViewModel loginViewModel;
     private final LoginController loginController;
-    private String url = "https://accounts.spotify.com/authorize?client_id=bad90b33466e4f208c7655eede3ac628&response_type=code&redirect_uri=https://oauth.pstmn.io/v1/browser-callback&scope=user-read-private%20user-read-email%20user-top-read%20playlist-modify-public%20playlist-modify-private&";
+    private final String url = "https://accounts.spotify.com/authorize?client_id=bad90b33466e4f208c7655eede3ac628&response_type=code&redirect_uri=https://oauth.pstmn.io/v1/browser-callback&scope=user-read-private%20user-read-email%20user-top-read%20playlist-modify-public%20playlist-modify-private&";
     final JTextField codeInputField = new JTextField(15);
 
     final JButton logIn;
     final JButton cancel;
     final JButton start;
+
+    /**
+     * Creates the LoginView with buttons to Start, Log In, and Exit and a field to input the authentication code.
+     * The Start button opens the Spotify authentication link in the user's browser to retrieve an authentication code.
+     */
     public LoginView(LoginViewModel loginViewModel, LoginController controller){
         this.loginController = controller;
         this.loginViewModel = loginViewModel;
@@ -41,11 +44,11 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         codeInputInfo.add(codeInputField);
 
         JPanel buttons = new JPanel();
-        start = new JButton(loginViewModel.START_BUTTON_LABEL);
+        start = new JButton(LoginViewModel.START_BUTTON_LABEL);
         buttons.add(start);
-        logIn = new JButton(loginViewModel.LOGIN_BUTTON_LABEL);
+        logIn = new JButton(LoginViewModel.LOGIN_BUTTON_LABEL);
         buttons.add(logIn);
-        cancel = new JButton(loginViewModel.CANCEL_BUTTON_LABEL);
+        cancel = new JButton(LoginViewModel.CANCEL_BUTTON_LABEL);
         buttons.add(cancel);
 
         // JPanel loginPanel = loginViewModel.getViewPanel();
@@ -140,11 +143,5 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
 
     private void setFields(LoginState state){
         codeInputField.setText(state.getCode());
-        //TODO: figure out after the input data is figured out.
     }
-
-    public String getViewname(){
-        return viewname;
-    }
-
 }
