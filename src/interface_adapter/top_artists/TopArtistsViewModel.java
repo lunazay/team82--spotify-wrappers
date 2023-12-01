@@ -41,6 +41,7 @@ public class TopArtistsViewModel extends ViewModel {
 
         // Add components representing the top artist view
         JLabel titleLabel = new JLabel("Top Artist");
+        titleLabel.setFont(new Font(titleLabel.getFont().getName(), Font.BOLD, titleLabel.getFont().getSize())); // Set font to bold
         topArtistPanel.add(titleLabel, BorderLayout.NORTH);
 
         List<String> artists = state.getArtistNames();

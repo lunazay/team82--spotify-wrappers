@@ -49,6 +49,7 @@ public class TopGenreViewModel extends ViewModel {
 
         // Add components representing the top genre view
         JLabel titleLabel = new JLabel("Top Genres");
+        titleLabel.setFont(new Font(titleLabel.getFont().getName(), Font.BOLD, titleLabel.getFont().getSize())); // Set font to bold
         topGenrePanel.add(titleLabel, BorderLayout.NORTH);
 
         // Retrieve the list of genres from the state

@@ -43,6 +43,7 @@ public class TopAlbumViewModel extends ViewModel {
 
         // Add components representing the top album view
         JLabel titleLabel = new JLabel("Top Albums");
+        titleLabel.setFont(new Font(titleLabel.getFont().getName(), Font.BOLD, titleLabel.getFont().getSize())); // Set font to bold
         // Add other UI components as needed
         topAlbumPanel.add(titleLabel, BorderLayout.NORTH);
 
