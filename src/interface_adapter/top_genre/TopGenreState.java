@@ -51,6 +51,7 @@ public class TopGenreState {
     public String toString(){
         return "TopGenreState{" + "id='" + id +
                 '\'' + ", timeframe= '"
-                + timeframe + '\'' + '}';
+                + timeframe + '\'' + '}' +
+                '\''+ ", genre=" + genres.toString();
     }
 }

@@ -8,5 +8,5 @@ public interface LoginUserDataAccessInterface {
 
     void setToken(String authcode ) throws IOException;
 
-    User getCurrentUser() throws IOException;
+    String getCurrentUserId() throws IOException;
 }

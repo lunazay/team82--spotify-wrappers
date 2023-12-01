@@ -10,9 +10,8 @@ public class TopArtistsController {
         this.topArtistsUseCaseInteractor = topArtistsInputBoundary;
     }
 
-    public void execute(String id) {
-        TopArtistsState topArtistsState = new TopArtistsState();
-        String timeframe = topArtistsState.getTimeframe();
+    public void execute(String timeframe, String id) {
+
         TopArtistsInputData topArtistsInputData = new TopArtistsInputData(timeframe, id);
 
         topArtistsUseCaseInteractor.execute(topArtistsInputData);

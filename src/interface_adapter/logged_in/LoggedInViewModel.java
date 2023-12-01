@@ -18,9 +18,9 @@ public class LoggedInViewModel extends ViewModel {
         super("logged in");
     }
 
-    String id = "";
-    public String getId(){
-        return state.getid();
+
+    public void setUserId(String currentUserId) {
+        this.state.setId(currentUserId);
     }
 
     public void setState(LoggedInState state) {
@@ -34,12 +34,10 @@ public class LoggedInViewModel extends ViewModel {
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         support.addPropertyChangeListener(listener);
     }
-
     @Override
     public JPanel getViewPanel() {
         return null;
     }
-
     public LoggedInState getState(){
         return state;
     }

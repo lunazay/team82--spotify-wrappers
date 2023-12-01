@@ -7,6 +7,8 @@ import entity.Song;
 import entity.Album;
 import entity.Genre;
 import entity.User;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import use_case.get_valence.GetValenceDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.related_artists.RelatedArtistsDataAccessInterface;
@@ -57,12 +59,14 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
             // I want to return an array list of Genre objects because that is how we
             // decided our design implementation will be
             Genre[] genres = artist.getGenres();
-            Genre topGenre = genres[0];
-            if (!topGenres.contains(topGenre)) {
-                topGenres.add(topGenre);
-                count++;
-                if (count >= 5) {
-                    break;
+
+            for (Genre topGenre : genres) {
+                if (!topGenres.contains(topGenre) && topGenre != null) {
+                    topGenres.add(topGenre);
+                    count++;
+                    if (count >= 5) {
+                        break;
+                    }
                 }
             }
             // since I only want the top 5 genres, I'm only counting till 5
@@ -155,7 +159,15 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     @Override
     public List<String> getRelatedArtists(String id, String timeframe) throws Exception {
         Artist topArtist = getTopArtists(id, timeframe)[0];
-        return topArtist.getRelatedArtists();
+        String topArtistId = topArtist.getId();
+        JSONObject relatedArtists = api.getRelatedArtists(topArtistId);
+        JSONArray items = (JSONArray) relatedArtists.get("items");
+        List<String> listRelatedArtists = new ArrayList<>();
+        for (int i = 0; (i < items.length() && i < 50); i++) {
+            JSONObject currArtist = (JSONObject) items.get(i);
+            listRelatedArtists.add((String) currArtist.get("name"));
+        }
+        return listRelatedArtists;
     }
 
     /**
@@ -175,15 +187,14 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
         writer.close();
     }
 
-
     /**
      * Gets the current user based on the token currently stored in our super
      * secret file.
      * @return the current user of the application.
      */
     @Override
-    public User getCurrentUser() throws IOException {
+    public String getCurrentUserId() throws IOException {
         User user = new User(api.getUserId());
-        return user;
+        return user.getId();
     }
 }

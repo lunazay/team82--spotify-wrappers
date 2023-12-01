@@ -4,10 +4,12 @@ import entity.Song;
 import entity.User;
 import entity.Artist;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface DevelopDB {
 
@@ -22,4 +24,5 @@ public interface DevelopDB {
     String get_valence(String songId) throws IOException;
 
     String getUserId() throws IOException;
+    JSONObject getRelatedArtists(String topArtistID) throws IOException;
 }
