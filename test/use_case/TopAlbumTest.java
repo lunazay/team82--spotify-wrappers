@@ -3,6 +3,7 @@ package use_case;
 import api.SpotDevelopDB;
 import data_access.UserDataAccessObject;
 import entity.Album;
+import entity.Genre;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +22,9 @@ import static org.junit.Assert.*;
 public class TopAlbumTest {
 
     String id = "baller4life7579";
+
+    // change this value accordingly based on term to test
+    String timeframe = "medium_term";
 
     /**
      * The main method to execute the test.
@@ -45,13 +49,14 @@ public class TopAlbumTest {
     public ArrayList<Album> getTopAlbums() throws Exception {
 
         UserDataAccessObject userDataAccessObject = new UserDataAccessObject();
-        ArrayList<Album> topAlbums = userDataAccessObject.getTopAlbums(id, "long_term");
+        ArrayList<Album> topAlbums = userDataAccessObject.getTopAlbums(id, timeframe);
         return topAlbums;
 
     }
 
     /**
      * Test method for the getTopAlbums function.
+     * Asserts the correct top album is outputted in the given term
      *
      * @throws Exception If an error occurs during the test.
      */
@@ -59,9 +64,28 @@ public class TopAlbumTest {
     public void testTopAlbum() throws Exception {
 
         ArrayList<Album> topAlbums = getTopAlbums();
-        assert(Objects.equals(topAlbums.get(0).getName(), "...")); //TODO input my top album
+        if (timeframe.equals("long_term")) {
+            assert (Objects.equals(topAlbums.get(0).getName(), "Serithaana"));
+        } else if (timeframe.equals("medium_term")) {
+            assert (Objects.equals(topAlbums.get(0).getName(), "The World Is Yours"));
+        }
+        assert (Objects.equals(topAlbums.get(0).getName(), "The World Is Yours"));
 
     }
+
+    /**
+     * Test method for the getTopAlbums function.
+     * Asserts 20 top albums are outputted
+     *
+     * @throws Exception If an error occurs during the test.
+     */
+    @org.junit.Test
+    public void testTopTwentyAlbums() throws Exception {
+        ArrayList<Album> topAlbums = getTopAlbums();
+        assert(topAlbums.size() == 20);
+    }
+
+
 
 }
 
