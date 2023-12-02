@@ -16,7 +16,7 @@ public class ViewManagerModel {
         this.activeViewName = activeViewName;
     }
 
-    //the presenter will call to let the viewmodel know to alret the view
+    //the presenter will call to let the view model know to alert the view
     public void firePropertyChanged(){
         support.firePropertyChange("view", null, this.activeViewName);
     }

@@ -19,7 +19,6 @@ import use_case.top_songs.TopSongsDataAccessInterface;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGenreDataAccessInterface,
@@ -69,11 +68,6 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
                 if (count >= 5) {
                     break;
                 }
-            }
-
-            // since I only want the top 5 genres, I'm only counting till 5
-            if (count >= 5) {
-                break;
             }
         }
         return topGenres;
@@ -156,8 +150,6 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
             throw new Exception("Listen to some music bro!");
             // throws this exception if the user has listened to no music.
         }
-
-
     }
 
     /**
@@ -182,12 +174,12 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     }
 
     /**
-     * Stores the user's API token inside our supersecret file.
+     * Stores the user's API token inside our supersecret.txt file.
      *
      * @param authCode is the authorization code from the redirect link.
      */
     @Override
-    public void setToken( String authCode ) throws IOException {
+    public void setToken(String authCode) throws IOException {
         String token = api.getAuthorizationToken(authCode);
 
         File txtFile = new File("./supersecret.txt");
