@@ -8,14 +8,13 @@ import java.awt.*;
 import static org.junit.Assert.assertNotNull;
 
 public class LoggedInTest {
-    static String message = "";
 
     /**
      * Get the button at the given index.
      * @param buttonIndex The placement of the button (beginning at index 0).
      * @return The button in index buttonIndex.
      */
-    public JButton getButton(int buttonIndex) {
+    public static JButton getButton(int buttonIndex) {
         JFrame app = null;
 
         Window[] windows = Window.getWindows();
@@ -38,7 +37,7 @@ public class LoggedInTest {
      * @param app the JFrame of the app.
      * @return the JPanel with each button as a component.
      */
-    private static JPanel getButtonsPanel(JFrame app) {
+    public static JPanel getButtonsPanel(JFrame app) {
         // Root of the app
         Component root = app.getComponent(0);
         // All the content of the window
@@ -59,7 +58,7 @@ public class LoggedInTest {
      * @param app the JFrame of the app.
      * @return the JTextField to input the authentication code into.
      */
-    private static JTextField getLogInInputTextField(JFrame app) {
+    public static JTextField getLogInInputTextField(JFrame app) {
         // Root of the app
         Component root = app.getComponent(0);
         // All the content of the window
@@ -76,7 +75,7 @@ public class LoggedInTest {
         return (JTextField) inputField.getComponent(1);
     }
 
-    public void logIn(String authCode) {
+    public static void logIn(String authCode) {
         JFrame app = null;
 
         Window[] windows = Window.getWindows();
@@ -138,11 +137,15 @@ public class LoggedInTest {
         assert(button.getText().equals("Done"));
     }
 
+    /**
+     * Tests that short term data is shown when a user is logged in and clicks the short term button. The authentication
+     * code must be changed to be working for this test to operate correctly.
+     */
     @org.junit.Test
     public void testShortTermDataShown() {
         Main.main(null);
         // IMPORTANT: must replace below with an active code whenever running test.
-        logIn("AQDsTXyfBMqPnEu9EWzRmwSMNmIBS7iu6YGxkGfTKt8Hp_9Mn1IoP1OEdsZu4P_-QmE_zS7u-PcKlp1QVWwiblzlLR-du33fjQd38rtN1CXOQwpXWOtGRQF_NSEXpNeB4D1rDnlsfjGmnXd-S6M8NaPpJwN58b_24AGs5FSdWVorNfPcFpZ6pghy7YpknfNJbYGTQdW9uYeiOJfjUVZiAA14WAEm6nKwDoA6CgIXapG_t4zq81m6y-PAD035NzA0Y5l_Np0Wa_yjcSDY40rbZ6m4Uy2vIIowOvILDAiN7VP07K_uK0aOgGhC3nRXcZ9lmHo");
+        logIn(authCode);
         // Clicks short term button.
         JButton button = getButton(0);
         button.doClick();

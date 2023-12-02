@@ -37,7 +37,7 @@ public class LoginTest {
      * @param app the JFrame of the app.
      * @return the JPanel with each button as a component.
      */
-    static JPanel getButtonsPanel(JFrame app) {
+    public static JPanel getButtonsPanel(JFrame app) {
         // Root of the app
         Component root = app.getComponent(0);
         // All the content of the window
@@ -53,7 +53,7 @@ public class LoginTest {
     }
 
     /**
-     * Tests that the Start button appears and is where it should be.
+     * Tests that the "Start" button appears and is where it should be.
      */
     @org.junit.Test
     public void testStartButton() {
@@ -63,7 +63,7 @@ public class LoginTest {
     }
 
     /**
-     * Tests that the Log in button appears and is where it should be.
+     * Tests that the "Log in" button appears and is where it should be.
      */
     @org.junit.Test
     public void testLogInButton() {
@@ -73,7 +73,7 @@ public class LoginTest {
     }
 
     /**
-     * Tests that the Cancel button appears and is where it should be.
+     * Tests that the "Cancel" button appears and is where it should be.
      */
     @org.junit.Test
     public void testCancelButton() {
