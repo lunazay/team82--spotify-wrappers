@@ -17,6 +17,7 @@ import java.util.Objects;
 public class TopAlbumTest {
 
     String id = "baller4life7579";
+    String timeframe = "short_term";
 
     /**
      * The main method to execute the test.
@@ -41,7 +42,7 @@ public class TopAlbumTest {
     public ArrayList<Album> getTopAlbums() throws Exception {
 
         UserDataAccessObject userDataAccessObject = new UserDataAccessObject();
-        ArrayList<Album> topAlbums = userDataAccessObject.getTopAlbums(id, "long_term");
+        ArrayList<Album> topAlbums = userDataAccessObject.getTopAlbums(id, timeframe);
         return topAlbums;
 
     }
