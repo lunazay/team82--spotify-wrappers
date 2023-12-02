@@ -7,8 +7,7 @@ import interface_adapter.get_valence.GetValenceController;
 import interface_adapter.get_valence.GetValencePresenter;
 import interface_adapter.get_valence.GetValenceViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
-import interface_adapter.login.LoginController;
-import interface_adapter.login.LoginViewModel;
+
 import interface_adapter.related_artists.RelatedArtistsController;
 import interface_adapter.related_artists.RelatedArtistsPresenter;
 import interface_adapter.related_artists.RelatedArtistsViewModel;
@@ -23,13 +22,13 @@ import interface_adapter.top_genre.TopGenrePresenter;
 import interface_adapter.top_genre.TopGenreViewModel;
 import interface_adapter.top_songs.TopSongsController;
 import interface_adapter.top_songs.TopSongsPresenter;
-import interface_adapter.top_songs.TopSongsState;
+
 import interface_adapter.top_songs.TopSongsViewModel;
 import use_case.get_valence.GetValenceDataAccessInterface;
 import use_case.get_valence.GetValenceInputBoundary;
 import use_case.get_valence.GetValenceInteractor;
 import use_case.get_valence.GetValenceOutputBoundary;
-import use_case.login.LoginUserDataAccessInterface;
+
 import use_case.related_artists.RelatedArtistsDataAccessInterface;
 import use_case.related_artists.RelatedArtistsInputBoundary;
 import use_case.related_artists.RelatedArtistsInteractor;
@@ -48,10 +47,10 @@ import use_case.top_songs.TopSongsInputBoundary;
 import use_case.top_songs.TopSongsInteractor;
 import use_case.top_songs.TopSongsOutputBoundary;
 import view.LoggedInView;
-import view.LoginView;
+
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
+
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 

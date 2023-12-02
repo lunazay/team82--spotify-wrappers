@@ -1,6 +1,5 @@
 package use_case.top_genre;
 
-import entity.Genre;
 
 import java.util.ArrayList;
 

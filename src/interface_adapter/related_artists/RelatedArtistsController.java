@@ -3,7 +3,6 @@ package interface_adapter.related_artists;
 import use_case.related_artists.RelatedArtistsInputBoundary;
 import use_case.related_artists.RelatedArtistsInputData;
 
-import java.io.IOException;
 
 public class RelatedArtistsController {
     final RelatedArtistsInputBoundary relatedArtistsUseCaseInteractor;

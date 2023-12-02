@@ -1,6 +1,5 @@
 package use_case.get_valence;
 
-import java.io.IOException;
 
 public interface GetValenceDataAccessInterface {
 

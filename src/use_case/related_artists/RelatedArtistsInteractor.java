@@ -2,7 +2,6 @@ package use_case.related_artists;
 
 import java.util.List;
 
-import java.io.IOException;
 
 public class RelatedArtistsInteractor implements RelatedArtistsInputBoundary{
     final RelatedArtistsDataAccessInterface userDataAccessObject;

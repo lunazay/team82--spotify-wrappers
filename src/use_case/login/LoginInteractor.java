@@ -1,6 +1,5 @@
 package use_case.login;
 
-import entity.User;
 
 import java.io.IOException;
 

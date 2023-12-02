@@ -1,11 +1,8 @@
 package interface_adapter.top_genre;
 
-import entity.Genre;
 import use_case.top_genre.TopGenreOutputData;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class TopGenreState {
     private String id = "";

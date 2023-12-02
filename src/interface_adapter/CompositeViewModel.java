@@ -1,39 +1,32 @@
 package interface_adapter;
 
-import app.LoggedInUseCaseFactory;
-import interface_adapter.get_valence.GetValenceController;
+
 import interface_adapter.get_valence.GetValenceState;
 import interface_adapter.get_valence.GetValenceViewModel;
-import interface_adapter.logged_in.LoggedInState;
-import interface_adapter.logged_in.LoggedInViewModel;
-import interface_adapter.related_artists.RelatedArtistsController;
+
 import interface_adapter.related_artists.RelatedArtistsState;
 import interface_adapter.related_artists.RelatedArtistsViewModel;
-import interface_adapter.top_album.TopAlbumController;
 import interface_adapter.top_album.TopAlbumState;
 import interface_adapter.top_album.TopAlbumViewModel;
-import interface_adapter.top_artists.TopArtistsController;
 import interface_adapter.top_artists.TopArtistsState;
 import interface_adapter.top_artists.TopArtistsViewModel;
-import interface_adapter.top_genre.TopGenreController;
+
 import interface_adapter.top_genre.TopGenreState;
 import interface_adapter.top_genre.TopGenreViewModel;
-import interface_adapter.top_songs.TopSongsController;
+
 import interface_adapter.top_songs.TopSongsState;
 import interface_adapter.top_songs.TopSongsViewModel;
-import use_case.top_songs.TopSongsInputBoundary;
-import view.LoggedInView;
+
 
 import javax.swing.*;
-import javax.swing.text.View;
+
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
+
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class CompositeViewModel extends JPanel implements PropertyChangeListener{
     private GetValenceViewModel getValenceViewModel;

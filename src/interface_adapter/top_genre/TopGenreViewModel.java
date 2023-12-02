@@ -1,6 +1,5 @@
 package interface_adapter.top_genre;
 
-import entity.Genre;
 import interface_adapter.ViewModel;
 
 import javax.swing.*;

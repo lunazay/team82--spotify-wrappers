@@ -1,7 +1,6 @@
 package interface_adapter.top_album;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.top_genre.TopGenreState;
 import use_case.top_album.TopAlbumOutputBoundary;
 import use_case.top_album.TopAlbumOutputData;
 
