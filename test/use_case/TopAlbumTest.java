@@ -4,15 +4,11 @@ import api.SpotDevelopDB;
 import data_access.UserDataAccessObject;
 import entity.Album;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static org.junit.Assert.*;
 
 /**
  * This class contains tests for the TopAlbum use case.
@@ -59,7 +55,7 @@ public class TopAlbumTest {
     public void testTopAlbum() throws Exception {
 
         ArrayList<Album> topAlbums = getTopAlbums();
-        assert(Objects.equals(topAlbums.get(0).getName(), "...")); //TODO input my top album
+        assert(Objects.equals(topAlbums.get(0).getName(), "Serithaana"));
 
     }
 
