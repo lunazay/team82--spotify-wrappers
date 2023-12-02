@@ -8,7 +8,7 @@ public class RelatedArtistsInputData {
         this.timeframe = timeframe;
         this.id = id;
     }
-    public void setTimeframe(String timeframe){this.timeframe = timeframe;}
+
     public String getTimeframe(){return timeframe;}
 
     public String getId() {return id;}
