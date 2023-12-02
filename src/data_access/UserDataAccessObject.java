@@ -53,7 +53,7 @@ public class UserDataAccessObject implements TopSongsDataAccessInterface, TopGen
     @Override
     public ArrayList<Genre> getTopGenres(String id, String timeframe) throws Exception {
         Artist[] topArtist = getTopArtists(id, timeframe);
-        ArrayList<Genre> topGenres = new ArrayList<Genre>();
+        ArrayList<Genre> topGenres = new ArrayList<>();
         List<String> genreNames = new ArrayList<>();
         int count = 0;
         for (Artist artist: topArtist){
