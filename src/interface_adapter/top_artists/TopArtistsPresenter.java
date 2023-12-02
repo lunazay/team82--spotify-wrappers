@@ -6,7 +6,7 @@ import use_case.top_artists.TopArtistsOutputData;
 
 public class TopArtistsPresenter implements TopArtistsOutputBoundary {
     private final TopArtistsViewModel topArtistsViewModel;
-    private ViewManagerModel viewManagerModel;
+    private final ViewManagerModel viewManagerModel;
 
     public TopArtistsPresenter(ViewManagerModel viewManagerModel,
                                TopArtistsViewModel topArtistsViewModel) {
@@ -41,6 +41,7 @@ public class TopArtistsPresenter implements TopArtistsOutputBoundary {
     public void prepareFailView(String error) {
         TopArtistsState topArtistsState = topArtistsViewModel.getState();
         topArtistsState.setArtistNamesError(error);
+        topArtistsViewModel.setState(topArtistsState);
         topArtistsViewModel.firePropertyChanged();
     }
 }

@@ -6,7 +6,7 @@ import use_case.top_songs.TopSongsOutputData;
 
 public class TopSongsPresenter implements TopSongsOutputBoundary {
     private final TopSongsViewModel topSongsViewModel;
-    private ViewManagerModel viewManagerModel;
+    private final ViewManagerModel viewManagerModel;
 
     public TopSongsPresenter(ViewManagerModel viewManagerModel,
                              TopSongsViewModel topSongsViewModel) {
@@ -17,9 +17,10 @@ public class TopSongsPresenter implements TopSongsOutputBoundary {
     @Override
     public void prepareSuccessView(TopSongsOutputData topSongsOutputData) {
         TopSongsState topSongsState = topSongsViewModel.getState();
-        topSongsState.setId(topSongsState.getId());
         topSongsState.setSongs(topSongsOutputData.getSongNames());
+        topSongsViewModel.setState(topSongsState);
         topSongsViewModel.firePropertyChanged();
+
         viewManagerModel.setActiveViewName((topSongsViewModel.getViewName()));
         viewManagerModel.firePropertyChanged();
     }
@@ -27,7 +28,8 @@ public class TopSongsPresenter implements TopSongsOutputBoundary {
     @Override
     public void prepareFailView(String error) {
         TopSongsState topSongsState = topSongsViewModel.getState();
-        topSongsState.setError("Listen to some music bro!");
+        topSongsState.setSongsError(error);
+        topSongsViewModel.setState(topSongsState);
         topSongsViewModel.firePropertyChanged();
     }
 }

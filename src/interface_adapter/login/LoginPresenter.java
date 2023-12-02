@@ -9,7 +9,7 @@ import use_case.login.LoginOutputData;
 public class LoginPresenter implements LoginOutputBoundary {
     private final LoginViewModel loginViewModel;
     private final LoggedInViewModel loggedInViewModel;
-    private ViewManagerModel viewManagerModel;
+    private final ViewManagerModel viewManagerModel;
 
     public LoginPresenter(ViewManagerModel viewManagerModel,
                           LoggedInViewModel loggedInViewModel, LoginViewModel loginViewModel){
@@ -31,7 +31,7 @@ public class LoginPresenter implements LoginOutputBoundary {
     @Override
     public void prepareFailView(String error){
         LoginState loginState = loginViewModel.getState();
-        loginState.setLoginError("Could not log in, try again!");
+        loginState.setLoginError(error);
         loginViewModel.firePropertyChanged();
     }
 }

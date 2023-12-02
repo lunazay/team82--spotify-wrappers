@@ -1,56 +1,32 @@
 package interface_adapter.top_album;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class TopAlbumState {
-
     public List<String> topAlbumNames = Collections.emptyList();
-
-    public String timeframe;
-
-    private String error = null;
-    public TopAlbumState(TopAlbumState copy){
-        topAlbumNames = copy.topAlbumNames;
-        error = copy.error;
-    }
+    private String albumsError = null;
 
     public TopAlbumState() {}
 
-
     public void setTopAlbumNames(List<String> topAlbumNames) {
-
         this.topAlbumNames = topAlbumNames;
     }
 
     public List<String> getTopAlbumNames() {
-
         return topAlbumNames;
 
     }
 
-    public void setError(String error){
-
-        this.error = error;
+    public void setAlbumsError(String error){
+        this.albumsError = error;
     }
-    public String getError() {
-
-        return this.error;
+    public String getAlbumsError() {
+        return this.albumsError;
     }
 
     @Override
     public String toString(){
-
         return "TopAlbumState{" + "topAlbumNames='" + topAlbumNames + '}';
-    }
-
-
-    public void setTimeFrame(String timeFrame) {
-        this.timeframe = timeFrame;
-    }
-
-    public String getTimeframe() {
-        return timeframe;
     }
 }

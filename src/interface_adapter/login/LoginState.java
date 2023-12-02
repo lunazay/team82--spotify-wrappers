@@ -2,7 +2,7 @@ package interface_adapter.login;
 
 public class LoginState {
     private String code = "";
-    private String error;
+    private String loginError = null;
     public LoginState(){}
 
     public String getCode() {
@@ -10,11 +10,11 @@ public class LoginState {
     }
 
     public void setLoginError(String error){
-        this.error = error;
+        this.loginError = error;
     }
 
     public String getLoginError(){
-        return error;
+        return loginError;
     }
 
     public void setCode(String code) {
