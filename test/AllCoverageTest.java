@@ -9,8 +9,10 @@ import static org.junit.Assert.assertNotNull;
 
 public class AllCoverageTest {
     static String message = "";
+    static final String authCode = "AQCwm0radqzq7YT-sAjXpz_kL-dVk3F7k_xuXWGihd1F7spLzNKljRs_Ogl5cvrMjXlqfsYkAJas964g7d_o6GTKY9HhBtTSBCXMSOBm99HncvCPRgmLVgbIE-vNGXYKnrpOn7hpjA-XibyAUp8yBPxPKSAVV4hAXxtV-3_OAm3SCC45xw6c57t0aKMK4Wb2Ae6MekTSRm69pGPwCm2NYOxwee3p5_fCacniMSDudGXJpY2ujzErNkfyiS0qNPyv-1bCHNGuvnGXy0T04fqQbNb1_THP65xQV5gUKeAmauysWzJ3U9b2fNHupnA7G-q8EBw";
     // IMPORTANT: authCode must always be updated to a code that has not expired for tests to succeed.
-    static final String authCode = "AQCvNnV7u9uA7miI3WG6YRCmPRR5cYIIepGE8AulavMvEZSudOzfn8IPD6sgO4VWY-CVQLSbvlPc05G9vbB65B-BRk0Mn51vkSvEYRLmzsb8eIuWeZ1bbGaXaNuK-XrLB94aA-2Q68C0fCE04ahivyUHv5ne_BBw50wck1urFfdUw8A5kFFDCUWhXk5wyXWckhvFB3NDCv_KAFr8n2686t6M8YbUZi2ZaCESMX8RXnJ7d9qqeAlshSdJkTqpC1aQttTMjbCgofwdsfNLnnHnQILE99VZjdKmGOnqNAvPIwZL9ov34pJj4lHRUHcZWnxIRDU";
+    // Each authCode is only good for 1 API call, so the tests cannot all work at once.
+
 
     /**
      * Tests that short term data is shown when a user is logged in and clicks the short term button. The authentication
@@ -31,7 +33,7 @@ public class AllCoverageTest {
         // Confirms a message was received.
         assertNotNull(message);
         // Guarantees the message received was not an error message "No ___ available."
-        assert(message.contains("available."));
+        assert(!message.contains("available."));
     }
 
     /**
@@ -53,7 +55,7 @@ public class AllCoverageTest {
         // Confirms a message was received.
         assertNotNull(message);
         // Guarantees the message received was not an error message "No ___ available."
-        assert(message.contains("available."));
+        assert(!message.contains("available."));
     }
 
     /**
@@ -75,7 +77,7 @@ public class AllCoverageTest {
         // Confirms a message was received.
         assertNotNull(message);
         // Guarantees the message received was not an error message "No ___ available."
-        assert(message.contains("available."));
+        assert(!message.contains("available."));
     }
 
     //
