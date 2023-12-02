@@ -12,11 +12,9 @@ import entity.Genre;
  * This class contains tests for the TopGenres use case.
  */
 public class TopGenreTest {
-    private String userID = "31gqehqotfmiji3bbkreneh7d3ia";
     public static void main(String[] args) throws IOException {
         SpotDevelopDB api = new SpotDevelopDB();
-        String authcode = "AQAADEZoe1mglhTgEIbDdEbW-YyDr_lyvtc3mufELTa3xe41uUvZkELTgkfNWwnWkUpyOHYU-Gu2PTjNSfqEZYgXz039e6AXvUFVNFDMysO7dH8MDKXk_2Z-leJRXx3u83omfOwMu2iIimRHD6sl998c012FvY3NUm5nJqbymfyt77W2lEoKAi-VN9O_gVWpecdYLVPBk-Tj3hvoUBQzbCFKJyn3lPyPUtQddEKxZHb7GiFf0iuBf5Ed60MmrztU-VeVX3ZVCixdgnD9SArf8iC7rf1XGa95fX7RZUiCnPiWQxPFi5EpSNK9KzsNh7hfHbI";
-        System.out.println(api.getAuthorizationToken(authcode));
+        System.out.println(api.getAuthorizationToken("AQA_Hqap0MiTcGUfM-HEX7QcnBeVzD-G19rw9oX1dwIp7Et3b820SYQrLgC87dzEpjE4q30dSiUwwWgSSYVv5pNopyFSX5EBS2i0o7MM9b-yCMuE6gJnANE9HRy6wM8nv-hBoat1_2fDfln5PcLk9mG23ZBeZuZKeGCQZ2aY9rqRBf4sZAEP3eeE8CM6IQ00-7R7_s3OHVUuX0sHSZ_AZpwPMDnPKDXloXb9m0pmXgPYdRTCcteb7GeoImNYAZ4qy0vaZuUB3kPBxT0SwE4lp937OwWMqUWtYV8WPgzrA5ixYfqM0oOrYRqEsV7T0-xcU7M"));
     }
 
     /**
@@ -27,13 +25,18 @@ public class TopGenreTest {
      */
     public ArrayList<Genre> getTopGenres() throws Exception{
         UserDataAccessObject user = new UserDataAccessObject();
-        ArrayList<Genre> topGenres = user.getTopGenres(userID, "long_term");
+        ArrayList<Genre> topGenres = user.getTopGenres("luna987654321", "short_term");
         return topGenres;
     }
 
     @org.junit.Test
     public void testTopGenre() throws Exception{
         ArrayList<Genre> topGenres = getTopGenres();
-        assert(Objects.equals(topGenres.get(0).getName(), "Pop"));
+        assert(Objects.equals(topGenres.get(0).getName(), "canadian hip hop"));
+    }
+    @org.junit.Test
+    public void testTopFiveGenres() throws Exception {
+        ArrayList<Genre> topGenres = getTopGenres();
+        assert(topGenres.size() == 5);
     }
 }
