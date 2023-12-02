@@ -10,7 +10,7 @@ import static org.junit.Assert.assertNotNull;
 public class AllCoverageTest {
     static String message = "";
     // IMPORTANT: authCode must always be updated to a code that has not expired for tests to succeed.
-    static final String authCode = "AQBFhyasnxIfwlafelZMupt0_M8qHcr5e1HhuUiZP3AqUmAuucmgKmr23fRa8bM87CcmufJYDxrOiA0h1DV5yZCoetQI8x6f105TTOksPAnpNNerRC00wTr9654IPzP-dQ0gZOZd07FKxyiCQnArY7-aUJyfx6wmOltWy6ROLVU3wUkI4suStb6F-4Hh-zhOfMJTzj71HnDZYU7zaxeDi3ZFX5cbY7axCnqruS9I1V1GPFvRv4i5L470RXSr0jO9XkONoFqcv8A3pGiMH0mg2aO9thHuPiIZRK7Szbno7DjaLXfXs7oJtlv3zJunIyKB2nA";
+    static final String authCode = "AQCvNnV7u9uA7miI3WG6YRCmPRR5cYIIepGE8AulavMvEZSudOzfn8IPD6sgO4VWY-CVQLSbvlPc05G9vbB65B-BRk0Mn51vkSvEYRLmzsb8eIuWeZ1bbGaXaNuK-XrLB94aA-2Q68C0fCE04ahivyUHv5ne_BBw50wck1urFfdUw8A5kFFDCUWhXk5wyXWckhvFB3NDCv_KAFr8n2686t6M8YbUZi2ZaCESMX8RXnJ7d9qqeAlshSdJkTqpC1aQttTMjbCgofwdsfNLnnHnQILE99VZjdKmGOnqNAvPIwZL9ov34pJj4lHRUHcZWnxIRDU";
 
     /**
      * Tests that short term data is shown when a user is logged in and clicks the short term button. The authentication
@@ -25,26 +25,52 @@ public class AllCoverageTest {
         JButton button = getLoggedInButton(0);
         button.doClick();
 
-        // From Week5CA clear users test:
         Window[] windows = Window.getWindows();
-        for (Window window : windows) {
+        updateMessage(windows);
 
-            if (window instanceof JDialog) {
+        // Confirms a message was received.
+        assertNotNull(message);
+        // Guarantees the message received was not an error message "No ___ available."
+        assert(message.contains("available."));
+    }
 
-                JDialog dialog = (JDialog) window;
+    /**
+     * Tests that medium term data is shown when a user is logged in and clicks the short term button. The authentication
+     * code must be changed to be working for this test to operate correctly.
+     */
+    @org.junit.Test
+    public void testMediumTermDataShown() {
+        Main.main(null);
+        // IMPORTANT: must replace authCode attribute with an active code whenever running test.
+        logIn();
+        // Clicks short term button.
+        JButton button = getLoggedInButton(1);
+        button.doClick();
 
-                if (dialog.isVisible()) {
-                    String s = ((JOptionPane) ((BorderLayout) dialog.getRootPane()
-                            .getContentPane().getLayout()).getLayoutComponent(BorderLayout.CENTER)).getMessage().toString();
-                    System.out.println("message = " + s);
+        Window[] windows = Window.getWindows();
+        updateMessage(windows);
 
-                    message = s;
+        // Confirms a message was received.
+        assertNotNull(message);
+        // Guarantees the message received was not an error message "No ___ available."
+        assert(message.contains("available."));
+    }
 
-                    System.out.println("disposing of..." + window.getClass());
-                    window.dispose();
-                }
-            }
-        }
+    /**
+     * Tests that long term data is shown when a user is logged in and clicks the short term button. The authentication
+     * code must be changed to be working for this test to operate correctly.
+     */
+    @org.junit.Test
+    public void testLongTermDataShown() {
+        Main.main(null);
+        // IMPORTANT: must replace authCode attribute with an active code whenever running test.
+        logIn();
+        // Clicks short term button.
+        JButton button = getLoggedInButton(2);
+        button.doClick();
+
+        Window[] windows = Window.getWindows();
+        updateMessage(windows);
 
         // Confirms a message was received.
         assertNotNull(message);
@@ -181,5 +207,30 @@ public class AllCoverageTest {
         // The Component of the Panel contains the information on the page
         // Component 0 is LoginView, Component 1 is LoggedInView
         return (JPanel) jPanel.getComponent(0);
+    }
+
+    /**
+     * A helper method for testing the functionality of the different views. Using the system from Week5CA tests, this
+     * test changes the message attribute if one is available in the call.
+     */
+    private static void updateMessage(Window[] windows) {
+        for (Window window : windows) {
+
+            if (window instanceof JDialog) {
+
+                JDialog dialog = (JDialog) window;
+
+                if (dialog.isVisible()) {
+                    String s = ((JOptionPane) ((BorderLayout) dialog.getRootPane()
+                            .getContentPane().getLayout()).getLayoutComponent(BorderLayout.CENTER)).getMessage().toString();
+                    System.out.println("message = " + s);
+
+                    message = s;
+
+                    System.out.println("disposing of..." + window.getClass());
+                    window.dispose();
+                }
+            }
+        }
     }
 }
