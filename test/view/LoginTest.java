@@ -1,27 +1,84 @@
 package view;
 
-import api.SpotDevelopDB;
-import data_access.UserDataAccessObject;
+import app.Main;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
+import javax.swing.*;
+import java.awt.*;
+
+import static org.junit.Assert.assertNotNull;
 
 public class LoginTest {
 
-    UserDataAccessObject dataAccessObject = new UserDataAccessObject();
-    SpotDevelopDB api = new SpotDevelopDB();
-    String link = api.getAuthorizationLink();
+    /**
+     * Verify that the desired button is present.
+     * @param buttonIndex The placement of the button (beginning at index 0).
+     * @return The button in index buttonIndex.
+     */
+    public JButton getButton(int buttonIndex) {
+        JFrame app = null;
 
-    String code = "AQDrR7RGecdLg_OFnX8cy9YI5DLeC1s2L3mr8oSA-WgBiagxYj28jbkT9HGl7rBZvMHu-bBIOSkDltJMawHxWRMcfeperTAfiNbW-2A2ZWAkV1F6AfplZDVv920wkj79uglUoWktZuVLc_qk9mxjViO7300pb_MXMgJyTKAEIvy2LZw336kRu157A_OkykHhAvICXN0hWKvumGBZjP8E2STuE2RJnBe4VM9x96jRuT5t1ScnHZxkN5HssbxfAR2GtfJAWpjZfECku-46jatfcAxg7LHQBK4R_g7BBm5BkyM9TreCXXDYB7y_2zIpP0FfpBw";
+        Window[] windows = Window.getWindows();
+        for (Window window : windows) {
+            if (window instanceof JFrame) {
+                app = (JFrame) window;
+            }
+        }
 
-    public LoginTest() throws MalformedURLException {
-        System.out.println(link);
+        // Test fails if the window does not appear.
+        assertNotNull(app);
+        JPanel buttons = getButtonsPanel(app);
+
+        return (JButton) buttons.getComponent(buttonIndex);
     }
 
+    /**
+     * Helper method to return the buttons panel from the LoginView.
+     *
+     * @param app the JFrame of the app.
+     * @return the JPanel with each button as a component.
+     */
+    private static JPanel getButtonsPanel(JFrame app) {
+        // Root of the app
+        Component root = app.getComponent(0);
+        // All the content of the window
+        Component cp = ((JRootPane) root).getContentPane();
+        // Panel Version of the Content Pane
+        JPanel jPanel1 = (JPanel) cp;
+        // The Component of the Panel contains the information on the page
+        JPanel jPanel2 = (JPanel) jPanel1.getComponent(0);
+        // Component 0 is LoginView, Component 1 is LoggedInView
+        LoginView loginView = (LoginView) jPanel2.getComponent(0);
+        // Component 0 is the label of the window, Component 1 is the input field, Component 2 is the buttons
+        return (JPanel) loginView.getComponent(2);
+    }
+
+    /**
+     * Tests that the Start button appears and is where it should be.
+     */
     @org.junit.Test
-    public void testSetToken() throws IOException {
-        System.out.println(api.token());
-        dataAccessObject.setToken(code);
-        System.out.println(api.token());
+    public void testStartButton() {
+        Main.main(null);
+        JButton button = getButton(0);
+        assert(button.getText().equals("Start"));
+    }
+
+    /**
+     * Tests that the Log in button appears and is where it should be.
+     */
+    @org.junit.Test
+    public void testLogInButton() {
+        Main.main(null);
+        JButton button = getButton(1);
+        assert(button.getText().equals("Log in"));
+    }
+
+    /**
+     * Tests that the Cancel button appears and is where it should be.
+     */
+    @org.junit.Test
+    public void testCancelButton() {
+        Main.main(null);
+        JButton button = getButton(2);
+        assert(button.getText().equals("Cancel"));
     }
 }
