@@ -1,7 +1,5 @@
 import app.Main;
-import view.LoggedInTest;
 import view.LoggedInView;
-import view.LoginTest;
 import view.LoginView;
 
 import javax.swing.*;
@@ -9,18 +7,22 @@ import java.awt.*;
 
 import static org.junit.Assert.assertNotNull;
 
-public class TestingAllCoverage {
+public class AllCoverageTest {
     static String message = "";
     // IMPORTANT: authCode must always be updated to a code that has not expired for tests to succeed.
     static final String authCode = "AQBFhyasnxIfwlafelZMupt0_M8qHcr5e1HhuUiZP3AqUmAuucmgKmr23fRa8bM87CcmufJYDxrOiA0h1DV5yZCoetQI8x6f105TTOksPAnpNNerRC00wTr9654IPzP-dQ0gZOZd07FKxyiCQnArY7-aUJyfx6wmOltWy6ROLVU3wUkI4suStb6F-4Hh-zhOfMJTzj71HnDZYU7zaxeDi3ZFX5cbY7axCnqruS9I1V1GPFvRv4i5L470RXSr0jO9XkONoFqcv8A3pGiMH0mg2aO9thHuPiIZRK7Szbno7DjaLXfXs7oJtlv3zJunIyKB2nA";
 
+    /**
+     * Tests that short term data is shown when a user is logged in and clicks the short term button. The authentication
+     * code must be changed to be working for this test to operate correctly.
+     */
     @org.junit.Test
     public void testShortTermDataShown() {
         Main.main(null);
-        // IMPORTANT: must replace below with an active code whenever running test.
-        LoggedInTest.logIn(authCode);
+        // IMPORTANT: must replace authCode attribute with an active code whenever running test.
+        logIn();
         // Clicks short term button.
-        JButton button = LoggedInTest.getButton(0);
+        JButton button = getLoggedInButton(0);
         button.doClick();
 
         // From Week5CA clear users test:
@@ -56,7 +58,12 @@ public class TestingAllCoverage {
     //
     //
 
-    public JButton getLoginButton(int buttonIndex) {
+    /**
+     * Verify that the desired button is present.
+     * @param buttonIndex The placement of the button (beginning at index 0).
+     * @return The button in index buttonIndex.
+     */
+    public static JButton getLoginButton(int buttonIndex) {
         JFrame app = null;
 
         Window[] windows = Window.getWindows();
@@ -73,17 +80,14 @@ public class TestingAllCoverage {
         return (JButton) buttons.getComponent(buttonIndex);
     }
 
+    /**
+     * Helper method to return the buttons panel from the LoginView.
+     *
+     * @param app the JFrame of the app.
+     * @return the JPanel with each button as a component.
+     */
     public static JPanel getLoginButtonsPanel(JFrame app) {
-        // Root of the app
-        Component root = app.getComponent(0);
-        // All the content of the window
-        Component cp = ((JRootPane) root).getContentPane();
-        // Panel Version of the Content Pane
-        JPanel jPanel1 = (JPanel) cp;
-        // The Component of the Panel contains the information on the page
-        JPanel jPanel2 = (JPanel) jPanel1.getComponent(0);
-        // Component 0 is LoginView, Component 1 is LoggedInView
-        LoginView loginView = (LoginView) jPanel2.getComponent(0);
+        LoginView loginView = (LoginView) navigateRoot(app).getComponent(0);
         // Component 0 is the label of the window, Component 1 is the input field, Component 2 is the buttons
         return (JPanel) loginView.getComponent(2);
     }
@@ -95,16 +99,7 @@ public class TestingAllCoverage {
      * @return the JPanel with each button as a component.
      */
     public static JPanel getLoggedInButtonsPanel(JFrame app) {
-        // Root of the app
-        Component root = app.getComponent(0);
-        // All the content of the window
-        Component cp = ((JRootPane) root).getContentPane();
-        // Panel Version of the Content Pane
-        JPanel jPanel1 = (JPanel) cp;
-        // The Component of the Panel contains the information on the page
-        JPanel jPanel2 = (JPanel) jPanel1.getComponent(0);
-        // Component 0 is LoginView, Component 1 is LoggedInView
-        LoggedInView loggedInView = (LoggedInView) jPanel2.getComponent(1);
+        LoggedInView loggedInView = (LoggedInView) navigateRoot(app).getComponent(1);
         // Component 0 is the label of the window, Component 1 is the buttons
         return (JPanel) loggedInView.getComponent(1);
     }
@@ -131,7 +126,10 @@ public class TestingAllCoverage {
         return (JButton) buttons.getComponent(buttonIndex);
     }
 
-    public static void logIn(String authCode) {
+    /**
+     * Logs the user associated with the authCode of this test class into the program.
+     */
+    public static void logIn() {
         JFrame app = null;
 
         Window[] windows = Window.getWindows();
@@ -149,7 +147,7 @@ public class TestingAllCoverage {
         // Sets the input text field to have the authentication code.
         inputTextField.setText(authCode);
         // Gets and clicks the Log in button.
-        JButton logInButton = (JButton) LoginTest.getButtonsPanel(app).getComponent(1);
+        JButton logInButton = getLoginButton(1);
         logInButton.doClick();
     }
 
