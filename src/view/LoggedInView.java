@@ -3,20 +3,17 @@ package view;
 import app.LoggedInUseCaseFactory;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.get_valence.GetValenceController;
-import interface_adapter.get_valence.GetValenceState;
+
 import interface_adapter.logged_in.LoggedInViewModel;
 import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.CompositeViewModel;
 import interface_adapter.related_artists.RelatedArtistsController;
-import interface_adapter.related_artists.RelatedArtistsState;
+
 import interface_adapter.top_album.TopAlbumController;
-import interface_adapter.top_album.TopAlbumState;
 import interface_adapter.top_artists.TopArtistsController;
-import interface_adapter.top_artists.TopArtistsState;
 import interface_adapter.top_genre.TopGenreController;
 import interface_adapter.top_genre.TopGenreState;
 import interface_adapter.top_songs.TopSongsController;
-import interface_adapter.top_songs.TopSongsState;
 
 
 import javax.swing.*;

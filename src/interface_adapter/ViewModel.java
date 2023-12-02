@@ -1,7 +1,6 @@
 package interface_adapter;
 
 import javax.swing.*;
-import java.awt.*;
 import java.beans.PropertyChangeListener;
 
 public abstract class ViewModel {

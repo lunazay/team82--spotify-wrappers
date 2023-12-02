@@ -1,6 +1,5 @@
 package interface_adapter.top_album;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 

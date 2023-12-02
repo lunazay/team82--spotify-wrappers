@@ -3,7 +3,6 @@ package interface_adapter.get_valence;
 import use_case.get_valence.GetValenceInputBoundary;
 import use_case.get_valence.GetValenceInputData;
 
-import java.io.IOException;
 
 public class GetValenceController {
 
