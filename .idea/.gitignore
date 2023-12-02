@@ -6,3 +6,7 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+# Adding a few more annoying files
+/misc.xml
+/pom.xml
+/supersecret.txt
