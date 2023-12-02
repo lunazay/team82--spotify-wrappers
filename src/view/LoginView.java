@@ -51,50 +51,37 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         cancel = new JButton(LoginViewModel.CANCEL_BUTTON_LABEL);
         buttons.add(cancel);
 
-        // JPanel loginPanel = loginViewModel.getViewPanel();
-        //add(loginPanel);
+        logIn.addActionListener(evt -> {
+            System.out.println("Click " + evt.getActionCommand());
 
-        logIn.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {
-                        String actionCommand = evt.getActionCommand();
-                        System.out.println("Click " + evt.getActionCommand());
-
-                        if (evt.getSource().equals(logIn)){
-                            LoginState currentState = loginViewModel.getState();
-                            try {
-                                loginController.execute(currentState.getCode());
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                    }
-                }
-
-            }
+            if (evt.getSource().equals(logIn)){
+                LoginState currentState = loginViewModel.getState();
+                try {
+                    loginController.execute(currentState.getCode());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
         }
+    }
+
+}
         );
-        cancel.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-                String actionCommand = evt.getActionCommand();
-                System.out.println("Click " + evt.getActionCommand());
-                // Action for the "Cancel" button
-                int confirmExit = JOptionPane.showConfirmDialog(LoginView.this, "Are you sure you want to exit?");
-                if (confirmExit == JOptionPane.YES_OPTION) {
-                    // Perform necessary cleanup and exit the application
-                    System.exit(0); // Terminate the application
-                }
+        cancel.addActionListener(evt -> {
+            System.out.println("Click " + evt.getActionCommand());
+            // Action for the "Cancel" button
+            int confirmExit = JOptionPane.showConfirmDialog(LoginView.this, "Are you sure you want to exit?");
+            if (confirmExit == JOptionPane.YES_OPTION) {
+                // Perform necessary cleanup and exit the application
+                System.exit(0); // Terminate the application
             }
         });
 
-        start.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (e.getSource().equals(start)) {
-                    Desktop desktop = Desktop.getDesktop();
-                    try { URI uri = new URI(url);
-                    desktop.browse(uri);}
-                    catch (URISyntaxException | IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
+        start.addActionListener(e -> {
+            if (e.getSource().equals(start)) {
+                Desktop desktop = Desktop.getDesktop();
+                try { URI uri = new URI(url);
+                desktop.browse(uri);}
+                catch (URISyntaxException | IOException ex) {
+                    throw new RuntimeException(ex);
                 }
             }
         });
