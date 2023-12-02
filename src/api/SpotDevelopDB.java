@@ -9,7 +9,6 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
-
 import okhttp3.*;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,9 +19,7 @@ public class SpotDevelopDB implements DevelopDB{
     String client_secret = "15abfd5161e84bfe893606e4eb74f5f6";
     String redirect_uri = "https://oauth.pstmn.io/v1/browser-callback";
 
-    // instead of calling using authToken use token() method!
-
-    public String token() throws IOException { // TODO: change this back to private when done testing.
+    private String token() throws IOException {
         File txtFile = new File("./supersecret.txt");
 
         // writing the token to the file:
@@ -43,6 +40,7 @@ public class SpotDevelopDB implements DevelopDB{
             if (!response.isSuccessful()){
                 throw new IOException("Unexpected code " + response);
             }
+            assert response.body() != null;
             String responseBody = response.body().string();
             JSONObject jsonObject = new JSONObject(responseBody);
             return jsonObject.getString("id");
@@ -54,28 +52,20 @@ public class SpotDevelopDB implements DevelopDB{
 
     @Override
     public JSONObject getRelatedArtists(String topArtistID) throws IOException {
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
         Request request = new Request.Builder()
                 .url("https://api.spotify.com/v1/artists/" + topArtistID + "/related-artists")
                 .get()
                 .addHeader("Authorization", "Bearer " + token())
                 .build();
         try{
-            Response response = client.newCall(request).execute();
-            if (!response.isSuccessful()){
-                throw new IOException("Unexpected code " + response);
-            }
-
-            JSONObject responseBody = new JSONObject(response.body().string());
-            System.out.println(responseBody);
-            return responseBody;
-        }catch (IOException | JSONException e) {
+            return callRequest(request);
+        } catch (IOException | JSONException | NullPointerException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public String getAuthorizationLink() throws MalformedURLException {
+    public String getAuthorizationLink() {
 
         return "https://accounts.spotify.com/authorize?"
                 + "client_id="+client_id+"&"
@@ -149,7 +139,7 @@ public class SpotDevelopDB implements DevelopDB{
 
                 BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 String inputLine;
-                StringBuffer response = new StringBuffer();
+                StringBuilder response = new StringBuilder();
 
                 while ((inputLine = in.readLine()) != null) {
                     response.append(inputLine);
@@ -170,7 +160,6 @@ public class SpotDevelopDB implements DevelopDB{
 
     @Override
     public Song[] getTopSongs(String timeframe) throws JSONException, IOException {
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
         Request request = new Request.Builder()
                 .url("https://api.spotify.com/v1/me/top/tracks?" + "time_range=" + timeframe)
                 .get()
@@ -178,13 +167,7 @@ public class SpotDevelopDB implements DevelopDB{
                 .build();
 
         try {
-            Response response = client.newCall(request).execute();
-            if (!response.isSuccessful()) {
-                throw new IOException("Unexpected code " + response);
-            }
-
-            JSONObject responseBody = new JSONObject(response.body().string());
-            System.out.println(responseBody);
+            JSONObject responseBody = callRequest(request);
             return SongFactory.create(responseBody);
         } catch (IOException | JSONException e) {
             throw new RuntimeException(e);
@@ -193,7 +176,6 @@ public class SpotDevelopDB implements DevelopDB{
 
     @Override
     public Artist[] getTopArtists(String timeframe) throws JSONException, IOException {
-        OkHttpClient client = new OkHttpClient().newBuilder().build();
         Request request = new Request.Builder()
                 .url("https://api.spotify.com/v1/me/top/artists?" + "time_range=" + timeframe)
                 .get()
@@ -201,16 +183,27 @@ public class SpotDevelopDB implements DevelopDB{
                 .build();
 
         try {
-            Response response = client.newCall(request).execute();
-            if (!response.isSuccessful()) {
-                throw new IOException("Unexpected code " + response);
-            }
-
-            JSONObject responseBody = new JSONObject(response.body().string());
-            System.out.println(responseBody);
+            JSONObject responseBody = callRequest(request);
             return ArtistFactory.create(responseBody);
         } catch (IOException | JSONException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * A helper method to reduce code redundancy. This method makes API calls with a given request, which is
+     * built in the individual API call methods.
+     * @param request the built request for which API call to make, different for each API call
+     * @return the API response as a JSONObject
+     */
+    private JSONObject callRequest(Request request) throws IOException {
+        OkHttpClient client = new OkHttpClient().newBuilder().build();
+        Response response = client.newCall(request).execute();
+        if (!response.isSuccessful()) {
+            throw new IOException("Unexpected code " + response);
+        }
+
+        assert response.body() != null;
+        return new JSONObject(response.body().string());
     }
 }
