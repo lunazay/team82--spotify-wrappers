@@ -4,14 +4,10 @@ import api.SpotDevelopDB;
 import data_access.UserDataAccessObject;
 import entity.Song;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.io.IOException;
 import java.util.Objects;
 
-import static org.junit.Assert.*;
 
 /**
  * This class contains tests for the TopSongs use case.

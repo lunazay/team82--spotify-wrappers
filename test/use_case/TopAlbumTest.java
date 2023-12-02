@@ -3,12 +3,7 @@ package use_case;
 import api.SpotDevelopDB;
 import data_access.UserDataAccessObject;
 import entity.Album;
-import entity.Genre;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
