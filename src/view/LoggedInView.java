@@ -194,7 +194,7 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     public void addBackButton(JPanel panel) {
         JButton backButton = new JButton("Back");
         backButton.addActionListener(evt -> {
-            System.out.println(("Click" + evt.getActionCommand()));
+            System.out.println(("Click " + evt.getActionCommand()));
             // Get the parent container (assuming LoggedInView)
             ViewManagerModel viewManagerModel = new ViewManagerModel();
             LoggedInViewModel loggedInViewModel = new LoggedInViewModel();

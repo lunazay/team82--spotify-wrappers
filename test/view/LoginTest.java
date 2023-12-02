@@ -37,7 +37,7 @@ public class LoginTest {
      * @param app the JFrame of the app.
      * @return the JPanel with each button as a component.
      */
-    private static JPanel getButtonsPanel(JFrame app) {
+    static JPanel getButtonsPanel(JFrame app) {
         // Root of the app
         Component root = app.getComponent(0);
         // All the content of the window

@@ -42,7 +42,7 @@ public class Main {
 
         LoggedInView loggedInView =  LoggedInUseCaseFactory.create(viewManagerModel, loggedInViewModel, compositeViewModel);
         assert loggedInView != null;
-        views.add(loggedInView, loggedInView.viewname);
+        views.add(loggedInView, loggedInView.viewName);
 
         viewManagerModel.setActiveViewName(loginViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
