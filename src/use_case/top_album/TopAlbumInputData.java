@@ -1,7 +1,7 @@
 package use_case.top_album;
 
 public class TopAlbumInputData {
-    private String timeframe;
+    private final String timeframe;
     private final String id;
 
     public TopAlbumInputData(String timeframe, String id){

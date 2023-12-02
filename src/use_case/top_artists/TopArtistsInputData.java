@@ -1,7 +1,7 @@
 package use_case.top_artists;
 
 public class TopArtistsInputData {
-    private String timeframe;
+    private final String timeframe;
     private final String id;
 
     public TopArtistsInputData(String timeframe, String id){

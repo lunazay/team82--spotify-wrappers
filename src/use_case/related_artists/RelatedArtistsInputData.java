@@ -1,7 +1,7 @@
 package use_case.related_artists;
 
 public class RelatedArtistsInputData {
-    private String timeframe;
+    private final String timeframe;
     private final String id;
 
     public RelatedArtistsInputData(String timeframe, String id){
