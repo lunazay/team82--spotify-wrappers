@@ -37,7 +37,7 @@ public class AllCoverageTest {
     }
 
     /**
-     * Tests that medium term data is shown when a user is logged in and clicks the short term button. The authentication
+     * Tests that medium term data is shown when a user is logged in and clicks the medium term button. The authentication
      * code must be changed to be working for this test to operate correctly.
      */
     @org.junit.Test
@@ -45,7 +45,7 @@ public class AllCoverageTest {
         Main.main(null);
         // IMPORTANT: must replace authCode attribute with an active code whenever running test.
         logIn();
-        // Clicks short term button.
+        // Clicks medium term button.
         JButton button = getLoggedInButton(1);
         button.doClick();
 
@@ -59,7 +59,7 @@ public class AllCoverageTest {
     }
 
     /**
-     * Tests that long term data is shown when a user is logged in and clicks the short term button. The authentication
+     * Tests that long term data is shown when a user is logged in and clicks the long term button. The authentication
      * code must be changed to be working for this test to operate correctly.
      */
     @org.junit.Test
@@ -67,7 +67,7 @@ public class AllCoverageTest {
         Main.main(null);
         // IMPORTANT: must replace authCode attribute with an active code whenever running test.
         logIn();
-        // Clicks short term button.
+        // Clicks long term button.
         JButton button = getLoggedInButton(2);
         button.doClick();
 
